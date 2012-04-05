@@ -1,0 +1,25 @@
+﻿R02 - Database design
+
+Gourp - 21
+
+Group details :
+	0912430
+	0912431
+	0912510
+	0912517
+	0912601
+	
+Chi tiết các file đính kèm :
+1. File 1.Restaurant_System_Database_design.docx chứa
+	- Lược đồ csdl thiết kế tập trung
+	- Đặc tả các bảng của csdl.
+	- Thiết kế csdl phân tán.
+	
+	Hình ảnh của các lược đồ csdl được đính kèm gồm có :
+	- ResSys_Local.png : Lược đồ csdl phân tán lưu trữ tại máy client ở các nhà hàng
+	- ResSys_Server.png : Lược đồ csdl phân tán lưu trữ tại máy server.
+	- ResSys_General.png : Lược đồ csdl tập trung.
+	
+2. File 2.Restaurant_System_All_modules.docx chứa :
+	- Phân tích các hệ thống con cho hệ thống lớn.
+	- File Sub_systems_Iamges_attach.zip đính kèm hình ảnh của các hệ thống con.
