@@ -1,0 +1,181 @@
+/* 
+Document   : general
+Created on : Mar 7, 2012, 5:38:20 PM
+Author     : Stanley
+Description:
+Purpose of the stylesheet follows.
+*/
+
+html, body, form, fieldset, h1, h2, h3, h4, h5, h6, p, pre, blockquote, ol, dl, address {
+    margin:0 ;
+    padding:0;
+}
+ul{      
+/*    margin: auto;*/
+}
+body {
+    background: #fff url(../images/page-background.png) repeat-x;
+    font:76%/160% "Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
+}
+p {
+/*     text-align:center; */
+	margin-left: 50px;
+}		
+a:link {
+    color:#d42945;
+    text-decoration:none;
+/*    border-bottom:1px dotted #ffbac8;*/
+}	
+a:visited {
+    color:#d42945;
+    border-bottom:none;
+    text-decoration:none;
+}		
+/*a:hover,
+a:focus {
+    color:#f03b58;
+    border-bottom:1px solid #f03b58;
+    text-decoration:none;
+}*/
+
+a:hover{
+    -moz-transition-delay: 0s;
+    -moz-transition-duration: 0.2s;
+    -moz-transition-property: background, box-shadow, border-right;
+    -moz-transition-timing-function: linear;
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 rgba(152, 178, 201, 0.2), 0 -6px 20px 10px rgba(255, 255, 255, 0.8) inset;
+    outline: 0 none;
+    padding-bottom: 15px;
+}
+
+img {
+    border:0;
+    margin-top:.5em;
+}	
+table {
+    font-family: "Consolas";
+    font-size: 12px;
+    background: white;
+    border-collapse: collapse;
+    text-align: left;
+    margin: 20px;
+    margin-left: 300px;
+}
+tr:hover  td{
+    color: red;
+}
+
+td {
+    border-bottom: 1px solid #ccc;
+    color: #669;
+    padding: 6px 8px;
+}				
+th {
+    font-weight:normal;
+    font-size: 14px;
+    color: #039;
+    border-bottom: 2px solid #6678b1;
+    padding: 10px 8px;
+}
+
+.menu{
+    font-size: 18px;
+    font-style: oblique;
+}
+
+/*div.left{
+    float: left;
+}
+
+div.right{
+    float: right;
+}*/
+
+#rss, .submit_button{
+    margin-left: 50px;
+}
+
+
+/*#nav-main ul li a, #nav-main ul li a:link, #nav-main ul li a:visited, #nav-main ul li span {*/
+#nav-main ul{
+    margin: auto;
+}
+#nav-main ul li , #nav-main ul li, #nav-main ul li span {
+    border-color: #98B2C9;
+    border-style: solid;
+    border-width: 0 1px;
+    color: #484848;
+    display: block;
+    float: left;
+    height: 18px;
+    padding: 15px 30px 10px 10px;
+    position: relative;
+    text-decoration: none;
+    z-index: 100; 
+    
+}
+
+#nav-main ul ul {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.9);
+    border: 1px solid #98B2C9;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    box-shadow: 0 2px 0 rgba(152, 178, 201, 0.2), 0 -2px 0 rgba(152, 178, 201, 0.3) inset;
+    left: -999em;
+    opacity: 0;
+    position: absolute;
+    text-shadow: 1px 1px 0 #FFFFFF, 0 0 5px #FFFFFF;
+    width: 190px;
+    z-index: 99;
+}
+#nav-main ul li.hover a, #nav-main ul li.hover a:link, #nav-main ul li.hover a:visited {
+    -moz-transition-delay: 0s;
+    -moz-transition-duration: 0.2s;
+    -moz-transition-property: background, box-shadow, border-right;
+    -moz-transition-timing-function: linear;
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 rgba(152, 178, 201, 0.2), 0 -6px 20px 10px rgba(255, 255, 255, 0.8) inset;
+    outline: 0 none;
+    padding-bottom: 15px;
+}
+
+#nav-main ul ul, #nav-main ul ul li {
+    border: 0 none;
+    float: none;
+    height: auto;
+}
+
+#nav-main {
+    list-style: none outside none;    
+    margin: auto;    
+    text-align: center;
+    
+/*    text-align:center;*/
+}
+
+#menubar{
+    float: left;
+    width: 100%;
+}
+
+/*#nav-main ul li.hover a, #nav-main ul li.hover a:link, #nav-main ul li.hover a:visited {
+    -webkit-box-shadow: inset rgba(255,255,255,0.8) 0 -6px 20px 10px;
+    -webkit-box-shadow: rgba(152,178,201,0.2) 0 0px 0px, inset rgba(255,255,255,0.8) 0 -6px 20px 10px;
+    box-shadow: rgba(152,178,201,0.2) 0 0px 0px, inset rgba(255,255,255,0.8) 0 -6px 20px 10px;
+    -moz-transition: 0.2s linear;
+    -moz-transition-property: background, box-shadow, border-right;
+    background: #FBFDFF;
+    background: rgba(255, 255, 255, 0);
+    outline: 0;
+    padding-bottom: 15px;
+    color: red;
+}*/
+
+#header {
+    height: 58px;
+/*     margin: 0 150px; */
+	margin-left:350px;
+    text-align: center;
+}
