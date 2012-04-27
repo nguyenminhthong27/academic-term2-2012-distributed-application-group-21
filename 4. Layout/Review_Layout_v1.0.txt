@@ -1,0 +1,21 @@
+﻿Kết quả review layout v1.0 - revision 68
+
+- Giao diện lần này khá hơn lần trước nhiều. 
+	+ đơn giản hơn
+	+ sử dụng ít màu sắc hơn ( <= 4 màu sẽ là đạt chuẩn màu sắc).
+	+ nhấn mạnh được cái mà mình muốn show ra, đó là login, chứ k phải là những cái khác.
+- Tuy nhiên, khuyết điểm vẫn còn rất dễ thấy
+	+ Chữ Restaurant : 7 sắc cầu vồng là đây 
+		=> quá số màu quy định và thực sự nó k đẹp. Có thể thay bằng logo sẽ tốt hơn, hoặc là chữ Restaurant được cách điệu.
+		Sử dụng 1 màu hoặc là gradient 2 màu sẽ đẹp hơn.
+	+ Footer nên center align.
+	+ Phần map nên canh cho thẳng hàng với cái chữ Introduction ^^
+		Cái này hok thẳng là thấy trang web bị gãy liền.
+	+ Vị trí tương đối của Login form và Map lệch nhau, làm cho trang web bị gãy và trông rất cứng.
+		=> Nên chỉnh lại vị trí này.
+	+ Các liên kết trang chưa được thực hiện.
+		=> lưu ý, k để bất kì dư thừa nào (redundancies) vào trang web.
+	+ CSS của các phần trong 1 trang web phải làm sao cho các phần này k bị tách rời nhau.
+		=> chẳng hạn như nhìn vào layout v1.0 này thấy được rằng nó được lắp ghép chứ k phải do mình làm ra. ;)
+	
+* Mọi người nhớ những lưu ý nho nhỏ nhưng mà sẽ là sơ suất lớn nếu không chú ý nhen.
