@@ -1,0 +1,310 @@
+/***** COPYRIGHTS 
+Theme Name: Clean 'n' Clear
+Theme URI: http://www.izwebz.com
+Description: 'Simple and Clean Design'
+Author: Demon Warlock
+Author URI: http://www.izwebz.com
+Version: 1.0
+
+Note: This file may only be used as an example for the 
+"converting form PSD to xHTML" tutorial on izwebz.com. 
+This is NOT intented to be released to the public domain. 
+If you want to use this template, you must contact me for 
+permission.
+
+Any misuse of this file is violated the copyrights and therefore
+will be executed to the fullest extent of law.
+
+***********************/
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p,a, em, font, img,
+strong, ol, ul, li {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	background: url(images/body_bg.jpg);
+	font-family: georgia, helvetica, arial, sans-serif;
+	font-size: 62.5%;
+	line-height: 1.5em;
+}
+ul {
+	list-style: none;
+}
+
+ol {
+	list-style: decimal;
+}
+
+#page-wrap {
+	width: 900px;
+	margin: 0 auto;
+}
+
+/***MAIN SETTINGS ****/
+#top-page {
+	height: 42px;
+	overflow: hidden;
+}
+
+#top-page div.search {
+	float: right;
+	margin: 9px 0px 0px 0px;
+}
+
+input#s {
+	border: none;
+	font-size: 1.1em;
+	color: #a4a4a4;
+	padding: 5px 0px 5px 5px;
+	width: 223px; height: 23px;
+	background: url(images/search.jpg) no-repeat;
+}
+
+#banner {
+	width: 900px;
+	height: 242px;
+	position: relative;
+	background: url(images/banner.png) no-repeat;
+}
+
+#banner h1 a{
+	display: block;
+	width: 160px;
+	height: 55px;
+	text-indent: -99999px;
+	position: absolute;
+	top: 87px; left: 48px;
+	background: url(images/abc.jpg) no-repeat;
+}
+
+/**** Main Content ****/
+
+#main-content {
+	overflow: auto;
+	margin: -26px 0px 150px 0px;
+}
+
+#main-content #sidebar {
+	width: 255px;
+	float: left;
+	min-height: 400px;
+	background: url(images/sidebar-bg.jpg) no-repeat;
+}
+
+#main-content #primary {
+	width: 640px;
+	float: right;
+	margin-left: 5px;
+	background: url(images/post_bg.jpg) no-repeat;
+}
+
+/**** SIDEBARS ****/
+#sidebar div#mainNav {
+	padding: 55px 25px 0px 25px;
+}
+
+#sidebar div#mainNav ul {
+	font-size: 1.2em;
+	list-style: none;
+}
+
+#sidebar div#mainNav ul li {
+	padding: 8px 0px 8px 0px;
+	background: url(images/saperators.jpg) repeat-x;
+	background-position: bottom center;
+}
+
+#sidebar div#mainNav ul li a {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 5px 11px;
+	background: url(images/bullets.png) no-repeat 0 50%;
+}
+
+#sidebar div#mainNav li a:hover {
+	color: #a9ff00;
+}
+
+#sidebar div#mainNav ul li:last-child {
+	background: none;
+}
+
+/**** POST AREA ****/
+#primary div.post-item {
+	color: #f1f1f1;
+	font-size: 1.1em;
+	line-height: 1.6em;
+	padding: 25px;
+	overflow: hidden;
+	background: url(images/post-saperator.jpg) no-repeat;
+	background-position: bottom center;
+}
+
+
+#primary div.post-item div.metadata {
+	float: left;
+	margin-right: 25px;
+}
+
+#primary div.post-item div.metadata img {
+	padding: 4px;
+	background: #f1f1f1;
+	margin: 0px 0px 22px 0px;
+}
+
+#primary div.post-item div.metadata p {
+	font-size: 1.0em;
+}
+
+#primary div.post-item div.metadata p.post {
+	padding-left: 18px;
+	background: url(images/post.png) no-repeat 0 50%;
+}
+
+#primary div.post-item div.metadata p.date {
+	padding-left: 18px;
+	background: url(images/date.png) no-repeat 0 50%;
+}
+
+#primary div.post-item div.metadata p.file {
+	padding-left: 18px;
+	background: url(images/cat.png) no-repeat 0 50%;
+}
+
+#primary div.post-item div.metadata p.comments {
+	padding-left: 18px;
+	background: url(images/comments.png) no-repeat 0 50%;
+}
+
+#primary div.post-item div.metadata a {
+	color: #f1f1f1;
+	text-decoration: none;
+}
+
+#primary div.post-item div.metadata a:hover {
+	text-decoration: underline;
+}
+
+#primary div.post-item div.metadata p strong {
+	color: #a9ff00;
+}
+
+#primary div.post-item h1 {
+	margin-bottom: 10px;
+	font-size: 1.6em;
+}
+
+#primary div.post-item h1 a {
+	color: #a9ff00;
+	text-decoration: none;
+}
+
+#primary div.post-item h1 a:hover {
+	color: #f1f1f1;
+	border-bottom: 1px dotted #f1f1f1;
+}
+
+#primary div.post-item div.readMore {
+	margin-top: 25px;
+}
+
+#primary div.post-item div.readMore a {
+	color: #a9ff00;
+	padding-left: 20px;
+	text-decoration: none;
+	background: url(images/read-more.png) no-repeat 0 50%;
+}
+
+#primary div.post-item div.readMore a:hover {
+	color: #f1f1f1;
+	background: url(images/read-more.png) no-repeat 4px 50%;
+}
+
+/**** FOOTER ****/
+#footer {
+	overflow: hidden;
+	background: url(images/footer_bg.jpg) no-repeat top center;
+}
+
+#footer div#footerNav {
+	padding: 10px 15px;
+	overflow: hidden;
+	background: url(images/saperators.jpg) repeat-x;
+	background-position: bottom center;
+}
+
+#footer div#footerNav p.copyright {
+	float: none;
+	color: #f1f1f1;
+	font-size: 1.1em;
+}
+
+#footer div#footerNav ul {
+	list-style: none;
+	float: none;
+	clear: both;
+	text-align: center;
+	vertical-align: middle;
+	position: absolute;
+	visibility: inherit;
+	left: 369px;
+	top: 817px;
+	width: 766px;
+}
+
+#footer div#footerNav ul li {
+	float: left;
+	padding-right: 15px;
+}
+
+#footer div#footerNav li a {
+	color: #f1f1f1;
+	text-decoration: none;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+#footer div#footerNav li a:hover {
+	color: #a9ff00;
+	border-bottom: 2px solid #f1f1f1;
+}
+
+#footer div#footerInfo img {
+	float: left;
+	margin: 5px 0px 0px 0px;
+}
+#footer div#footerInfo div.rules {
+	color: #f1f1f1;
+	font-size: 1.2em;
+	line-height: 1.5em;
+	width: 675px;
+	height: 65px;
+	float: left;
+	background: red url(images/bubble.png) no-repeat;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+}
+#footer div#footerInfo div.rules a{
+	color:#a9ff00;
+	text-decoration: underline;
+}
+
+#footer div#footerInfo div.rules a:hover, #footer div#footerInfo div.rules a:active{
+	color:#a9ff00;
+	text-decoration: none;
+}
+#footer div#footerInfo div.rules div.inside {
+	padding: 25px 5px 0px 80px;
+}
+
+#footer div#footerInfo div.rules ol {
+	margin: 10px 0px 10px 30px;
+}
