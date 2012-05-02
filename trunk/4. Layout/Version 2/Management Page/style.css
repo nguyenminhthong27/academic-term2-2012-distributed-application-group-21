@@ -1,22 +1,3 @@
-/***** COPYRIGHTS 
-Theme Name: Clean 'n' Clear
-Theme URI: http://www.izwebz.com
-Description: 'Simple and Clean Design'
-Author: Demon Warlock
-Author URI: http://www.izwebz.com
-Version: 1.0
-
-Note: This file may only be used as an example for the 
-"converting form PSD to xHTML" tutorial on izwebz.com. 
-This is NOT intented to be released to the public domain. 
-If you want to use this template, you must contact me for 
-permission.
-
-Any misuse of this file is violated the copyrights and therefore
-will be executed to the fullest extent of law.
-
-***********************/
-
 html, body, div, span, h1, h2, h3, h4, h5, h6, p,a, em, font, img,
 strong, ol, ul, li {
 	margin: 0;
@@ -253,8 +234,8 @@ input#s {
 	vertical-align: middle;
 	position: absolute;
 	visibility: inherit;
-	left: 369px;
-	top: 817px;
+	left: 283px;
+	top: 820px;
 	width: 766px;
 }
 
