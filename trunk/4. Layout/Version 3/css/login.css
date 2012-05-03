@@ -305,13 +305,12 @@ h3.txt-247 {
 }
 
 .two-cols .col {
-    margin-left:230px;
     background-color: #19B1EE;
-    opacity: 0.7;
     border-radius: 5px 5px 5px 5px;
     color: white;
     height: 180px;
-    margin-right: 34px;
+    margin-left:230px;
+    margin-top: 70px;
     width: 420px;
 }
 
@@ -321,19 +320,24 @@ h3.txt-247 {
     padding-top: 35px;
 }
 
-.cols .col .text form input {
+.cols .col .text form table td {
     margin-left: 10px;
     margin-top: 10px;
     padding-top: 5px;
 }
 
+.cols .col .text form table input{
+    padding-top: 5px;
+}
+
 #submit {
-    margin-left:90px;
     background-color: white;
     border-radius: 5px 5px 5px 5px;
     border: 2px solid white;
     opacity: 1;
     color: black;
+    margin-left:90px;
+    margin-top: 10px;
     padding-top: 0px;
 }
 
@@ -373,11 +377,12 @@ h3.txt-247 {
     width: 32px;
 }
 
-#footer {
+#footer {   
     background: url("images/footer.gif") no-repeat scroll 0pt 0pt transparent;
     color: #FFFFFF;
     height: 41px;
     line-height: 41px;
+     margin-top: 100px;
     padding: 10px 10px 10px 22px;
 }
 
