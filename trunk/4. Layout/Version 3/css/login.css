@@ -305,7 +305,7 @@ h3.txt-247 {
 }
 
 .two-cols .col {
-    background-color: #19B1EE;
+    background-color: #05AAED;
     border-radius: 5px 5px 5px 5px;
     color: white;
     height: 160px;
@@ -355,26 +355,6 @@ h3.txt-247 {
     width: 128px;
 }
 
-.cols .col .smallToolbar {
-    float: left;
-    height: 32px;
-    padding-left: 10px;
-    padding-top: 20px;
-}
-
-.cols .col .smallToolbar a img {
-    height: 32px;
-    opacity: 0.5;
-    padding-left: 30px;
-    width: 32px;
-}
-
-.cols .col .smallToolbar a img:hover {
-    height: 32px;
-    opacity: 1;
-    padding-left: 30px;
-    width: 32px;
-}
 
 #footer {   
     background-color: #19B1EE;
