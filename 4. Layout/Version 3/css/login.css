@@ -122,13 +122,14 @@ p {
     float: left;
     font-size: 0pt;
     line-height: 0;
+    padding-bottom: 10px;
     width: 233px;
 }
 
 #logo a {
     background: url("images/logo.gif") repeat scroll 0% 0% transparent;
     display: block;
-    height: 50px;
+    height: 67px;
     text-indent: -4000px;
 }
 
@@ -376,10 +377,11 @@ h3.txt-247 {
 }
 
 #footer {   
-    background: url("images/footer.gif") no-repeat scroll 0pt 0pt transparent;
+    background-color: #19B1EE;
+    border-radius: 5px 5px 5px 5px;
     color: #FFFFFF;
-    height: 41px;
-    line-height: 41px;
+    height: 20px;
+    line-height: 20px;
      margin-top: 100px;
     padding: 10px 10px 10px 22px;
 }
