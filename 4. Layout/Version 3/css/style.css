@@ -420,3 +420,8 @@ h3.txt-247 {
 #footer span {
      margin: 0pt 6px;
 }
+
+#disabled
+{
+    opacity: 0.3;
+}
