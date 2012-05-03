@@ -120,7 +120,8 @@ p {
 #logo {
      display: inline;
      float: left;
-     font-size: 0pt;
+     font-size: 0pt;     
+     padding-bottom: 10px;
      line-height: 0;
      width: 233px;
 }
@@ -128,7 +129,7 @@ p {
 #logo a {
      background: url("images/logo.gif") repeat scroll 0% 0% transparent;
      display: block;
-     height: 50px;
+     height: 67px;
      text-indent: -4000px;
 }
 
@@ -305,9 +306,9 @@ h3.txt-247 {
 }
 
 .two-cols:nth-child(odd) .col {
-     background-color: #19B1EE;
+     background-color: #05AAED;
      border-radius: 5px 5px 5px 5px;
-     height: 180px;
+     height: 155px;
      margin-right: 34px;
      opacity: 0.9;
      width: 420px;
@@ -316,7 +317,7 @@ h3.txt-247 {
 .two-cols:first-child .col {
      background-color: #F79A1D;
      border-radius: 5px 5px 5px 5px;
-     height: 180px;
+     height: 155px;
      margin-right: 34px;
      opacity: 0.9;
      width: 420px;
@@ -325,7 +326,7 @@ h3.txt-247 {
 .two-cols:nth-child(even) .col {
      background-color: #97C024;
      border-radius: 5px 5px 5px 5px;
-     height: 180px;
+     height: 155px;
      margin-right: 34px;
      opacity: 0.9;
      width: 420px;
@@ -334,7 +335,7 @@ h3.txt-247 {
 .two-cols:last-child .col {
      background-color: #D85426;
      border-radius: 5px 5px 5px 5px;
-     height: 180px;
+     height: 155px;
      margin-right: 34px;
      opacity: 0.9;
      width: 420px;
@@ -378,7 +379,6 @@ h3.txt-247 {
      float: left;
      height: 32px;
      padding-left: 10px;
-     padding-top: 20px;
 }
 
 .cols .col .smallToolbar a img {
@@ -396,10 +396,11 @@ h3.txt-247 {
 }
 
 #footer {
-     background: url("images/footer.gif") no-repeat scroll 0pt 0pt transparent;
+     background-color: #19B1EE;
+     border-radius: 5px 5px 5px 5px;
      color: #FFFFFF;
-     height: 41px;
-     line-height: 41px;
+     height: 20px;
+     line-height: 20px;
      padding: 10px 10px 10px 22px;
 }
 
