@@ -1,0 +1,399 @@
+* {
+    margin: 0pt;
+    outline: 0pt none;
+    padding: 0pt;
+}
+
+body, html {
+    height: 100%;
+}
+
+body {
+    background: none repeat scroll 0% 0% #E1E5E8;
+    color: #888888;
+    font-family: "Georgia",Tahoma,Sans-Serif;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+input, textarea, select {
+    font-family: "Georgia",Tahoma,Sans-Serif;
+    font-size: 12px;
+}
+
+.field {
+    border: 1px solid #E7E7E7;
+    color: #969696;
+    height: 15px;
+    padding: 4px 5px;
+}
+
+.field-focused {
+    color: #333333;
+}
+
+input.button {
+    cursor: pointer;
+    padding: 4px 5px;
+}
+
+a {
+    color: #45C7EE;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a img {
+    border: 0pt none;
+}
+
+h2 {
+    color: #464646;
+    font-family: "Trebuchet MS",Tahoma,Sans-Serif;
+    font-size: 19px;
+    font-weight: normal;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+p {
+    padding-bottom: 18px;
+}
+
+.left, .alignleft {
+    display: inline;
+    float: left;
+}
+
+.right, .alignright {
+    display: inline;
+    float: right;
+}
+
+.cl {
+    clear: both;
+    display: block;
+    font-size: 0pt;
+    height: 0pt;
+    line-height: 0;
+}
+
+.notext {
+    background-repeat: no-repeat;
+    font-size: 0pt;
+    line-height: 0;
+    text-indent: -4000px;
+}
+
+.al {
+    text-align: left;
+}
+
+.ar {
+    text-align: right;
+}
+
+.ac {
+    text-align: center;
+}
+
+#page {
+    margin: 0pt auto;
+    width: 874px;
+}
+
+#page {
+    background: url("images/bg.gif") repeat-y scroll center 0pt transparent;
+    height: auto ! important;
+    min-height: 100%;
+    padding: 0pt 28px;
+}
+
+#top {
+    padding: 20px 0pt 16px;
+}
+
+#logo {
+    display: inline;
+    float: left;
+    font-size: 0pt;
+    line-height: 0;
+    width: 233px;
+}
+
+#logo a {
+    background: url("images/logo.gif") repeat scroll 0% 0% transparent;
+    display: block;
+    height: 50px;
+    text-indent: -4000px;
+}
+
+#welcomeUser {
+    float: right;
+}
+
+#navigation {
+    background: url("images/navigation.gif") no-repeat scroll 0% 0% transparent;
+    height: 38px;
+    margin-top: 5px;
+    padding: 8px 10px 6px;
+}
+
+#navigation ul {
+    font-size: 13px;
+    line-height: 38px;
+    text-transform: capitalize;
+}
+
+#navigation ul li {
+    display: inline;
+    float: left;
+    list-style-type: none;
+    padding-right: 2px;
+}
+
+#navigation ul li a {
+    color: #FFFFFF;
+    display: inline;
+    float: left;
+    padding-left: 17px;
+    text-decoration: none;
+}
+
+#navigation ul li a span {
+    background-position: right 0pt ! important;
+    display: inline;
+    float: left;
+    padding-right: 17px;
+}
+
+#navigation ul li a:hover, #navigation ul li a.active, #navigation ul li a:hover span, #navigation ul li a.active span {
+    background: url("images/nav-active.gif") no-repeat scroll 0pt 0pt transparent;
+    color: #717171;
+}
+
+#header {
+    padding-bottom: 10px;
+}
+
+#slider {
+    background: url("images/slider.gif") no-repeat scroll 0pt 0pt transparent;
+    height: 200px;
+    position: relative;
+}
+
+#slider .slider-nav a {
+    display: block;
+    font-size: 0pt;
+    height: 49px;
+    line-height: 0;
+    position: absolute;
+    text-indent: -4000px;
+    top: 60px;
+    width: 18px;
+}
+
+#slider .slider-nav a.prev {
+    background: url("images/button-prev.gif") repeat scroll 0% 0% transparent;
+    left: 0pt;
+}
+
+#slider .slider-nav a.next {
+    background: url("images/button-next.gif") repeat scroll 0% 0% transparent;
+    right: 0pt;
+}
+
+#slider-holder {
+    height: 200px;
+}
+
+#slider-holder .jcarousel-clip {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    width: 874px;
+}
+
+#slider-holder .slide-image {
+    display: inline;
+    float: right;
+}
+
+.slide-image img {
+    height: 180px;
+    padding-right: 200px;
+    width: 180px;
+}
+
+#slider-holder .slide-info {
+    display: inline;
+    float: left;
+    padding-left: 50px;
+    padding-top: 23px;
+    width: 300px;
+}
+
+#slider-holder .slide-info p {
+    padding-bottom: 8px;
+}
+
+#slider-holder ul {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    width: 874px;
+}
+
+#slider-holder ul li {
+    display: inline;
+    float: left;
+    height: 200px;
+    list-style-type: none;
+    overflow: hidden;
+    padding: 5px 10px 4px 50px;
+    position: relative;
+    width: 800px;
+}
+
+#main {
+    border-bottom: 1px solid #E3E7E9;
+    margin-bottom: 6px;
+}
+
+h2.txt-we-love-mondays {
+    background-image: url("images/txt-we-love-mondays.gif");
+    height: 94px;
+}
+
+h3.txt-monday-again {
+    background-image: url("images/txt-monday-again.gif");
+}
+
+h3.txt-wedothis {
+    background-image: url("images/txt-wedothis.gif");
+}
+
+h3.txt-247 {
+    background-image: url("images/txt-247.gif");
+}
+
+.more {
+    background: url("images/arr.gif") no-repeat scroll 0pt center transparent;
+    padding-left: 10px;
+}
+
+.cols {
+    padding: 15px 0pt 10px;
+}
+
+.cols .col {
+    display: inline;
+    float: left;
+}
+
+.cols .col-last {
+    margin-right: 0pt ! important;
+}
+
+.cols .col h3.notext {
+    height: 45px;
+    margin-bottom: 5px;
+}
+
+.two-cols .col {
+    margin-left:230px;
+    background-color: #19B1EE;
+    opacity: 0.7;
+    border-radius: 5px 5px 5px 5px;
+    color: white;
+    height: 180px;
+    margin-right: 34px;
+    width: 420px;
+}
+
+.cols .col .text {
+    float: left;
+    padding-left: 10px;
+    padding-top: 35px;
+}
+
+.cols .col .text form input {
+    margin-left: 10px;
+    margin-top: 10px;
+    padding-top: 5px;
+}
+
+#submit {
+    margin-left:90px;
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    border: 2px solid white;
+    opacity: 1;
+    color: black;
+    padding-top: 0px;
+}
+
+#submit:hover {
+    background-color: #19B1EE;
+    border-radius: 5px 5px 5px 5px;
+    color: white;
+    padding-top: 0px;
+}
+
+.cols .col img {
+    float: left;
+    height: 128px;
+    padding-left: 5px;
+    padding-top: 5px;
+    width: 128px;
+}
+
+.cols .col .smallToolbar {
+    float: left;
+    height: 32px;
+    padding-left: 10px;
+    padding-top: 20px;
+}
+
+.cols .col .smallToolbar a img {
+    height: 32px;
+    opacity: 0.5;
+    padding-left: 30px;
+    width: 32px;
+}
+
+.cols .col .smallToolbar a img:hover {
+    height: 32px;
+    opacity: 1;
+    padding-left: 30px;
+    width: 32px;
+}
+
+#footer {
+    background: url("images/footer.gif") no-repeat scroll 0pt 0pt transparent;
+    color: #FFFFFF;
+    height: 41px;
+    line-height: 41px;
+    padding: 10px 10px 10px 22px;
+}
+
+#footer p {
+    padding-bottom: 0pt;
+}
+
+#footer a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+#footer a:hover {
+    color: #237087;
+}
+
+#footer span {
+    margin: 0pt 6px;
+}
