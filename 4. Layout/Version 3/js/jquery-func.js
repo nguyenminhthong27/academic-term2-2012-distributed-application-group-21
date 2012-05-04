@@ -57,4 +57,7 @@ $(document).ready(function() {
             check_fields(this);
         }
     });
+    
+    
+    
 });
