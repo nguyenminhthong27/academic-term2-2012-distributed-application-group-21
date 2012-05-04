@@ -1,0 +1,93 @@
+
+.main-content
+{
+    padding-left: 100px;
+}
+
+
+.search-table select,input
+{
+    margin-left: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    padding: 3px 0px 3px 0px;
+    font-family: arial;
+    font-size: 14px;
+}
+
+.search-table
+{
+    font-size: 14px;
+    font-family: arial;
+    border-bottom: 1px solid #E3E7E9;
+    width: 560px;
+    padding-bottom: 10px;
+}
+
+.foodTableTbl
+{
+    margin-top: 30px;
+    margin-bottom: 50px;
+    font-family: arial;
+    font-size: 14px;
+}
+
+
+.foodTableTbl table tr th
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #31B2D6;
+    border-radius: 10px 10px 0px 0px;
+    color: white;
+    font-family: arial, sans-serif;
+    font-size: 16px;
+    height: 35px;
+    min-width: 70px;
+    text-align: center;
+}
+
+
+.foodTableTbl table td {
+    border-color: white;
+    border: 1px solid #BBE0EB;
+    padding-left: 10px;
+}
+
+.foodTableTbl table tr {
+    height: 35px;
+}
+
+.foodTableTbl table tr:hover {
+    background-color: #BBE0EB;
+}
+
+#bookingDetailDialog table 
+{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 35px;
+}
+#bookingDetailDialog table tr
+{
+    height: 30px;
+}
+
+#bookingDetailDialog table tr th
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #4896AC;
+    color: white;
+    font-family: arial, sans-serif;
+    font-size: 14px;
+    height: 35px;
+    min-width: 70px;
+    text-align: center;
+} 
+#bookingDetailDialog table td {
+    border-color: white;
+    border: 1px solid #BBE0EB;
+    padding-left: 10px;
+    padding-right: 10px;
+}
