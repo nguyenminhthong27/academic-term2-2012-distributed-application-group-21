@@ -12,8 +12,25 @@ function login(){
 
 	var username = document.getElementById('txtUsername').value;
 	var password = document.getElementById('txtPassword').value;
-	window.location = "../html/home.php";
+	var nocache = Math.random();
 	
+	var http = createXMLHttpRequest();
+	var serverURL = "../controller/LoginController.php?uname=" + username + "&psswd=" + password + "&nocache=" + nocache;
+	http.open("POST", serverURL, true);
+	http.onreadystatechange = function()
+		{
+			if(http.readyState==4 && http.status==200){
+				var respone = http.responseText;
+				if (respone == "Login Failed") {
+					// if login failed
+					document.getElementById("login_result").innerHTML = respone;
+				} else {
+					// if login success					
+					window.location = "../gui/home.php";
+				}
+			}
+		}
+	http.send();	
 }
 
 /**
