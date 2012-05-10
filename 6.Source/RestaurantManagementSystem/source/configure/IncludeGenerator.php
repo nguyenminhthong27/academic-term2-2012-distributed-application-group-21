@@ -19,6 +19,7 @@ class IncludeGenerator {
 	 * */
 	public static function JSGenerate(){
 		return '
+		<script src="../js/general_functions.js" type="text/javascript"></script>
 		<script src="../js/jquery-1.4.1.min.js" type="text/javascript"></script>
         <script src="../js/jquery.jcarousel.pack.js" type="text/javascript"></script>
         <script src="../js/jquery-func.js" type="text/javascript"></script>
