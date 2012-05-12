@@ -5,3 +5,13 @@ cach du dung cung nhu PHP admin khong khac j het nha moi nguoi....
 
 
 chuc cac ban may man :)
+
+
+---d? ch?y du?c nó thì b?n ph?i extent trong php.ini
+...extension=php_mongo.dll
+
+sau dó l?y cái driver tui d? ? ngoài dó copy vào
+
+vd tui cài warm ? ? D thì tui làm nhu sau
+D:\wamp\bin\php\php5.3.9\ext
+trong thu muc ext ---> copy driver vào nhé!
