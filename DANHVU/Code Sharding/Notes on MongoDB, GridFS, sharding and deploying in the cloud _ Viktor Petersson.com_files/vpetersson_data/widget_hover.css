@@ -1,0 +1,47 @@
+body{ margin:0; padding:0; font-family: Helvetica }
+
+#klout_hover_container 	{ background: #F8F8F8; border: 2px solid #333; font-size: 12px; position: absolute; width: 208px; height:180px; text-align: center;  }
+
+ .klout { border-top: 1px dotted #eee; }
+#klout_hover { text-align: left; }
+
+ .tile .centered_tile { width:198px; margin:5px auto 0; overflow: auto; }
+ .tile { text-align: center; }
+ .tile > a { text-align: left; }
+ .content { text-align:center; }
+ .content div { text-align: left; }
+
+ #photo { float:left; margin-right:2px }
+ #badge { float:left; background: url('../images/klout_flag.png') no-repeat; height:93px; width:122px; }
+ #badge .user_score div{ width:122px; text-align:center; font-size:60px; line-height:47px; color:#f8f8f8; padding-top:7px; }
+ #badge .user_score div a {color:#f8f8f8; }
+ #badge .user_score span{	font-size:12px;	display:block; font-weight: bold; color:#ebe2bd; width:122px; text-align: center; }
+
+.user { width: 198px; margin:-19px auto 0; }
+#klout_name a, #klout_name { font-size: 16px; color: #333; font-weight: bold; text-decoration: none; }
+#klout_bio { color: #AAA; }
+
+.topics { width:198px; margin:5px auto 0; color:#AAA; }
+.topics .topic_header { font-size: 14px; color: #333; font-weight: bold;  }
+
+a img { border:0;}
+a { text-decoration: none; }
+
+.badge_cont{ width:200px; }
+.badge_cont_160 { width:160px; }
+.centered_tile_badge { overflow:auto; }
+.badge_cont #klout_name { font-size: 21px }
+.badge_cont_160 #klout_name { font-size: 15px }
+.badge_cont_160 #badge { background: url('../images/klout_badge_160.png') top right no-repeat; height:76px;	width:99px; }
+.badge_cont_160 #badge .user_score div#klout_score { width: 99px; font-size:45px; line-height:47px; }
+.badge_cont_160 #badge .user_score span { width: 99px; font-size:11px; margin-top:-4px; }
+.badge_cont_160 .user { margin-top: -17px; //margin-top: -19px;}
+.badge_cont_160 #badge .user_score div{ padding-top:0px;}
+
+.badge_cont_120 {width:120px;}
+.badge_cont_120 #klout_name { font-size: 13px }
+.badge_cont_120 #badge { background: url('../images/klout_badge_120.png') top right no-repeat; height:59px;	width:73px; }
+.badge_cont_120 #badge .user_score div#klout_score { width: 73px; font-size:35px; line-height:37px; }
+.badge_cont_120 #badge .user_score span { width: 73px; font-size:8px; margin-top:-4px; }
+.badge_cont_120 .user { margin-top: -15px; //margin-top: -17px;}
+.badge_cont_120 #badge .user_score div{ padding-top:0px;}

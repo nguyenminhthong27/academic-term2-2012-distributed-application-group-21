@@ -1,0 +1,4 @@
+@import "http://blog.brianbuikema.com/wp-content/themes/mystique/color-blue.css";
+body.col-2-right #primary-content{width:630px;left:0;}
+body.col-2-right #sidebar{width:310px;}
+.post-info.with-thumbs{margin-left:94px;}

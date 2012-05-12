@@ -1,0 +1,70 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="vpetersson_data/widget_hover.css">
+<style>
+body{ background-color: transparent; }
+#klout_name{ color: #343432; }
+</style>
+<script src="vpetersson_data/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="vpetersson_data/mixpanel.js"></script>
+<script type="text/javascript">
+try {
+	var mpmetrics = new MixpanelLib(''); 
+		} catch(err) { 
+	null_fn = function () {}; 
+	var mpmetrics = {  track: null_fn,  track_funnel: null_fn,  register: null_fn,  register_once: null_fn, register_funnel: null_fn }; } 
+</script>
+
+<!-- chartbeat -->
+<script type="text/javascript">
+    var _sf_async_config={uid:2165,domain:"widgets.klout.com"};
+    (function(){
+        function loadChartbeat() {
+            window._sf_endpt=(new Date()).getTime();
+            var e = document.createElement('script');
+            e.setAttribute('language', 'javascript');
+            e.setAttribute('type', 'text/javascript');
+            e.setAttribute('src', "http://static.chartbeat.com/js/chartbeat.js") ;
+            document.body.appendChild(e);
+        }
+        var oldonload = window.onload;
+        window.onload = (typeof window.onload != 'function') ? loadChartbeat : function() { oldonload(); loadChartbeat(); };
+    })();
+</script>
+<!-- end chartbeat -->
+
+<!-- google analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-19855509-1']);
+      _gaq.push(['_trackPageview']);
+
+        (function() {
+             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                       })();
+
+</script>
+<!-- end google analytics -->
+
+</head><body><div class="badge_cont_120">
+<a href="http://klout.com/vpetersson" onclick="mpmetrics.track('widgets-badget-click', {'referer':'http://viktorpetersson.com/2012/01/29/notes-on-mongodb-gridfs-and-sharding-in-the-cloud/'});" target="_blank">
+<div class="tile">
+	<div class="centered_tile_badge">
+		<div id="photo"><img src="vpetersson_data/vpetersson.jpg" class="avatar" height="44" width="44"></div>
+		<div id="badge">
+			<div class="user_score">
+				<div id="klout_score">43</div>
+				<span>KLOUT SCORE</span>
+			</div>
+		</div>	
+	</div>								
+</div>
+<div class="content">
+	<div class="user">
+		<div id="klout_name">vpetersson</div>
+	</div>
+</div>
+</a>
+</div>
+<script src="vpetersson_data/chartbeat.js" type="text/javascript" language="javascript"></script></body></html>
