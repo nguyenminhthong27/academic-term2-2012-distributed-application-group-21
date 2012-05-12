@@ -84,7 +84,7 @@ class IncludeGenerator {
                     <div class="col">
                         <img src="../css/images/cashierIcon.png" ></img>
                         <div class="text">
-                            <a href="#">Quản lý thu ngân</a>
+                            <a href="javascript:billingManagement()">Quản lý thu ngân</a>
                             <ul>
                                 <li>Quản lý thanh toán hóa đơn</li>
                                 <li>Chỉ dành cho nhân viên thu ngân</li>
@@ -95,15 +95,15 @@ class IncludeGenerator {
                     <div class="col col-last">
                         <img src="../css/images/seatIcon.png" ></img>
                         <div class="text">
-                            <a href="#">Quản lý đặt chỗ</a>
+                            <a href="javascript:bookingManagement()">Quản lý đặt chỗ</a>
                             <ul>
                                 <li>Quản lý yêu cầu đặt chỗ của khách hàng</li>
                                 <li>Chỉ dành cho nhân viên tiếp tân</li>
                             </ul>
                         </div>
                         <div class="smallToolbar">
-                            <a href="#" title="Đặt chỗ"><img alt="Đặt chỗ" src="../css/images/plusIcon.png" /></a>
-                            <a href="#" title="Danh sách bàn ăn"><img src="../css/images/tableIcon.png" /></a>
+                            <a href="javascript:booking()" title="Đặt chỗ"><img alt="Đặt chỗ" src="../css/images/plusIcon.png" /></a>
+                            <a href="javascript:showTableList()" title="Danh sách bàn ăn"><img src="../css/images/tableIcon.png" /></a>
                         </div>
                     </div>
                     <div class="cl">&nbsp;</div>
@@ -115,7 +115,7 @@ class IncludeGenerator {
                     <div class="col">
                         <img src="../css/images/menuIcon.png" ></img>
                         <div class="text">
-                            <a href="#">Quản lý thực đơn</a>
+                            <a href="javascript:menuManagement()">Quản lý thực đơn</a>
                             <ul>
                                 <li>Quản lý thực đơn và món ăn</li>
                                 <li>Chỉ dành cho nhân viên nhà bếp</li>
@@ -123,22 +123,22 @@ class IncludeGenerator {
 
                         </div>
                         <div class="smallToolbar">
-                            <a href="#" title="Quản lý thực đơn"><img src="../css/images/menuIcon.png" /></a>
-                            <a href="#" title="Quản lý món ăn"><img src="../css/images/foodIcon.png" /></a>
+                            <a href="javascript:menuManagement()" title="Quản lý thực đơn"><img src="../css/images/menuIcon.png" /></a>
+                            <a href="javascript:foodManagement()" title="Quản lý món ăn"><img src="../css/images/foodIcon.png" /></a>
                         </div>
                     </div>
                     <div class="col col-last">
                         <img src="../css/images/stockIcon.png" ></img>
                         <div class="text">
-                            <a href="#">Quản lý kho hàng</a>
+                            <a href="javascript:ingredientManagement()">Quản lý kho hàng</a>
                             <ul>
                                 <li>Quản lý nhập xuất kho</li>
                                 <li>Chỉ dành cho nhân viên quản lý kho</li>
                             </ul>
                         </div>
                         <div class="smallToolbar">
-                            <a href="#" title="Quản lý nhà cung cấp"><img src="../css/images/restaurantIcon.png" /></a>
-                            <a href="#" title="Quản lý nguyên liệu trong kho hàng"><img src="../css/images/ingredientIcon.png" /></a>
+                            <a href="javascript:supplierManagement()" title="Quản lý nhà cung cấp"><img src="../css/images/restaurantIcon.png" /></a>
+                            <a href="javascript:materialManagement()" title="Quản lý nguyên liệu trong kho hàng"><img src="../css/images/ingredientIcon.png" /></a>
                         </div>
                     </div>
                     <div class="cl">&nbsp;</div>
@@ -150,7 +150,7 @@ class IncludeGenerator {
                     <div class="col">
                         <img src="../css/images/userIcon.png" ></img>
                         <div class="text">
-                            <a href="#">Quản lý tài khoản</a>
+                            <a href="javascript:accountManagement()">Quản lý tài khoản</a>
                             <ul>
                                 <li>Quản lý tài khoản người dùng</li>
                                 <li>Chỉ dành cho nhân viên hệ thống</li>
@@ -162,7 +162,7 @@ class IncludeGenerator {
                     <div class="col col-last">
                         <img src="../css/images/employeeIcon.png" ></img>
                         <div class="text">
-                            <a href="#">Quản lý nhân viên</a>
+                            <a href="javascript:staffManagement()">Quản lý nhân viên</a>
                             <ul>
                                 <li>Quản lý thông tin nhân viên</li>
                                 <li>Chuyển công tác nhân viên</li>
@@ -181,7 +181,7 @@ class IncludeGenerator {
                     <div class="col">
                         <img src="../css/images/restaurantIcon.png" ></img>
                         <div class="text">
-                            <a href="#">Quản lý nhà hàng</a>
+                            <a href="javascript:restaurantManagement()">Quản lý nhà hàng</a>
                             <ul>
                                 <li>Quản lý thông tin nhà hàng</li>
                                 <li>Chỉ dành cho nhân viên hệ thống</li>
@@ -207,9 +207,9 @@ class IncludeGenerator {
 		<div id="footer">
 			<p class="right">&copy; 2012 - T4V Restaurant Management System &nbsp; Design by T4V Group
 				<p>
-					<a href="#">Trang chủ</a><span>&nbsp;</span>
-					<a href="#">Giới thiệu</a><span>&nbsp;</span>
-					<a href="#">Liên hệ</a><span>&nbsp;</span>
+					<a href="home.php">Trang chủ</a><span>&nbsp;</span>
+					<a href="about.php">Giới thiệu</a><span>&nbsp;</span>
+					<a href="contact.php">Liên hệ</a><span>&nbsp;</span>
 					<div class="cl">&nbsp;</div>
 				</p>
 			</p>
@@ -226,15 +226,15 @@ class IncludeGenerator {
 		return '
 		<div id="top">
 			<div class="cl">&nbsp;</div>
-				<h1 id="logo"><a href="#">T4V RESTAURANT</a></h1>
+				<h1 id="logo"><a href="home.php">T4V RESTAURANT</a></h1>
 				<p id="welcomeUser"></p>
 				<div class="cl">&nbsp;</div>
 				<div id="navigation">
 				<ul>
-				<li><a href="#" class="active"><span>Trang chủ</span></a></li>
-				<li><a href="#"><span>Giới thiệu</span></a></li>
-				<li><a href="#"><span>Tài khoản</span></a></li>
-				<li><a href="#"><span>Liên hệ</span></a></li>
+				<li><a href="home.php" class="active"><span>Trang chủ</span></a></li>
+				<li><a href="about.php"><span>Giới thiệu</span></a></li>
+				<li><a href="account.php"><span>Tài khoản</span></a></li>
+				<li><a href="contact.php"><span>Liên hệ</span></a></li>
 				</ul>
 			</div>
 		</div>
