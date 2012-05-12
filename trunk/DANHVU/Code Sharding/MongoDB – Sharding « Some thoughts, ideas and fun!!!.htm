@@ -1,0 +1,1139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en"><head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>MongoDB – Sharding « Some thoughts, ideas and fun!!!</title>
+
+<link rel="stylesheet" href="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/style.css" type="text/css" media="screen">
+
+<script type="text/javascript" async="" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/quant.js"></script><script type="text/javascript" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/base.js"></script>
+<script type="text/javascript" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/menu.js"></script>
+
+<link rel="pingback" href="http://yakiloo.com/xmlrpc.php">
+		<script src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/remote-login.htm" type="text/javascript"></script>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			if ( 'function' === typeof WPRemoteLogin ) {
+				document.cookie = "wordpress_test_cookie=test; path=/";
+				if ( document.cookie.match( /(;|^)\s*wordpress_test_cookie\=/ ) ) {
+					WPRemoteLogin();
+				}
+			}
+		/* ]]> */
+		</script>
+		<link rel="alternate" type="application/rss+xml" title="Some thoughts, ideas and fun!!! » Feed" href="http://yakiloo.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Some thoughts, ideas and fun!!! » Comments Feed" href="http://yakiloo.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Some thoughts, ideas and fun!!! » MongoDB –&nbsp;Sharding Comments Feed" href="http://yakiloo.com/mongodb-sharding/feed/">
+<script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<link rel="stylesheet" href="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/global.css" type="text/css">
+<link rel="stylesheet" id="loggedout-subscribe-css" href="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/widget.css" type="text/css" media="all">
+<link rel="stylesheet" id="post-reactions-css" href="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/style_002.css" type="text/css" media="all">
+<script type="text/javascript" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/jquery.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var LoggedOutFollow = {"invalid_email":"Your subscription did not succeed, please try again with a valid email address."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/widget.js"></script>
+<script type="text/javascript" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/comment-reply.js"></script>
+<link rel="stylesheet" id="highlander-comments-css" href="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/style_003.css" type="text/css" media="all">
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='http://s0.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1307172283g&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://jacovanstaden.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://jacovanstaden.wordpress.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="MongoDB –&nbsp;Introduction" href="http://yakiloo.com/mongodb-introduction/">
+<link rel="next" title="Setup – Apache and&nbsp;Hudson" href="http://yakiloo.com/setup-apache-hudson/">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="http://yakiloo.com/mongodb-sharding/">
+<link rel="shortlink" href="http://wp.me/P15bMW-Z">
+<link rel="alternate" type="application/json+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=json&amp;url=http%3A%2F%2Fyakiloo.com%2Fmongodb-sharding%2F&amp;for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=xml&amp;url=http%3A%2F%2Fyakiloo.com%2Fmongodb-sharding%2F&amp;for=wpcom-auto-discovery"><meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB –&nbsp;Sharding">
+<meta property="og:url" content="http://yakiloo.com/mongodb-sharding/">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="Some thoughts, ideas and fun!!!">
+<link rel="openid.server" href="http://jacovanstaden.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="http://jacovanstaden.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="http://yakiloo.com/osd.xml" title="Some thoughts, ideas and fun!!!">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com">
+<meta name="application-name" content="Some thoughts, ideas and fun!!!"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-tooltip" content="&quot;A thought becomes an idea, becomes a dream, becomes inspiration, becomes reality&quot; - Jaco van Staden"><meta name="msapplication-task" content="name=Subscribe;action-uri=http://yakiloo.com/feed/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><script src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/rate.php" charset="utf-8"></script><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/services.css"><style id="pd_popup_holder_style_2791191_page_61" type="text/css">#pd_popup_holder_2791191_page_61 { position:absolute; display:none; width:350px; height:auto; top:0px; left:0px; z-index:10000; border:solid 1px #CCC; background-color:white; padding:0px 15px;font-family:Arial,Sans;box-shadow: -10px 10px 20px rgba(0, 0, 0, .5);-webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, .25);-moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, .25); }</style></head>
+
+<body data-twttr-rendered="true" class="page page-id-61 page-template-default highlander-enabled highlander-light">
+<!-- wrap START -->
+<div id="wrap">
+
+<!-- container START -->
+<div id="container">
+
+<!-- header START -->
+<div id="header">
+
+	<!-- banner START -->
+		<!-- banner END -->
+
+	<div id="caption">
+		<h1 id="title"><a href="http://yakiloo.com/">Some thoughts, ideas and fun!!!</a></h1>
+		<div id="tagline">"A thought becomes an idea, becomes a dream, becomes inspiration, becomes reality" – Jaco van Staden</div>
+	</div>
+
+	<div class="fixed"></div>
+</div>
+<!-- header END -->
+
+<!-- navigation START -->
+<div id="navigation">
+	<!-- menus START -->
+	<ul id="menus" class="menu"><li><a class="home" href="http://yakiloo.com/" title="Home">Home</a></li><li id="menu-item-439" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-439"><a href="http://yakiloo.com/category/c/">C#</a><ul style="visibility: hidden; display: block;" class="sub-menu"><li id="menu-item-440" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-440"><a class=" last" href="http://yakiloo.com/memory-queue/">Memory Queue</a></li></ul></li>
+<li id="menu-item-132" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-132"><a href="http://yakiloo.com/category/ruby/">Ruby</a><ul style="visibility: hidden; display: block;" class="sub-menu"><li id="menu-item-210" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-210"><a href="http://yakiloo.com/setup-ruby-rvm/">Setup – Ruby &amp; RVM</a></li><li id="menu-item-229" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-229"><a class=" last" href="http://yakiloo.com/using-rvm/">Using – Ruby Version Manager</a></li></ul></li>
+<li id="menu-item-146" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-146"><a href="http://yakiloo.com/category/environments/">Environments</a><ul style="visibility: hidden; display: block;" class="sub-menu"><li id="menu-item-203" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-203"><a href="http://yakiloo.com/setup-ubuntu/">Setup – Ubuntu</a></li><li id="menu-item-297" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-297"><a href="http://yakiloo.com/setup-requirements/">Setup – Requirements</a></li><li id="menu-item-196" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-196"><a href="http://yakiloo.com/setup-rubymine/">Setup – RubyMine</a></li><li id="menu-item-187" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-187"><a href="http://yakiloo.com/setup-netbeans-for-ruby/">Setup – NetBeans for Ruby</a></li><li id="menu-item-257" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-257"><a href="http://yakiloo.com/setup-apache-and-jenkins/">Setup – Apache and Jenkins</a></li><li id="menu-item-133" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-133"><a href="http://yakiloo.com/setup-apache-hudson/">Setup – Apache and Hudson</a></li><li id="menu-item-324" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-324"><a href="http://yakiloo.com/setup-jenkins-and-rvm/">Setup – Jenkins and RVM</a></li><li id="menu-item-424" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-424"><a href="http://yakiloo.com/setup-jenkins-and-windows/">Setup – Jenkins and Windows</a></li><li id="menu-item-491" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-491"><a href="http://yakiloo.com/setup-jenkins-and-silverlight/">Setup – Jenkins and Silverlight</a></li><li id="menu-item-464" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-464"><a href="http://yakiloo.com/jenkins-tfs-and-msbuild/">Jenkins – TFS and MSBuild</a></li><li id="menu-item-357" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-357"><a href="http://yakiloo.com/getting-started-git/">Getting Started – Git</a></li><li id="menu-item-390" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-390"><a href="http://yakiloo.com/getting-started-git-flow/">Getting Started – Git-Flow</a></li><li id="menu-item-162" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-162"><a class=" last" href="http://yakiloo.com/getting-started-github/">Getting Started – GitHub</a></li></ul></li>
+<li id="menu-item-130" class="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-ancestor current-menu-parent menu-item-130"><a href="http://yakiloo.com/category/mongodb/">MongoDB</a><ul style="visibility: hidden; display: block;" class="sub-menu"><li id="menu-item-136" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-136"><a href="http://yakiloo.com/mongodb-introduction/">MongoDB – Introduction</a></li><li id="menu-item-135" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-61 current_page_item menu-item-135"><a href="http://yakiloo.com/mongodb-sharding/">MongoDB – Sharding</a></li><li id="menu-item-137" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-137"><a class=" last" href="http://yakiloo.com/mongodb-replica-sets/">MongoDB – Replica Sets</a></li></ul></li>
+<li id="menu-item-238" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-238"><a class=" " href="http://yakiloo.com/category/numerical-systems/">Numerical Systems</a><ul style="visibility: hidden; display: block; left: 498px; top: 142px;" class="sub-menu"><li id="menu-item-237" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-237"><a href="http://yakiloo.com/numerical-systems/">Numerical Systems</a></li><li id="menu-item-261" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-261"><a class=" last" href="http://yakiloo.com/introduction-set-theory/">Introduction – Set Theory</a></li></ul></li>
+<li id="menu-item-138" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-138"><a href="http://yakiloo.com/about/">About</a><ul style="visibility: hidden; display: block;" class="sub-menu"><li id="menu-item-280" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-280"><a href="http://yakiloo.com/contact-me/">Contact Me</a></li><li id="menu-item-153" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-153"><a title="Professional Profile" href="http://za.linkedin.com/in/jacovanstaden">Linked-In Profile</a></li><li id="menu-item-347" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-347"><a href="http://twitter.com/#%21/jacovstaden">Twitter Page</a></li><li id="menu-item-155" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-155"><a title="Hosted Source Repository" href="https://github.com/Yakiloo">Source Repository</a></li><li id="menu-item-268" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-268"><a href="https://www.google.com/a/cpanel/yakiloo.com/Dashboard">Yakiloo Apps</a></li><li id="menu-item-275" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-275"><a class=" last" href="http://mail.yakiloo.com/">Yakiloo Email</a></li></ul></li>
+</ul>	<!-- menus END -->
+
+	<!-- searchbox START -->
+	<div id="searchbox">
+		<form action="http://yakiloo.com" method="get">
+			<div class="content">
+				<input class="textfield searchtip" name="s" size="24" value="Type text to search here..." type="text">
+				<input class="button" value="" type="submit">
+			</div>
+		</form>
+	</div>
+<script type="text/javascript">
+//<![CDATA[
+	var searchbox = MGJS.$("searchbox");
+	var searchtxt = MGJS.getElementsByClassName("textfield", "input", searchbox)[0];
+	var searchbtn = MGJS.getElementsByClassName("button", "input", searchbox)[0];
+	var tiptext = "Type text to search here...";
+	if(searchtxt.value == "" || searchtxt.value == tiptext) {
+		searchtxt.className += " searchtip";
+		searchtxt.value = tiptext;
+	}
+	searchtxt.onfocus = function(e) {
+		if(searchtxt.value == tiptext) {
+			searchtxt.value = "";
+			searchtxt.className = searchtxt.className.replace(" searchtip", "");
+		}
+	}
+	searchtxt.onblur = function(e) {
+		if(searchtxt.value == "") {
+			searchtxt.className += " searchtip";
+			searchtxt.value = tiptext;
+		}
+	}
+	searchbtn.onclick = function(e) {
+		if(searchtxt.value == "" || searchtxt.value == tiptext) {
+			return false;
+		}
+	}
+//]]>
+</script>
+	<!-- searchbox END -->
+
+	<div class="fixed"></div>
+</div>
+<!-- navigation END -->
+
+<!-- content START -->
+<div id="content">
+
+	<!-- main START -->
+	<div id="main">
+
+
+	<div class="post" id="post-61">
+		<h2>MongoDB –&nbsp;Sharding</h2>
+		<div class="info">
+										<span class="addcomment"><a href="#respond">Leave a comment</a></span>
+				<span class="comments"><a href="#comments">Go to comments</a></span>
+						<div class="fixed"></div>
+		</div>
+		<div class="content">
+			
+<div style="display: inline-block;" class="pd-rating sd-content" id="pd_rating_holder_2791191_page_61"><div id="pd_rate_2791191_page_61" style="float:left;"><div onmouseout="PDRTJS_2791191_page_61.rebuild();" onclick="PDRTJS_2791191_page_61.rate(1);" onmouseover="PDRTJS_2791191_page_61.hover(1);" id="PDRTJS_2791191_page_61_stars_1" style="cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(http://i0.poll.fm/ratings/images/star-yellow-sml.png) top left; float: left; padding: 0px; marging: 0px; margin-right: 1px;">&nbsp;</div><div onmouseout="PDRTJS_2791191_page_61.rebuild();" onclick="PDRTJS_2791191_page_61.rate(2);" onmouseover="PDRTJS_2791191_page_61.hover(2);" id="PDRTJS_2791191_page_61_stars_2" style="cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(http://i0.poll.fm/ratings/images/star-yellow-sml.png) top left; float: left; padding: 0px; marging: 0px; margin-right: 1px;">&nbsp;</div><div onmouseout="PDRTJS_2791191_page_61.rebuild();" onclick="PDRTJS_2791191_page_61.rate(3);" onmouseover="PDRTJS_2791191_page_61.hover(3);" id="PDRTJS_2791191_page_61_stars_3" style="cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(http://i0.poll.fm/ratings/images/star-yellow-sml.png) top left; float: left; padding: 0px; marging: 0px; margin-right: 1px;">&nbsp;</div><div onmouseout="PDRTJS_2791191_page_61.rebuild();" onclick="PDRTJS_2791191_page_61.rate(4);" onmouseover="PDRTJS_2791191_page_61.hover(4);" id="PDRTJS_2791191_page_61_stars_4" style="cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(http://i0.poll.fm/ratings/images/star-yellow-sml.png) top left; float: left; padding: 0px; marging: 0px; margin-right: 1px;">&nbsp;</div><div onmouseout="PDRTJS_2791191_page_61.rebuild();" onclick="PDRTJS_2791191_page_61.rate(5);" onmouseover="PDRTJS_2791191_page_61.hover(5);" id="PDRTJS_2791191_page_61_stars_5" style="cursor: pointer; width: 16px; height: 16px; line-height: 16px; background: url(http://i0.poll.fm/ratings/images/star-yellow-sml.png) center left; float: left; padding: 0px; marging: 0px; margin-right: 1px;">&nbsp;</div></div><span style="float:left;">&nbsp;</span><div id="rating_info_2791191_page_61" style="display:block;float:left;background:url(http://i0.poll.fm/images/ratings/info.png) no-repeat 3px 2px;width:16px;height:16px;cursor:pointer;" onclick="javascript:PDRTJS_2791191_page_61.togglePopup();return false;"><span style="display:none;">i</span></div><div class="pd_popup_holder" id="pd_popup_holder_2791191_page_61">&nbsp;</div><div id="PDRTJS_2791191_page_61_msg" style="float:left; padding-left: 5px; text-align: left; font:normal normal /16px ; color: #;">3 Votes</div><p style="padding: 0px; margin: 0px; clear: both;"></p><img src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/p-ab3gTb8xb3dLg.gif" style="display: none;" alt="Quantcast" border="0" height="1" width="1"></div>
+<script type="text/javascript" charset="UTF-8"><!--//--><![CDATA[//><!--
+PDRTJS_settings_2791191_page_61={"id":2791191,"unique_id":"wp-page-61","title":"MongoDB%20%26%238211%3B%20Sharding","permalink":"http:\/\/yakiloo.com\/mongodb-sharding\/","item_id":"_page_61"};
+//--><!]]&gt;</script><p><strong>What is Sharding:</strong></p>
+<p>If you head over to the <a href="http://en.wikipedia.org/wiki/Shard_%28database_architecture%29">Wiki page</a> then you’ll see that their definition for sharding is as follows:</p>
+<p>“<strong>Database sharding</strong> is a method of <a title="Partition (database)" href="http://en.wikipedia.org/wiki/Partition_%28database%29">horizontal partitioning</a> in a <a title="DBMS" href="http://en.wikipedia.org/wiki/DBMS">database</a> or <a title="Search engine" href="http://en.wikipedia.org/wiki/Search_engine">search engine</a>. Each individual partition is referred to as a <strong>shard</strong> or <strong>database shard</strong>.”</p>
+<p>What does this mean for us?&nbsp; It means that your data can be 
+split across multiple database instances thereby making your data 
+collections smaller, which in turn makes your indexes smaller, which in 
+turn makes your Create, Read, Update, Delete (<a class="zem_slink" title="Create, read, update and delete" rel="wikipedia" href="http://en.wikipedia.org/wiki/Create%2C_read%2C_update_and_delete">CRUD</a>) operations faster.&nbsp; In the context of <a class="zem_slink" title="MongoDB" rel="homepage" href="http://www.mongodb.org/">MongoDB</a>
+ the developer can set up shard keys which will be used to distribute 
+the data across multiple shards.&nbsp; MongoDB uses an option of a <a class="zem_slink" title="Master/slave (technology)" rel="wikipedia" href="http://en.wikipedia.org/wiki/Master/slave_%28technology%29">Master/Slave</a>
+ configuration where there is only one Master and multiple slaves.&nbsp;
+ They did this for efficiency purposes and so you can set up your code 
+so as to always write to the Master while all your reads can be done 
+against the Slaves.</p>
+<h3>Why use Sharding</h3>
+<p>Replica sets offers you certain features as follows (from MongoDB Site):</p>
+<ul>
+<li>Scaling      out to thousands of nodes</li>
+<li>Easy      addition of new machines</li>
+<li>Automatic      balancing for changes in load and data distribution</li>
+<li>Zero      single points of failure</li>
+<li>Automatic      failover</li>
+</ul>
+<p>All this and much more can be gleaned from the MongoDB <a class="zem_slink" title="Website" rel="wikipedia" href="http://en.wikipedia.org/wiki/Website">web site</a> <a href="http://www.mongodb.org/display/DOCS/Sharding">here</a>.</p>
+<h3>How do I create a Shard</h3>
+<p>Now to move into how you would go about creating a sharding 
+setup.&nbsp; Basically you would want two servers to start with.&nbsp; 
+Mongo allows you to add more as and when you need them.&nbsp; This 
+section will simply give you the short commands that you should run from
+ <a class="zem_slink" title="Command Prompt" rel="wikipedia" href="http://en.wikipedia.org/wiki/Command_Prompt">Command Prompt</a>
+ in windows.&nbsp; I will then discuss the various parameters on the 
+command and why they’re important to know about.&nbsp; Once again, all 
+this information can be found on the Mongo site, but if you’re new to 
+Mongo like myself and you just want a quick overview and set up so you 
+can start playing with this “new” technology, then this guide will help 
+you get up and running quickly.&nbsp; Please follow the steps on my 
+Introduction page to get MongoDB downloaded and running before 
+attempting this step in the process.</p>
+<p>To set this up do as follows:</p>
+<ol>
+<li>Create a <a class="zem_slink" title="Batch file" rel="wikipedia" href="http://en.wikipedia.org/wiki/Batch_file">batch file</a> named: RunServer10000.bat to the root of your MongoDB installation’s bin folder.</li>
+<li>Add the following lines to the batch file:<br>
+mkdir “data/localhost10000″<br>
+mongod –rest –shardsvr –port 10000 –dbpath data/localhost10000 –logpath data/localhost10000/log.txt<br>
+PAUSE</li>
+<li>Create another batch file named: RunServer10001.bat to the root of your MongoDB installation’s bin folder.</li>
+<li>Add the following lines to the batch file:<br>
+mkdir “data/localhost10001″<br>
+mongod –rest –shardsvr –port 10001 –dbpath data/localhost10001 –logpath data/localhost10001/log.txt<br>
+PAUSE</li>
+<li>Run RunServer10000.bat</li>
+<li>Run RunServer10001.bat</li>
+</ol>
+<p>That’s it now you should have two replica set instances 
+running.&nbsp; In the next section I’ll discuss how to configure the 
+collections in the shards.&nbsp; For now, let’s go through what we’ve 
+just done.</p>
+<p>If you open up the batch file called RunServer10000.bat in Notepad, then you’ll see four lines explained as follows:</p>
+<ol>
+<li><strong>mkdir “data/localhost10000″</strong><br>
+If you’re not familiar with Command Line scripts then the simple answer 
+to this one is that it creates the directory structure 
+“data/localhost1000” for you under your default Mongo bin directory.</li>
+<li><strong>mongod –rest –shardsvr –port 10000 –dbpath data/localhost10000 –logpath data/localhost10000/log.txt</strong><br>
+This has a couple of bits to take into consideration as follows:<p></p>
+<ol>
+<li><strong>mongod<br>
+</strong>This runs the Mongo Database instance.</li>
+<li><strong>–rest<br>
+</strong>This runs the Mongo database in a restful manner which will 
+allow you to open the web admin UI that comes built in with MongoDB 
+usually found at:&nbsp; <a href="http://localhost:11000/">http://localhost:11000/</a> if you run MongoDB on port 10000.&nbsp; You should be able to pick up the <a class="zem_slink" title="TCP and UDP port" rel="wikipedia" href="http://en.wikipedia.org/wiki/TCP_and_UDP_port">port number</a> for the admin UI in the log file which I’ll explain in point below.</li>
+<li><strong>–shardsvr<br>
+</strong>This enables sharding on this specific instance, which I’ll explain in more detail later.</li>
+<li><strong>–port 10000<br>
+</strong>Specifies the port on which this specific instance of the 
+mongod.exe should run.&nbsp; This is the port you’ll use to connect to 
+this instance.</li>
+<li><strong>–dbpath data/localhost10000<br>
+</strong>This specifies where to put our database.&nbsp; If you don’t 
+add this parameter Mongo will try and create the database in the default
+ location of “c:\data\db” and will not start if that directory structure
+ does not exist.&nbsp; Personally I don’t like things on my C drive, 
+which is why I’m specifying this parameter and ensuring that the 
+directory structure exists by adding it to my batch file as specified 
+above.</li>
+<li><strong>–logpath data/localhost10000/log.txt<br>
+</strong>This specifies where Mongo should write it’s <a class="zem_slink" title="Data logger" rel="wikipedia" href="http://en.wikipedia.org/wiki/Data_logger">log files</a>
+ for this specific instance.&nbsp; Personally I like having my log file 
+and my database files in the same directory if I’m running in 
+development/test mode, because it keeps things nice and together.&nbsp; 
+In Production I would split the logging off to its own drive for speed 
+and backup purposes.</li>
+<li><strong>3. </strong><strong>PAUSE<br>
+</strong>This is only in the batch file because I want to see if 
+something went wrong and it’s not written to the Mongo log file.&nbsp; 
+You can remove it…<strong> </strong></li>
+</ol>
+</li>
+</ol>
+<p>If you would like to get more information you can go <a href="http://www.mongodb.org/display/DOCS/Sharding">here</a>
+ for further reading.&nbsp; For this example though I’m not going to go 
+into more detail seeing that I’m trying to explain things in as simple a
+ manner as possible to get you up and running as fast as possible.</p>
+<h3>How do I set up a Configuration Server</h3>
+<p>A configuration database instance is where you’ll be saving the 
+configuration for your shards.&nbsp; To set this up do as follows:</p>
+<ol>
+<li>Create a batch file named: RunConfigServer10002.bat to the root of your MongoDB installation’s bin folder.</li>
+<li>Add the following lines to the batch file:<br>
+mkdir “data/localhost10002″<br>
+mongod –rest –port 10002 –dbpath data/localhost10002 –logpath data/localhost10002/log.txt<br>
+PAUSE</li>
+<li>Run RunServer10002.bat</li>
+</ol>
+<p>The only setting that changes when we’re running a Configuration 
+database instance is the “–configsvr” parameter that get added and the 
+“–enablesharding” parameter that falls away.&nbsp; The “–configsvr” 
+parameter let’s the mongod process know that this instance will be used 
+for configuration.</p>
+<h3>How do I set up a Routing Service</h3>
+<p>A routing service is the service which will enable our applications 
+to connect to the shard.&nbsp; On startup it reads the configuration in 
+the configuration database to understand how the underlying shards are 
+configured.&nbsp; To set this up do as follow:</p>
+<ol>
+<li>Create a batch file named: RunRoutingService.bat to the root of your MongoDB installation’s bin folder.</li>
+<li>Add the following lines to the batch file:<br>
+mongos –configdb localhost:10002 &gt; tmp/ RunRoutingService.txt<br>
+PAUSE</li>
+<li>Run RunRoutingService.bat</li>
+</ol>
+<p>There are a few new parameters to note here as follows:</p>
+<ol>
+<li><strong>mongos –port 10003 –configdb localhost:10002 &gt; tmp/ RunRoutingService.txt</strong><br>
+This has a couple of bits to take into consideration as follows:<p></p>
+<ol>
+<li><strong>mongos<br>
+</strong>This is the routing process that we’ll be connecting to from 
+our application.&nbsp; This service will potentially be installed on 
+every AppServer.</li>
+<li><strong>–port 10003<br>
+</strong>This specifies the port on which the routing service will be running.</li>
+<li><strong>–configdb localhost:10002<br>
+</strong>This parameter tells the routing process which Configuration Server to connect to for it’s configuration.</li>
+<li><strong>&gt; tmp/ RunRoutingService.txt<br>
+</strong>This simply tells the routing service where to write it’s logs to.</li>
+</ol>
+</li>
+</ol>
+<p>Now that you have your shards up and running, your configuration 
+database has been set up and your routing service is connected to it you
+ can start configuring collections and databases for sharding.</p>
+<h3>How do I configure collections for Sharding</h3>
+<p>Now that we have our two “servers” named “localhost:10000” and 
+“localhost:10001” and our configuration server as well as our routing 
+service up and running we should configure them so they can start 
+talking to each other.&nbsp; To make this process running the MongoDB 
+console against routing service a bit easier you need to do as follows:</p>
+<ol>
+<li>Create a batch file named: RunMongoDBConsoleRoutingService.bat to the root of your MongoDB installation’s bin folder.</li>
+<li>Add the following lines to the batch file:<br>
+mongo.exe localhost:10003<br>
+PAUSE</li>
+</ol>
+<p>Now that you have that let me quickly explain what it means.</p>
+<ol>
+<li><strong>1. </strong><strong>mongo.exe<br>
+</strong>This is the application which gives you the MongoDB Console 
+where you can do all kinds of funky things which you can read about on 
+Mongo’s site.&nbsp; <strong></strong></li>
+<li><strong>2. </strong><strong>localhost:10003<br>
+</strong>This specifies which instance you want to connect to.&nbsp; In 
+our case we want to connect to the routing service which is running on 
+port 10003.<strong></strong></li>
+</ol>
+<p>Once you have this up and running you should see something like:</p>
+<p>MongoDB shell version: 1.6.2<br>
+connecting to: localhost:10000/test<br>
+&gt;</p>
+<p>Now that you have the console running you can type in the following:</p>
+<ol>
+<li><strong>use admin<br>
+</strong>This will switch you to the admin database.</li>
+<li><strong>db.runCommand( { addshard : “localhost:10000″, name : “shard10000″ } );<br>
+</strong>This will add the server “localhost:10000” to our 
+cluster.&nbsp; The name that we specify is an optional parameter which 
+you can leave out.&nbsp; MongoDB will assign a name automatically, but I
+ like naming my shards, because then I can name it something that will 
+make sense to me…</li>
+<li><strong>db.runCommand( { addshard : “localhost:10001″, name : “shard10001″ } );<br>
+</strong>This will add our second server to the shard configuration.</li>
+</ol>
+<p>Now that we’ve added the two servers to our sharding configuration we
+ have to specify what we want to shard.&nbsp; There are two options when
+ it comes to our data, 1) is that we can shard whole databases; 2) we 
+can shard only certain collections.&nbsp; I’m not going to go too much 
+into detail and will be jumping straight into the how.</p>
+<p>To shard a database you can run the following command:</p>
+<p>db.runCommand( { enablesharding : “” } );</p>
+<p>If you do sharding on a database level then the routing service will 
+automatically place the collections of the database on different 
+shards.&nbsp; This is all handled by the routing service and you will 
+never know where your collections are stored.&nbsp; In this scenario 
+each collection will only exist on one shard at a time and could be move
+ around without you knowing about it.</p>
+<p>To shard a collection you can run the following command:</p>
+<p>db.runCommand( { enablesharding : “”, key: &nbsp;} );</p>
+<p>In this scenario you will be splitting the collections based on the 
+key pattern that you’ve specified.&nbsp; I’ll explain how this works in a
+ location based scenario a bit later on.&nbsp; For now, you need to know
+ that while MongoDB allows you to specify keys to split the underlying 
+collection in the database, it does not allow you to specify which shard
+ to write to.&nbsp; So, if you set this up MongoDB will decide where to 
+place the data.&nbsp; There is a way to force this to happen <a href="http://www.mongodb.org/display/DOCS/Sharding+Administration">here</a>, but that doesn’t mean that MongoDB will keep that configuration.</p>
+<h3>How do I add a new shard server to the configuration:</h3>
+<p>Now that you have your cluster of two servers up and running you may 
+need to add another server into the mix.&nbsp; This is extremely simple 
+as follows:</p>
+<ol>
+<li>Create a batch file named: RunServer10004.bat to the root of your MongoDB installation’s bin folder.</li>
+<li>Add the following lines to the batch file:<br>
+mkdir “data/localhost10004″<br>
+mongod –rest –shardsvr –port 10004 –dbpath data/localhost10004 –logpath data/localhost10004/log.txt<br>
+PAUSE</li>
+<li>Run RunServer10004.bat</li>
+</ol>
+<p>That should run your new sharding server instance.&nbsp; Now to 
+configure it all you have to do is run the batch file you created in the
+ “How do I configure the set” section above called:&nbsp; 
+RunMongoDBConsoleRoutingService.bat.&nbsp; This will start the MongoDB 
+console by connecting to our routing service where you should then run 
+the following simple command:</p>
+<p>db.runCommand( { addshard : “localhost:10004″, name : “shard10004″ } );</p>
+<p>This will configure this new server for you in the cluster and the 
+routing service will start adding collections to this new shard.</p>
+<h3>How to configure a shardkeypatternobject</h3>
+<p>In this scenario I will be using the following Object Model to 
+demonstrate how you can use a shardkeypatternobject to do location based
+ sharding on your cluster.&nbsp; This means that data for South Africa 
+will be available on one shard and data for the UK will be available on a
+ different shard.&nbsp; I’ll explain how you can query these two shards 
+separately and how you can have a global view of data through the 
+routing service.&nbsp; After everything is done, I’ll explain how you 
+can move a collection from one shard to another one, but do remember 
+that this can change based on what the routing service decides to do.</p>
+<p>If our object model looks as follows:</p>
+<p>Then we would want to do Sharding based on the “Country” property on 
+the “Customer” class.&nbsp; In our scenario we would like to do location
+ based sharding which means that we would want to create the key using 
+the “Country” property.&nbsp; In this scenario my database’s name will 
+be “Customers” and my collection will be “Customer” which makes my 
+namespace “Customers.Customer”.&nbsp; So, if you run the MongoDB console
+ against our routing service by running 
+“RunMongoDBConsoleRoutingService.bat” file then we can do the following 
+steps:</p>
+<ol>
+<li>We’re going to set variables equal to our three databases as follows:<br>
+db = db.getSisterDB( “test” );<br>
+config = db.getSisterDB ( “config” );<br>
+admin = db.getSisterDB ( “admin” );</li>
+<li>Once we have our databases in variables we insert a few documents as follows:
+<ol>
+<li>db.Customers.save({“MongoId”:”7ce9ce33-1b8b-4afa-bd54-7e0547ddb6d5″,”CustomerId”:1,”FirstName”:”John”,”Country”:”South
+ Africa”});</li>
+<li>db.Customers.save({“MongoId”:”7ce9ce33-1b8b-4afa-bd54-7e0547ddb6d6″,”CustomerId”:2,”FirstName”:”Mary”,”Country”:”England”});</li>
+<li>db.Customers.save({“MongoId”:”7ce9ce33-1b8b-4afa-bd54-7e0547ddb6d7″,”CustomerId”:3,”FirstName”:”Mike”,”Country”:”South
+ Africa”});</li>
+<li>Now that we have some data in our “Customers” database, we’ll enable the database for sharding like so:<br>
+db.runCommand( { enablesharding : “Customers” } );</li>
+<li>MongoDB expects an Index on the property that you would like to use 
+in your key.&nbsp; This is an optional step whereas if you don’t define 
+an Index, then MongoDB will do it for you.&nbsp; You can create it as 
+follows:<br>
+db.Customers.ensureIndex( { “Country” : 1 } );</li>
+<li>Now that we have some data and our database “Customers” is enabled for sharding, we create the key as follows:<br>
+admin.runCommand( { shardcollection : “Customers.Customers” , key : { Country : 1 } } );</li>
+</ol>
+</li>
+</ol>
+<p>That’s it.&nbsp; Now you have a key on which Sharding will happen.&nbsp; You can have a look <a href="http://www.mongodb.org/display/DOCS/Configuring+Sharding">here</a> on the MongoDB web site if you are looking for more information.</p>
+<h3>Conclusion</h3>
+<p>The only drawback that I can see with sharding in MongoDB is that you
+ can’t specify where the data should be placed.&nbsp; You can force it, 
+but this may be changed as the routing service sees fit and the 
+collections could be moved.&nbsp; What is really nice is that the 
+routing service knows where to go fetch the data and how to aggregate it
+ all back to your application.&nbsp; What you have to take into 
+consideration with MongoDB is that was built with fail-over and high 
+availability in mind.&nbsp; Sharding in combination with Replica Sets 
+gives you and extremely powerful toolset to play with.&nbsp; I’ll be 
+covering these two toolsets in combination in an upcoming article.</p>
+<h3>Related Articles</h3>
+<ul class="zemanta-article-ul">
+<li class="zemanta-article-ul-li"><a href="http://ethangunderson.com/blog/two-reasons-to-not-use-mongodb/">Two Reasons You Shouldn’t Use MongoDB</a></li>
+<li class="zemanta-article-ul-li"><a href="http://ryanangilly.com/post/1091884265/3-reasons-to-use-mongodb">3 reasons to use MongoDB</a></li>
+<li class="zemanta-article-ul-li"><a href="http://blog.boxedice.com/2010/08/03/automating-partitioning-sharding-and-failover-with-mongodb/">Automating partitioning, sharding and failover with MongoDB</a></li>
+<li class="zemanta-article-ul-li"><a href="http://www.r-bloggers.com/connecting-to-a-mongodb-database-from-r-using-the-c-api-for-mongodb/">Connecting to a MongoDB database from R using the C API for MongoDB</a></li>
+<li class="zemanta-article-ul-li"><a href="http://www.r-bloggers.com/connecting-to-a-mongodb-database-from-r-using-java/">Connecting to a MongoDB database from R using Java</a></li>
+<li class="zemanta-article-ul-li"><a href="http://www.businessinsider.com/new-york-mongodb-training-for-administrators-2010-9">Developer Alert: Catch MongoDB Training in NY, SF</a></li>
+<li class="zemanta-article-ul-li"><a href="http://www.mt-soft.com.ar/2010/09/14/mysql-versus-mongodb-update-performance/">MySQL versus MongoDB – update performance</a></li>
+<li class="zemanta-article-ul-li"><a href="http://oreilly.com/catalog/9781449381561/">MongoDB: The Definitive Guide</a></li>
+<li class="zemanta-article-ul-li"><a href="http://www.travisswicegood.com/2010/05/31/mongodb-a-first-look/">MongoDB: A first look</a></li>
+<li class="zemanta-article-ul-li"><a href="http://www.informationweek.com/news/software/database/showArticle.jhtml?articleID=226700467&amp;cid=RSSfeed_IWK_ALL">MongoDB Update Adds Scale Out Features</a></li>
+<li class="zemanta-article-ul-li"><a href="http://io9.com/5651589/astronomers-have-discovered-a-habitable-planet-20-light-years-away">“Astronomers have discovered a habitable planet 20 light years away [Space Colonization]” and related posts</a></li>
+<li class="zemanta-article-ul-li"><a href="http://news-briefs.ew.com/2010/09/30/tony-curtis-dies/">“Tony Curtis dies at 85″ and related posts</a></li>
+<li class="zemanta-article-ul-li"><a href="http://www.rightcelebrity.com/?p=10312">“Tyler Clementi: Rutgers Freshman Suicide” and related posts</a></li>
+<li class="zemanta-article-ul-li"><a href="http://www.hotair.com/archives/2010/09/29/october-surprise-meg-whitmans-former-maid-admits-shes-an-illegal-alien/">“October surprise: Meg Whitmanâ€™s former maid admits sheâ€™s an illegal alien” and related posts</a></li>
+<li class="zemanta-article-ul-li"><a href="http://www.usmagazine.com/moviestvmusic/news/last-comic-standing-judge-greg-giraldo-dies-at-44-2010299">“Last Comic Standing Judge Greg Giraldo Dies at 44″ and related posts</a></li>
+</ul>
+<div id="jp-post-flair" class="sharedaddy sd-rating-enabled sd-like-enabled sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li><a href="#" class="sharing-anchor sd-button share-more"><span>Share</span></a></li><li class="share-end"></li></ul><div class="sharing-hidden"><div class="inner" style="display: none;"><ul><li class="share-email share-service-visible"><a rel="nofollow" class="share-email sd-button share-icon" href="http://yakiloo.com/mongodb-sharding/?share=email&amp;nb=1" target="_blank" title="Click to email this to a friend"><span>Email</span></a></li><li class="share-print"><a rel="nofollow" class="share-print sd-button share-icon" href="http://yakiloo.com/mongodb-sharding/#print" target="_blank" title="Click to print"><span>Print</span></a></li><li class="share-end"></li><li class="share-digg"><a rel="nofollow" class="share-digg sd-button share-icon" href="http://yakiloo.com/mongodb-sharding/?share=digg&amp;nb=1" target="_blank" title="Click to Digg this post"><span>Digg</span></a></li><li class="share-stumbleupon"><a rel="nofollow" class="share-stumbleupon sd-button share-icon" href="http://yakiloo.com/mongodb-sharding/?share=stumbleupon&amp;nb=1" target="_blank" title="Click to share on StumbleUpon"><span>StumbleUpon</span></a></li><li class="share-end"></li><li class="share-reddit"><a rel="nofollow" class="share-reddit sd-button share-icon" href="http://yakiloo.com/mongodb-sharding/?share=reddit&amp;nb=1" target="_blank" title="Click to share on Reddit"><span>Reddit</span></a></li><li class="share-twitter"><a rel="nofollow" class="share-twitter sd-button share-icon" href="http://yakiloo.com/mongodb-sharding/?share=twitter&amp;nb=1" target="_blank" title="Click to share on Twitter" id="sharing-twitter-61"><span>Twitter</span></a></li><li class="share-end"></li><li class="share-facebook"><a rel="nofollow" class="share-facebook sd-button share-icon" href="http://yakiloo.com/mongodb-sharding/?share=facebook&amp;nb=1" target="_blank" title="Share on Facebook" id="sharing-facebook-61"><span>Facebook</span></a></li><li class="share-end"></li></ul></div></div><div class="sharing-clear"></div></div></div><div class="wpl-likebox sd-block sd-like"><h3 class="sd-title">Like this:</h3><div class="sd-content"><div id="like-61" class="wpl-button "><a href="http://yakiloo.com/mongodb-sharding/?like=1&amp;_wpnonce=ba3ef1eff3" title="I like this page" class="like needs-login sd-button" rel="nofollow"><span>Like</span></a></div><div class="wpl-count sd-like-count">Be the first to like this page.</div></div></div></div>						<div class="fixed"></div>
+		</div>
+	</div>
+
+	
+<script type="text/javascript" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/comment.js"></script>
+
+
+
+<div id="comments">
+
+<div id="cmtswitcher">
+			<a id="commenttab" class="curtab" href="javascript:void(0);">Comments (1)</a>
+				<span class="addcomment"><a href="#respond">Leave a comment</a></span>
+			<div class="fixed"></div>
+</div>
+
+<div id="commentlist">
+	<!-- comments START -->
+	<ol id="thecomments">
+		<li class="comment even thread-even depth-1 regularcomment highlander-comment" id="comment-475">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-03f95874d158e8146e6e845de5609180-0" alt="" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/03f95874d158e8146e6e845de5609180.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<a id="commentauthor-475" class="url" href="http://manjeshgowda.blogspot.com/" rel="external nofollow">Manjesh</a>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				December 2, 2011 at 2:38 pm					 | <a href="#comment-475">#1</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://yakiloo.com/mongodb-sharding/?replytocom=475#respond" onclick='return addComment.moveForm("comment-475", "475", "respond", "61")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-475', 'comment-475', 'commentbody-475', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-475">
+					<p>Great job !!!</p>
+<p>The only hurdle I faced during the setting up shard on my localhost 
+is… we should add allowLocal to the adShard command else Mongo ignores 
+sharding on local …</p>
+<p>db.runCommand( { addshard : “localhost:10000″, name : “shard10000″ ,allowLocal:true} );</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	</ol>
+	<!-- comments END -->
+
+
+	<!-- trackbacks START -->
+		<div class="fixed"></div>
+	<!-- trackbacks END -->
+</div>
+
+</div>
+
+
+								<div class="js" id="respond">
+				<h3 id="reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://yakiloo.com/mongodb-sharding/#respond" style="display: none;">Cancel reply</a></small></h3>
+									<form action="http://yakiloo.com/wp-comments-post.php" method="post" id="commentform">
+																										
+
+
+												
+<input name="hc_post_as" id="hc_post_as" value="guest" type="hidden">
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea tabindex="-1" style="height: 36px; resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; width: 583px; line-height: 16px; text-decoration: none; letter-spacing: normal;"></textarea><textarea style="height: 36px; resize: none; overflow-y: hidden;" id="comment" name="comment"></textarea></div>
+</div>
+
+<div style="display: none;" id="comment-form-identity">
+
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" title="Guest">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" title="WordPress.com">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" title="Twitter">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" title="Facebook">
+					<span></span>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/ad516503a11cd5ca435acc9bb6523536.jpg" alt="Gravatar" class="no-grav" width="25">
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="text"></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text"></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="text"></div>
+				</div> 
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/wplogo.png" alt="WordPress.com Logo" class="no-grav" width="25">
+			</div>
+
+				<div class="comment-form-fields">
+				<input name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" type="hidden">
+				<input name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" type="hidden">
+				<input name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" type="hidden">
+				<p class="comment-form-posting-as pa-wordpress"><strong></strong> You are commenting using your WordPress.com account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout(%20'wordpress'%20);">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/ad516503a11cd5ca435acc9bb6523536.png" alt="Twitter picture" class="no-grav" width="25">
+			</div>
+
+				<div class="comment-form-fields">
+				<input name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" type="hidden">
+				<input name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" type="hidden">
+				<input name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" type="hidden">
+				<p class="comment-form-posting-as pa-twitter"><strong></strong> You are commenting using your Twitter account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout(%20'twitter'%20);">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/ad516503a11cd5ca435acc9bb6523536.png" alt="Facebook photo" class="no-grav" width="25">
+			</div>
+
+				<div class="comment-form-fields">
+				<input name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" type="hidden">
+				<input name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" type="hidden">
+				<input name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" type="hidden">
+				<p class="comment-form-posting-as pa-facebook"><strong></strong> You are commenting using your Facebook account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout(%20'facebook'%20);">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+	
+	
+</div>
+
+
+<div style="display: none;" id="comment-form-subscribe"> 
+	<p class="comment-subscription-form"><input name="subscribe" id="subscribe" value="subscribe" style="width: auto;" tabindex="6" checked="checked" type="checkbox"> <label class="subscribe-label" id="subscribe-label" for="subscribe">Notify me of follow-up comments via email.</label></p><script type="text/javascript" charset="utf-8">if ( document.cookie.indexOf( 'opt-out-comm-sub-16013294=1' ) > -1 ) document.getElementById( 'subscribe' ).checked = false; </script><p class="post-subscription-form"><input name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;" tabindex="7" type="checkbox"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts via email.</label></p></div>
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	// Expando Mode: start small, then auto-resize on first click + text length
+	jQuery( '#comment-form-identity' ).hide();
+	jQuery( '#comment-form-subscribe' ).hide();
+	jQuery( '#commentform .form-submit' ).hide();
+	jQuery( '#comment' ).css( { 'height':'10px' } ).one( 'focus', function() {
+		jQuery( this ).animate( { 'height':'70px' } );
+		jQuery( '#comment-form-identity' ).slideDown();
+		jQuery( '#comment-form-subscribe' ).slideDown();
+		jQuery( '#commentform .form-submit' ).slideDown();
+	});
+});
+</script>
+												<p style="display: none;" class="form-submit">
+							<input name="submit" id="comment-submit" value="Post Comment" type="submit">
+							<input name="comment_post_ID" value="61" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+						</p>
+						
+<input name="genseq" value="1336810964" type="hidden">
+<p style="display: none;"><input id="akismet_comment_nonce" name="akismet_comment_nonce" value="ec286e5060" type="hidden"></p><script type="text/javascript" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/form.js"></script>
+<p style="display: none;"><input id="ak_js" name="ak_js" value="1336810953931" type="hidden"></p>					</form>
+							</div><!-- #respond -->
+			<div style="clear: both"></div>			
+	
+
+
+	</div>
+	<!-- main END -->
+
+	
+<!-- sidebar START -->
+<div id="sidebar">
+
+<!-- sidebar north START -->
+<div id="northsidebar" class="sidebar">
+
+	<!-- feeds -->
+	<div class="widget widget_feeds">
+		<div class="content">
+			<div id="subscribe-feeds"><a class=" " rel="external nofollow" id="feedrss" title="Subscribe to this blog..." href="http://yakiloo.com/feed/"><abbr title="Really Simple Syndication">RSS</abbr> feed</a><ul style="visibility: hidden; display: block; left: 815px; top: 191px;" id="feed_readers"><li id="google_reader"><a rel="external nofollow" class="reader" title="Subscribe with Google" href="http://fusion.google.com/add?feedurl=http://yakiloo.com/feed/"><span>Google</span></a></li><li id="youdao_reader"><a rel="external nofollow" class="reader" title="Subscribe with Youdao" href="http://reader.youdao.com/#url=http://yakiloo.com/feed/"><span>Youdao</span></a></li><li id="xianguo_reader"><a rel="external nofollow" class="reader" title="Subscribe with Xian Guo" href="http://www.xianguo.com/subscribe.php?url=http://yakiloo.com/feed/"><span>Xian Guo</span></a></li><li id="zhuaxia_reader"><a rel="external nofollow" class="reader" title="Subscribe with Zhua Xia" href="http://www.zhuaxia.com/add_channel.php?url=http://yakiloo.com/feed/"><span>Zhua Xia</span></a></li><li id="yahoo_reader"><a rel="external nofollow" class="reader" title="Subscribe with My Yahoo!" href="http://add.my.yahoo.com/rss?url=http://yakiloo.com/feed/"><span>My Yahoo!</span></a></li><li id="newsgator_reader"><a rel="external nofollow" class="reader" title="Subscribe with newsgator" href="http://www.newsgator.com/ngs/subscriber/subfext.aspx?url=http://yakiloo.com/feed/"><span>newsgator</span></a></li><li id="bloglines_reader"><a rel="external nofollow" class="reader" title="Subscribe with Bloglines" href="http://www.bloglines.com/sub/http://yakiloo.com/feed/"><span>Bloglines</span></a></li><li id="inezha_reader"><a rel="external nofollow" class="reader last" title="Subscribe with iNezha" href="http://inezha.com/add?url=http://yakiloo.com/feed/"><span>iNezha</span></a></li></ul></div>
+
+			<!-- twitter -->
+							<a id="followme" title="Follow me!" href="http://twitter.com/jacovstaden/">Twitter</a>
+			
+			<div class="fixed"></div>
+		</div>
+	</div>
+
+	<!-- showcase -->
+	
+<div id="twitter-3" class="widget widget_twitter"><h3><a href="http://twitter.com/jacovstaden">Twitter Feeds</a></h3><ul class="tweets">
+<li>Interesting...  Twitter moves more Services from Ruby to Java for performance, reliability and static typing: <a href="http://www.infoq.com/articles/twitter-java-use"> infoq.com/articles/twitt…</a> <a href="http://twitter.com/jacovstaden/statuses/90167354444611585" class="timesince">10&nbsp;months&nbsp;ago</a></li>
+<li>Battlefield 3 looks like it's going to be epic :-)
+Can't wait!!! <a href="http://twitter.com/jacovstaden/statuses/59318143427948544" class="timesince">1&nbsp;year&nbsp;ago</a></li>
+<li>Facebook: Open sourcing servers &amp; data centers... Interesting:-)
+<a href="http://gigaom.com/cloud/facebook-open-sources-its-servers-and-data-centers/" rel="nofollow">http://gigaom.com/cloud/facebook-open-sources-its-servers-and-data-centers/</a> <a href="http://twitter.com/jacovstaden/statuses/56075280061710336" class="timesince">1&nbsp;year&nbsp;ago</a></li>
+</ul>
+</div><div id="pages-3" class="widget widget_pages"><h3>Articles</h3>		<ul>
+			<li class="page_item page-item-349"><a href="http://yakiloo.com/getting-started-git/">Getting Started –&nbsp;Git</a></li>
+<li class="page_item page-item-379"><a href="http://yakiloo.com/getting-started-git-flow/">Getting Started –&nbsp;Git-Flow</a></li>
+<li class="page_item page-item-156"><a href="http://yakiloo.com/getting-started-github/">Getting Started –&nbsp;GitHub</a></li>
+<li class="page_item page-item-258"><a href="http://yakiloo.com/introduction-set-theory/">Introduction – Set&nbsp;Theory</a></li>
+<li class="page_item page-item-445"><a href="http://yakiloo.com/jenkins-tfs-and-msbuild/">Jenkins – TFS and&nbsp;MSBuild</a></li>
+<li class="page_item page-item-427"><a href="http://yakiloo.com/memory-queue/">Memory&nbsp;Queue</a></li>
+<li class="page_item page-item-56"><a href="http://yakiloo.com/mongodb-introduction/">MongoDB –&nbsp;Introduction</a></li>
+<li class="page_item page-item-31"><a href="http://yakiloo.com/mongodb-replica-sets/">MongoDB – Replica&nbsp;Sets</a></li>
+<li class="page_item page-item-61 current_page_item"><a href="http://yakiloo.com/mongodb-sharding/">MongoDB –&nbsp;Sharding</a></li>
+<li class="page_item page-item-232"><a href="http://yakiloo.com/numerical-systems/">Numerical&nbsp;Systems</a></li>
+<li class="page_item page-item-125"><a href="http://yakiloo.com/setup-apache-hudson/">Setup – Apache and&nbsp;Hudson</a></li>
+<li class="page_item page-item-253"><a href="http://yakiloo.com/setup-apache-and-jenkins/">Setup – Apache and&nbsp;Jenkins</a></li>
+<li class="page_item page-item-312"><a href="http://yakiloo.com/setup-jenkins-and-rvm/">Setup – Jenkins and&nbsp;RVM</a></li>
+<li class="page_item page-item-476"><a href="http://yakiloo.com/setup-jenkins-and-silverlight/">Setup – Jenkins and&nbsp;Silverlight</a></li>
+<li class="page_item page-item-401"><a href="http://yakiloo.com/setup-jenkins-and-windows/">Setup – Jenkins and&nbsp;Windows</a></li>
+<li class="page_item page-item-181"><a href="http://yakiloo.com/setup-netbeans-for-ruby/">Setup – NetBeans for&nbsp;Ruby</a></li>
+<li class="page_item page-item-284"><a href="http://yakiloo.com/setup-requirements/">Setup –&nbsp;Requirements</a></li>
+<li class="page_item page-item-206"><a href="http://yakiloo.com/setup-ruby-rvm/">Setup – Ruby &amp;&nbsp;RVM</a></li>
+<li class="page_item page-item-188"><a href="http://yakiloo.com/setup-rubymine/">Setup –&nbsp;RubyMine</a></li>
+<li class="page_item page-item-199"><a href="http://yakiloo.com/setup-ubuntu/">Setup –&nbsp;Ubuntu</a></li>
+<li class="page_item page-item-224"><a href="http://yakiloo.com/using-rvm/">Using – Ruby Version Manager&nbsp;(RVM)</a></li>
+<li class="page_item page-item-2"><a href="http://yakiloo.com/about/">About</a></li>
+<li class="page_item page-item-277"><a href="http://yakiloo.com/contact-me/">Contact&nbsp;Me</a></li>
+		</ul>
+		</div><div id="wp_tag_cloud" class="widget wp_widget_tag_cloud"><h3>Tag Cloud</h3><div style="overflow:hidden"><a href="http://yakiloo.com/tag/10gen/" class="tag-link-9215115" title="1 topic" style="font-size: 8pt;">10gen</a>
+<a href="http://yakiloo.com/tag/apache/" class="tag-link-3768" title="3 topics" style="font-size: 13.1852pt;">Apache</a>
+<a href="http://yakiloo.com/tag/apache-subversion/" class="tag-link-43407880" title="2 topics" style="font-size: 11.1111pt;">Apache Subversion</a>
+<a href="http://yakiloo.com/tag/application-programming-interface/" class="tag-link-1085428" title="1 topic" style="font-size: 8pt;">Application programming interface</a>
+<a href="http://yakiloo.com/tag/browser-based/" class="tag-link-392845" title="1 topic" style="font-size: 8pt;">Browser Based</a>
+<a href="http://yakiloo.com/tag/collections/" class="tag-link-12763" title="1 topic" style="font-size: 8pt;">Collections</a>
+<a href="http://yakiloo.com/tag/continuous-integration/" class="tag-link-163615" title="2 topics" style="font-size: 11.1111pt;">Continuous integration</a>
+<a href="http://yakiloo.com/tag/data/" class="tag-link-22379" title="1 topic" style="font-size: 8pt;">Data</a>
+<a href="http://yakiloo.com/tag/database/" class="tag-link-475" title="2 topics" style="font-size: 11.1111pt;">Database</a>
+<a href="http://yakiloo.com/tag/data-center/" class="tag-link-78171" title="2 topics" style="font-size: 11.1111pt;">Data center</a>
+<a href="http://yakiloo.com/tag/data-warehousing/" class="tag-link-583452" title="1 topic" style="font-size: 8pt;">Data Warehousing</a>
+<a href="http://yakiloo.com/tag/downloads/" class="tag-link-842" title="1 topic" style="font-size: 8pt;">Downloads</a>
+<a href="http://yakiloo.com/tag/extraction-and-transformation/" class="tag-link-24089623" title="1 topic" style="font-size: 8pt;">Extraction and Transformation</a>
+<a href="http://yakiloo.com/tag/faqs-help-and-tutorials/" class="tag-link-7633798" title="2 topics" style="font-size: 11.1111pt;">FAQs Help and Tutorials</a>
+<a href="http://yakiloo.com/tag/game/" class="tag-link-1221" title="1 topic" style="font-size: 8pt;">Game</a>
+<a href="http://yakiloo.com/tag/git/" class="tag-link-209196" title="3 topics" style="font-size: 13.1852pt;">Git</a>
+<a href="http://yakiloo.com/tag/github/" class="tag-link-5603054" title="4 topics" style="font-size: 14.9136pt;">GitHub</a>
+<a href="http://yakiloo.com/tag/hudson/" class="tag-link-288103" title="2 topics" style="font-size: 11.1111pt;">Hudson</a>
+<a href="http://yakiloo.com/tag/java/" class="tag-link-1017" title="4 topics" style="font-size: 14.9136pt;">Java</a>
+<a href="http://yakiloo.com/tag/languages/" class="tag-link-2761" title="8 topics" style="font-size: 19.2346pt;">Languages</a>
+<a href="http://yakiloo.com/tag/lisp/" class="tag-link-11457" title="1 topic" style="font-size: 8pt;">Lisp</a>
+<a href="http://yakiloo.com/tag/location-based-sharding/" class="tag-link-42919650" title="1 topic" style="font-size: 8pt;">Location Based Sharding</a>
+<a href="http://yakiloo.com/tag/mongodb/" class="tag-link-21954763" title="2 topics" style="font-size: 11.1111pt;">MongoDB</a>
+<a href="http://yakiloo.com/tag/mysql/" class="tag-link-4419" title="1 topic" style="font-size: 8pt;">MySQL</a>
+<a href="http://yakiloo.com/tag/nosql/" class="tag-link-22319505" title="1 topic" style="font-size: 8pt;">NoSQL</a>
+<a href="http://yakiloo.com/tag/opensource/" class="tag-link-44" title="4 topics" style="font-size: 14.9136pt;">OpenSource</a>
+<a href="http://yakiloo.com/tag/open-source/" class="tag-link-25" title="7 topics" style="font-size: 18.3704pt;">Open source</a>
+<a href="http://yakiloo.com/tag/programming/" class="tag-link-196" title="12 topics" style="font-size: 22pt;">Programming</a>
+<a href="http://yakiloo.com/tag/puzzle/" class="tag-link-473" title="1 topic" style="font-size: 8pt;">Puzzle</a>
+<a href="http://yakiloo.com/tag/puzzle-video-game/" class="tag-link-11085811" title="1 topic" style="font-size: 8pt;">Puzzle video game</a>
+<a href="http://yakiloo.com/tag/python/" class="tag-link-832" title="1 topic" style="font-size: 8pt;">Python</a>
+<a href="http://yakiloo.com/tag/ruby/" class="tag-link-4872" title="6 topics" style="font-size: 17.5062pt;">Ruby</a>
+<a href="http://yakiloo.com/tag/rubygems/" class="tag-link-951251" title="2 topics" style="font-size: 11.1111pt;">RubyGems</a>
+<a href="http://yakiloo.com/tag/ruby-on-rails/" class="tag-link-3601" title="2 topics" style="font-size: 11.1111pt;">Ruby on Rails</a>
+<a href="http://yakiloo.com/tag/servers/" class="tag-link-298" title="3 topics" style="font-size: 13.1852pt;">Servers</a>
+<a href="http://yakiloo.com/tag/sliding-tile-puzzles/" class="tag-link-42669026" title="1 topic" style="font-size: 8pt;">Sliding Tile Puzzles</a>
+<a href="http://yakiloo.com/tag/software-testing/" class="tag-link-11153" title="1 topic" style="font-size: 8pt;">Software testing</a>
+<a href="http://yakiloo.com/tag/source-code/" class="tag-link-18760" title="4 topics" style="font-size: 14.9136pt;">Source code</a>
+<a href="http://yakiloo.com/tag/team-foundation-server/" class="tag-link-146474" title="2 topics" style="font-size: 11.1111pt;">Team Foundation Server</a>
+<a href="http://yakiloo.com/tag/technology/" class="tag-link-6" title="2 topics" style="font-size: 11.1111pt;">Technology</a>
+<a href="http://yakiloo.com/tag/test-driven-development/" class="tag-link-78073" title="3 topics" style="font-size: 13.1852pt;">Test Driven Development</a>
+<a href="http://yakiloo.com/tag/tools/" class="tag-link-1981" title="3 topics" style="font-size: 13.1852pt;">Tools</a>
+<a href="http://yakiloo.com/tag/united-states/" class="tag-link-5850" title="1 topic" style="font-size: 8pt;">United States</a>
+<a href="http://yakiloo.com/tag/video-game/" class="tag-link-80445" title="1 topic" style="font-size: 8pt;">Video game</a>
+<a href="http://yakiloo.com/tag/www/" class="tag-link-4326" title="2 topics" style="font-size: 11.1111pt;">WWW</a></div></div><div id="meta-3" class="widget widget_meta"><h3>Meta</h3>			<ul>
+			<li><a href="http://jacovanstaden.wordpress.com/wp-login.php?action=register">Register</a></li>			<li><a href="http://jacovanstaden.wordpress.com/wp-login.php">Log in</a></li>
+			<li><a href="http://yakiloo.com/feed/" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://yakiloo.com/comments/feed/" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.com/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.com</a></li>
+						</ul>
+</div><div id="archives-3" class="widget widget_archive"><h3>Archives</h3>		<ul>
+			<li><a href="http://yakiloo.com/2011/03/" title="March 2011">March 2011</a></li>
+	<li><a href="http://yakiloo.com/2011/02/" title="February 2011">February 2011</a></li>
+	<li><a href="http://yakiloo.com/2010/11/" title="November 2010">November 2010</a></li>
+	<li><a href="http://yakiloo.com/2010/09/" title="September 2010">September 2010</a></li>
+		</ul>
+</div><div id="calendar-2" class="widget widget_calendar"><h3>Calendar</h3><div id="calendar_wrap"><table id="wp-calendar">
+	<caption>May 2012</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="Monday">M</th>
+		<th scope="col" title="Tuesday">T</th>
+		<th scope="col" title="Wednesday">W</th>
+		<th scope="col" title="Thursday">T</th>
+		<th scope="col" title="Friday">F</th>
+		<th scope="col" title="Saturday">S</th>
+		<th scope="col" title="Sunday">S</th>
+	</tr>
+	</thead>
+
+	<tfoot>
+	<tr>
+		<td colspan="3" id="prev"><a href="http://yakiloo.com/2011/03/" title="View posts for March 2011">« Mar</a></td>
+		<td class="pad">&nbsp;</td>
+		<td colspan="3" id="next" class="pad">&nbsp;</td>
+	</tr>
+	</tfoot>
+
+	<tbody>
+	<tr>
+		<td colspan="1" class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+	</tr>
+	<tr>
+		<td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td id="today">12</td><td>13</td>
+	</tr>
+	<tr>
+		<td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td>
+	</tr>
+	<tr>
+		<td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td>
+	</tr>
+	<tr>
+		<td>28</td><td>29</td><td>30</td><td>31</td>
+		<td class="pad" colspan="3">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table></div></div><div id="blog_subscription-4" class="widget widget_blog_subscription"><h3><label for="subscribe-field"></label></h3>
+			<form action="https://subscribe.wordpress.com" method="post" accept-charset="utf-8" id="subscribe-blog">
+									<p>Join 10 other followers</p>
+					<p><input name="email" style="width: 95%; padding: 1px 2px;" id="subscribe-field" type="text"></p>
+				
+				<p>
+					<input name="action" value="subscribe" type="hidden">
+					<input name="blog_id" value="16013294" type="hidden">
+					<input name="source" value="http://yakiloo.com/mongodb-sharding/" type="hidden">
+					<input name="sub-type" value="widget" type="hidden">
+					<input name="redirect_fragment" value="blog_subscription-4" type="hidden">
+					<input id="_wpnonce" name="_wpnonce" value="189fd6c8d9" type="hidden">					<input value="Email Subscription" type="submit">
+				</p>
+			</form>
+			
+</div>	</div>
+</div>
+<!-- sidebar END -->
+	<div class="fixed"></div>
+</div>
+<!-- content END -->
+
+<!-- footer START -->
+<div id="footer">
+	<a id="gotop" href="#" onclick="MGJS.goTop();return false;">Top</a>
+	<a id="powered" href="http://wordpress.com/">WordPress</a>
+	<div id="themeinfo">
+		<a href="http://wordpress.com/?ref=footer" rel="generator">Blog at WordPress.com</a>. Theme: <a href="http://theme.wordpress.com/themes/inove/" title="Learn more about this theme">INove</a> by <a href="http://www.neoease.com/" rel="designer">NeoEase</a>.	</div>
+</div>
+<!-- footer END -->
+
+</div>
+<!-- container END -->
+</div>
+<!-- wrap END -->
+
+<script type="text/javascript" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/wpgroho.js"></script>
+
+<script type="text/javascript">
+var _qevents = _qevents || [], wpcomQuantcastData = {"qacct":"p-18-mFEk4J448M","labels":",language.en,type.wpcom"};
+function wpcomQuantcastPixel( labels, options ) {
+	var i, defaults = wpcomQuantcastData, data = { event: 'ajax' };
+
+	labels  = labels  || '';
+	options = options || {};
+
+	if ( typeof labels != 'string' )
+		options = labels;
+
+	for ( i in defaults ) {
+		data[i] = defaults[i];
+	}
+
+	for ( i in options ) {
+		data[i] = options[i];
+	}
+
+	if ( data.labels ) {
+		data.labels += ',' + labels;
+	} else {
+		data.labels = labels;
+	}
+
+	_qevents.push( data );
+};
+(function() {var elem = document.createElement('script');elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";elem.async = true;elem.type = "text/javascript";var scpt = document.getElementsByTagName('script')[0];scpt.parentNode.insertBefore(elem, scpt);  })();
+_qevents.push( wpcomQuantcastData );
+</script>
+<noscript><div style="display: none;"><img src="//pixel.quantserve.com/pixel/p-18-mFEk4J448M.gif?labels=%2Clanguage.en%2Ctype.wpcom" height="1" width="1" alt="" /></div></noscript>
+
+
+	<script type="text/javascript">
+	/* <![CDATA[ */
+	(function($){
+		$(document).on( 'ready post-load', function() {
+
+			// Remove the login box when clicking the page
+			$( document ).mousedown( function( e ) {
+				if ( null == $( e.target ).closest( '#wpl-mustlogin' ).get( 0 ) ) {
+					$( '#wpl-mustlogin' ).remove();
+				}
+			});
+
+			// Handle clicking the like button itself
+			$('.wpl-button > a.like').click( function(e) {
+				e.preventDefault();
+
+				var postid = $(this).parent().attr('id').split('like-')[1];
+				$.post( 'http://yakiloo.com/wp-admin/admin-ajax.php', {
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_like_click'
+				} );
+
+				var tenMins = new Date();
+				tenMins.setTime( tenMins.getTime() + 600000 );
+				document.cookie = 'wpl_rand=41d5139292; expires=' + tenMins.toGMTString() + '; domain=wordpress.com; path=/;';
+
+				$(this).parent().siblings('.wpl-count').after( '\
+					<div id="wpl-mustlogin"> \
+						<form action="https://jacovanstaden.wordpress.com/wp-login.php" method="post"> \
+							<p>Just one more step to like this:</p> \
+							<label><span>Username</span> <input type="text" name="log" id="user_login" class="input" value="" size="20" tabindex="80" /></label> \
+							<label><span>Password</span> <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" tabindex="81" /></label> \
+							<input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="Log In" tabindex="82" /> \
+							<input type="hidden" name="postid" value="' + postid + '" /> \
+							<input type="hidden" name="redirect_to" value="http://yakiloo.com/mongodb-sharding?pagename=mongodb-sharding&like=1" /> \
+							<input type="hidden" name="wpl_rand" value="41d5139292" /> \
+							<p>Not a member yet? <a href="http://wordpress.com/signup/?ref=likebox" id="wpl-signup-link">Sign up with WordPress.com</a></p> \
+						</form> \
+					</div> \
+				');
+
+				$('#wpl-mustlogin').hide().slideDown('fast');
+			} );
+
+			$('#wpl-mustlogin input.input').live( 'focus', function() {
+				$(this).prev().hide();
+			}).live( 'blur', function() {
+				if ( $(this).val() == '' ) {
+					$(this).prev().show();
+				}
+			});
+
+			$('#wpl-mustlogin input#wp-submit').live( 'click', function(e) {
+				e.preventDefault();
+
+				$.post( 'http://yakiloo.com/wp-admin/admin-ajax.php', {
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_login_submit'
+				}, function() {
+					$('#wpl-mustlogin form').submit();
+				} );
+			});
+
+			$('#wpl-mustlogin a#wpl-signup-link').live( 'click', function(e) {
+				e.preventDefault();
+
+				var link = $(this).attr('href');
+
+				$.post( 'http://yakiloo.com/wp-admin/admin-ajax.php', {
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_signup_click'
+				}, function() {
+					location.href = link;
+				} );
+			});
+		})
+	})(jQuery);
+	/* ]]> */
+	</script>
+
+	<script type="text/javascript">
+		WPCOM_sharing_counts = {'http://yakiloo.com/mongodb-sharding/':'61'};
+	</script>
+	
+<script>jQuery(document).ready(function($){ Gravatar.profile_cb = function( h, d ) { WPGroHo.syncProfileData( h, d );	}; Gravatar.my_hash = WPGroHo.my_hash; Gravatar.init( 'body', '#wp-admin-bar-my-account' ); });</script>	<div style="display:none">
+	<div class="grofile-hash-map-03f95874d158e8146e6e845de5609180">
+	</div>
+	</div>
+		<style type="text/css">
+			
+				.reblog-from img                   { margin: 0 10px 0 0; vertical-align: middle; padding: 0; border: 0; }
+				.reblogger-note img.avatar         { float: left; padding: 0; border: 0; }
+				.reblogger-note-content            { margin: 0 0 20px 35px; }
+				.reblog-post                       { border-left: 3px solid #eee; padding-left: 15px; }
+				.reblog-post ul.thumb-list         { display: block; list-style: none; margin: 2px 0; padding: 0; clear: both; }
+				.reblog-post ul.thumb-list li      { display: inline; margin: 0; padding: 0 1px; border: 0; }
+				.reblog-post ul.thumb-list li a    { margin: 0; padding: 0; border: 0; }
+				.reblog-post ul.thumb-list li img  { margin: 0; padding: 0; border: 0; }
+				.reblog-post                       { border-left: 3px solid #eee; padding-left: 15px; }
+
+				.reblog-post .wpcom-enhanced-excerpt { clear: both; }
+
+				.reblog-post .wpcom-enhanced-excerpt address,
+				.reblog-post .wpcom-enhanced-excerpt li,
+				.reblog-post .wpcom-enhanced-excerpt h1,
+				.reblog-post .wpcom-enhanced-excerpt h2,
+				.reblog-post .wpcom-enhanced-excerpt h3,
+				.reblog-post .wpcom-enhanced-excerpt h4,
+				.reblog-post .wpcom-enhanced-excerpt h5,
+				.reblog-post .wpcom-enhanced-excerpt h6,
+				.reblog-post .wpcom-enhanced-excerpt p { font-size: 100% !important; }
+
+				.reblog-post .wpcom-enhanced-excerpt blockquote,
+				.reblog-post .wpcom-enhanced-excerpt pre,
+				.reblog-post .wpcom-enhanced-excerpt code,
+				.reblog-post .wpcom-enhanced-excerpt q { font-size: 98% !important; }
+					</style><script type="text/javascript">
+/* <![CDATA[ */
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"http:\/\/jacovanstaden.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"http:\/\/jacovanstaden.wordpress.com\/wp-login.php?action=logout&_wpnonce=fddf93a213","homeURL":"http:\/\/yakiloo.com\/","postID":"61","gravDefault":"gravatar_default","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/script.js"></script>
+	
+	<div style="bottom: -231px;" id="bit" class="loggedout-follow-normal">
+		<a class="bsub" href="javascript:void(0)"><span id="bsub-text">Follow</span></a>
+		<div id="bitsubscribe">
+			
+					<h3><label for="loggedout-follow-field">Follow “Some thoughts, ideas and fun!!!”</label></h3>
+		
+			<form action="https://subscribe.wordpress.com" method="post" accept-charset="utf-8" id="loggedout-follow">
+			<p>Get every new post delivered to your Inbox.</p>
+			
+			<p id="loggedout-follow-error" style="display: none;"></p>
+
+					
+			
+			<p><input name="email" style="width: 95%; padding: 1px 2px;" value="Enter your email address" onfocus='this.value=(this.value=="Enter your email address") ? "" : this.value;' onblur='this.value=(this.value=="") ? "Enter email address" : this.value;' id="loggedout-follow-field" type="text"></p>
+
+			<input name="action" value="subscribe" type="hidden">
+			<input name="blog_id" value="16013294" type="hidden">
+			<input name="source" value="http://yakiloo.com/mongodb-sharding/" type="hidden">
+			<input name="sub-type" value="loggedout-follow" type="hidden">
+
+			<input id="_wpnonce" name="_wpnonce" value="189fd6c8d9" type="hidden"><input name="_wp_http_referer" value="/mongodb-sharding/" type="hidden">
+			<p id="bsub-subscribe-button"><input value="Sign me up" type="submit"></p>
+			</form>
+					<div id="bsub-credit"><a href="http://wordpress.com/signup/?ref=lof">Powered by WordPress.com</a></div>
+		</div><!-- #bitsubscribe -->
+	</div><!-- #bit -->
+<script type="text/javascript" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/rating.js"></script>
+<script type="text/javascript" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/sharing.js"></script>
+	<div id="sharing_email" style="display: none;">
+		<form action="" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input name="target_email" id="target_email" type="text">
+			
+			
+				<label for="source_name">Your Name</label>
+				<input name="source_name" id="source_name" type="text">
+				
+				<label for="source_email">Your Email Address</label>
+				<input name="source_email" id="source_email" type="text">
+
+						
+			<div class="recaptcha" id="sharing_recaptcha"></div>
+			<img style="float: right; display: none;" class="loading" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/loading.gif" alt="loading" height="16" width="16">
+			<input value="Send Email" class="sharing_send" type="submit">
+			<a href="#cancel" class="sharing_cancel">Cancel</a>
+			
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+			
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div>
+		<script type="text/javascript" charset="utf-8">
+		jQuery(document).ready(function(){
+			jQuery( '.share-twitter' ).click(function(){
+				window.open( jQuery(this).attr( 'href' ), 'wpcom-twitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript" charset="utf-8">
+		jQuery(document).ready(function(){
+			jQuery( '.share-facebook' ).click(function(){
+				window.open( jQuery(this).attr( 'href' ), 'wpcom-facebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+		<script type="text/javascript" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/widgets.js"></script>
+<script type="text/javascript" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/beacon.js"></script><script type="text/javascript">try{COMSCORE.beacon({c1:2,c2:7518284});}catch(e){}</script><noscript><p class="robots-nocontent"><img src="http://b.scorecardresearch.com/p?cj=1c1=2&#038;c2=7518284" alt="" style="display:none" width="1" height="1" /></p></noscript><script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/w.js" type="text/javascript"></script>
+<script type="text/javascript">
+st_go({'blog':'16013294','v':'wpcom','user_id':'0','post':'61','subd':'jacovanstaden'});
+ex_go({'crypt':'UE40eW5QN0p8M2Y/RE1LVmwrVi5vQS5fVFtfdHBbPyw1VXIrU3hWLHhmK2FURjVLLSxrUXxTRWFBSGJ8X1R+OVpIL0c0Rks9UzMrK2NdRnZQMWEvQzdzRlluWV1YSjRwN25sUkVpMGNaeSU2S1osbnZZVjNyMXlZZVYrVWZGdno1a1gxLEkmQkdIRUNLeE50fD1rMW1YOVh5RkEyfEFwTzFLUk13Mjk/Wmh6bFgrK1FDbz1Ob3kyc3p5UkN1RjUmMXx+NUdCP0N4cVlLVGJyaC5Ofmx3b1BtMXlxbWprMFdFVmpOfDdla3BaaGhib01GQ1clUkRobk9TMTdbXzZ0cnJJNlFZSTguT3xXL29VWXdUUHJnJW9QK0RkST9tLmxseHA='});
+addLoadEvent(function(){linktracker_init('16013294',61);});
+	</script><img id="wpstats" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/g.gif" alt=""><img id="wpstats2" src="MongoDB%20%E2%80%93%20Sharding%20%C2%AB%20Some%20thoughts,%20ideas%20and%20fun%21%21%21_files/g_002.gif" alt="" style="display: none;">
+<noscript><img src="http://stats.wordpress.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /></noscript>
+
+
+
+</body></html>
