@@ -15,7 +15,7 @@ function login(){
 	var nocache = Math.random();
 	
 	var http = createXMLHttpRequest();
-	var serverURL = "../controller/LoginController.php?uname=" + username + "&psswd=" + password + "&nocache=" + nocache;
+	var serverURL = "../controller/LoginController.php?action=login&uname=" + username + "&psswd=" + password + "&nocache=" + nocache;
 	http.open("POST", serverURL, true);
 	http.onreadystatechange = function()
 		{
@@ -40,7 +40,23 @@ function login(){
  */
 function logout(){
 	// do logout
-	
-	// redirect to login page
-	window.location = "../gui/index.php";
+	var nocache = Math.random();
+	var http = createXMLHttpRequest();
+	var serverURL = "../controller/LogoutController.php?action=logout&nocache=" + nocache;
+	http.open("POST", serverURL, true);
+	http.onreadystatechange = function()
+		{
+			if(http.readyState==4 && http.status==200){
+				var respone = http.responseText;
+				alert(respone);
+				if (respone == "0") {
+					// if login failed
+					//document.getElementById("login_result").innerHTML = respone;
+				} else {
+					// if login success					
+					window.location = "../gui/home.php";
+				}
+			}
+		}
+	http.send();
 }

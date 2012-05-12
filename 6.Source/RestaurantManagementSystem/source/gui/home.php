@@ -1,4 +1,13 @@
 <?php
+//check is_login
+session_start();
+$is_login = isset($_SESSION['is_login']) ? $_SESSION['is_login'] : false;
+if ($is_login == false) {
+	require_once '../configure/GeneralFunctions.php';
+	echo GeneralFunctions::Alert("Bạn chưa đăng nhập.");	
+	header("Location: index.php");
+}
+
 require_once '../configure/IncludeGenerator.php'; 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -8,6 +17,7 @@ require_once '../configure/IncludeGenerator.php';
         <title>T4V RESTAURANT</title>
         <link rel="stylesheet" href="../css/index.css" type="text/css" media="all" />
         <script type="text/javascript" src="../js/module_login_logout.js"></script>
+        <script type="text/javascript" src="../js/module_booking.js"></script>
         <?php 
         echo IncludeGenerator::CSSGenerate();
         echo IncludeGenerator::JSGenerate();
