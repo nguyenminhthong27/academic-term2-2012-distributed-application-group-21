@@ -23,6 +23,9 @@ class IncludeGenerator {
 		<script src="../js/jquery-1.4.1.min.js" type="text/javascript"></script>
         <script src="../js/jquery.jcarousel.pack.js" type="text/javascript"></script>
         <script src="../js/jquery-func.js" type="text/javascript"></script>
+        <script src="../js/jquery-1.7.2.min.js" type="text/javascript"></script>\
+        <script src="../js/jquery-ui-1.8.20.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
 		';
 	}
 	
