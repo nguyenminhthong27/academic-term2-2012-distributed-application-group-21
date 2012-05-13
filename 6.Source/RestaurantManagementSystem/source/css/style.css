@@ -101,6 +101,25 @@ p {
      text-align: center;
 }
 
+button
+{
+    font-size: 16px;
+    background-color: #05AAED;
+    border-radius: 5px 5px 5px 5px;
+    border: 2px solid white;
+    color: white;
+    padding: 4px 5px 4px 5px;
+}
+
+
+button:hover
+{
+    background-color: #8EBE5B;
+    border-radius: 5px 5px 5px 5px;
+    border: 2px solid white;
+    color: white;
+}
+
 #page {
      margin: 0pt auto;
      width: 874px;
@@ -181,87 +200,8 @@ p {
      padding-bottom: 10px;
 }
 
-#slider {
-     background: url("images/slider.gif") no-repeat scroll 0pt 0pt transparent;
-     height: 200px;
-     position: relative;
-}
-
-#slider .slider-nav a {
-     display: block;
-     font-size: 0pt;
-     height: 49px;
-     line-height: 0;
-     position: absolute;
-     text-indent: -4000px;
-     top: 60px;
-     width: 18px;
-}
-
-#slider .slider-nav a.prev {
-     background: url("images/button-prev.gif") repeat scroll 0% 0% transparent;
-     left: 0pt;
-}
-
-#slider .slider-nav a.next {
-     background: url("images/button-next.gif") repeat scroll 0% 0% transparent;
-     right: 0pt;
-}
-
-#slider-holder {
-     height: 200px;
-}
-
-#slider-holder .jcarousel-clip {
-     height: 200px;
-     overflow: hidden;
-     position: relative;
-     width: 874px;
-}
-
-#slider-holder .slide-image {
-     display: inline;
-     float: right;
-}
-
-.slide-image img {
-    padding-right: 200px;
-     width: 180px;
-     height: 180px;
-}
-
-#slider-holder .slide-info {
-     display: inline;
-     float: left;
-     padding-left: 50px;
-     padding-top: 23px;
-     width: 300px;
-}
-
-#slider-holder .slide-info p {
-     padding-bottom: 8px;
-}
-
-#slider-holder ul {
-     height: 200px;
-     overflow: hidden;
-     position: relative;
-     width: 874px;
-}
-
-#slider-holder ul li {
-     display: inline;
-     float: left;
-     height: 200px;
-     list-style-type: none;
-     overflow: hidden;
-     padding: 5px 10px 4px 50px;
-     position: relative;
-     width: 800px;
-}
 
 #main {
-     border-bottom: 1px solid #E3E7E9;
      margin-bottom: 6px;
 }
 
@@ -286,6 +226,48 @@ h3.txt-247 {
      background: url("images/arr.gif") no-repeat scroll 0pt center transparent;
      padding-left: 10px;
 }
+
+#button-show
+{
+    position: absolute;
+    float: left;
+    opacity:0.7;
+}
+
+#button-show:hover
+{
+    position: absolute;
+    float: left;
+    opacity:1.5;
+}
+
+.menu
+{
+    float: left;
+    background-color: #53D3F2;
+    border-radius: 5px 5px 5px 5px;
+    margin-left: 20px;
+    width: 50px;
+}
+
+.menu ul
+{
+    list-style-type: none;
+}
+
+.menu ul li img
+{
+    height: 35px;
+    width: 35px;
+    padding-left: 5px;
+    padding-top: 5px;
+    opacity:0.5;
+}
+
+.menu ul li img:hover
+{
+    opacity:1;
+} 
 
 .cols {
      padding: 15px 0pt 10px;
@@ -402,6 +384,7 @@ h3.txt-247 {
      height: 20px;
      line-height: 20px;
      padding: 10px 10px 10px 22px;
+     margin-top: 150px;
 }
 
 #footer p {
@@ -425,3 +408,4 @@ h3.txt-247 {
 {
     opacity: 0.3;
 }
+
