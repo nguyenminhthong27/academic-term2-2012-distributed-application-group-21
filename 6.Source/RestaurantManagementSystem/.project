@@ -25,4 +25,11 @@
 		<nature>org.eclipse.php.core.PHPNature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>source/html</name>
+			<type>2</type>
+			<location>D:/1 CLASS STUDY/1 Lecture/1 Third year/1 Distributed Apps/5 Google Code/6.Source/RestaurantManagementSystem/source/html</location>
+		</link>
+	</linkedResources>
 </projectDescription>
