@@ -4,15 +4,20 @@
  * @author vantuanlee@gmail.com
  * */
 class LoginController{
-
+    
+	 public $type = "MaLoaiNV";//temporary staff_type
+	 
+	
 	/**
 	 *
 	 * */
 	public function validateLoginForm($username){
+		
 
 	}
 
 	/**
+	 * @author thanhtuan
 	 * main login method
 	 * @param $username user name
 	 * @param $password pass word
@@ -20,12 +25,32 @@ class LoginController{
 	 * */
 	public function login($username, $password) {
 		
+		$result_suc = "Chào Mừng , " ;
+		$reusult_fail = "Login Failed";
+	     $acount  = new AccountDAO(); 
+		 $loginResult = $acount->validateLonginInfo($username,$password);
+		 if(isset($loginResult))
+		 {
+		 	session_start();
+		 	$_SESSION['is_login'] = true;
+		 	$_SESSION['staff_type'] = $loginResult[$type];
+		 	$_SESSION['uname'] = $username;
+		 	$result_suc = $result_suc. $username.'<a href="javascript:logout()">Logout';
+		 	 return $result_suc;
+		 }
+		 else
+		 {
+		 	return $reusult_fail;
+		 }
+		
+		  
 	}
 
 	/**
 	 *
 	 * */
 	public function getForgotPassword(){
+		
 
 	}
 }
@@ -43,15 +68,8 @@ switch ($action) {
 				// do login
 				$loginCtrl = new LoginController();
 				$loginResult = $loginCtrl->login($username, $password);
-				// if login successful
-				session_start();
-				$_SESSION['is_login'] = true;
-				$_SESSION['staff_type'] = "null";
-				$_SESSION['uname'] = $username;
+			    echo $loginResult;
 				
-				echo $_SESSION['is_login'];
-				
-				echo "Successful";
 			} catch (Exception $e) {
 				echo "Login Failed";		
 			}
