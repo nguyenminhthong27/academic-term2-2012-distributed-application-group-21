@@ -16,8 +16,8 @@ class MongoDatabase implements IDatabaseConfig {
 	 */
 	public static function getAllDataFrom($collection_name, $condition = null) {
 		try {
-			$connection = new Mongo($this::Host);
-			$db = $connection->selectDB($this::DbName);
+			$connection = new Mongo(IDatabaseConfig::Host);
+			$db = $connection->selectDB(IDatabaseConfig::DbName);
 			$collection = $db->{$collection_name};
 			
 			// get all from collection, except '_id'
@@ -82,13 +82,13 @@ class MongoDatabase implements IDatabaseConfig {
 	
 	/**
 	 * insert a document $data to collection $collection_name
-	 * @param $collection_name the name of collection need insert into
-	 * @param $data an array, contents the informations of an object
+	 * @param string $collection_name the name of collection need insert into
+	 * @param array $data an array, contents the informations of an object
 	 */
 	public static function addDataTo($collection_name, $data) {
 		try {	
-			$connection = new Mongo($this::Host);
-			$db = $connection->selectDB($this::DbName);
+			$connection = new Mongo(IDatabaseConfig::Host);
+			$db = $connection->selectDB(IDatabaseConfig::DbName);
 			$collection = $db->{$collection_name};
 			
 			$collection->save($data);
@@ -109,8 +109,8 @@ class MongoDatabase implements IDatabaseConfig {
 	 */
 	public static function removeDataFrom($collection_name, $id, $id_value) {
 		try {
-			$connection = new Mongo($this::Host);
-			$db = $connection->selectDB($this::DbName);
+			$connection = new Mongo(IDatabaseConfig::Host);
+			$db = $connection->selectDB(IDatabaseConfig::DbName);
 			$collection = $db->{$collection_name};
 			
 			$collection->remove(array($id => $id_value));
@@ -133,15 +133,7 @@ class MongoDatabase implements IDatabaseConfig {
 			$collection = $db->{$collection_name};
 			
 			$collection->update(array($id => $id_value), 
-					array('$set' => array(
-							"MaNV" => $data["MaNV"],
-							"HoTen" => $data["HoTen"],
-							"NgaySinh" => $data["NgaySinh"],
-							"DiaChi" => $data["DiaChi"],
-							"Phai" => $data["Phai"],
-							"Luong" => $data["Luong"],
-							"Phong" => $data["Phong"]
-							)));
+					array('$set' => $data));
 			
 			$connection->close();
 		} catch (MongoConnectionException $e) {
