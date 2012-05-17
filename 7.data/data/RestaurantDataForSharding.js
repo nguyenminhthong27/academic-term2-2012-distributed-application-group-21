@@ -202,6 +202,7 @@ db.getCollection("BanAn").insert({
   "MaKV": "KV01",
   "MaNH": "NH001",
   "SoLuong": 4,
+  "TinhTrang" : 0,
   "_id": ObjectId("4f9d8053b0bed39c13000051")
 });
 db.getCollection("BanAn").insert({
@@ -210,6 +211,7 @@ db.getCollection("BanAn").insert({
   "MaKV": "KV01",
   "MaNH": "NH001",
   "SoLuong": 2,
+  "TinhTrang" : 0,
   "_id": ObjectId("4f9d806cb0bed39c13000052")
 });
 db.getCollection("BanAn").insert({
@@ -218,6 +220,7 @@ db.getCollection("BanAn").insert({
   "MaKV": "KV01",
   "MaNH": "NH001",
   "SoLuong": 8,
+  "TinhTrang" : 0,
   "_id": ObjectId("4f9d8080b0bed39c13000053")
 });
 db.getCollection("BanAn").insert({
@@ -226,6 +229,7 @@ db.getCollection("BanAn").insert({
   "MaKV": "KV01",
   "MaNH": "NH001",
   "SoLuong": 12,
+  "TinhTrang" : 0,
   "_id": ObjectId("4f9d809eb0bed39c13000054")
 });
 db.getCollection("BanAn").insert({
@@ -234,7 +238,8 @@ db.getCollection("BanAn").insert({
   "MaBanAn": "BAKV101",
   "MaKV": "KV01",
   "MaNH": "NH002",
-  "SoLuong": 4
+  "SoLuong": 4,
+  "TinhTrang" : 0
 });
 db.getCollection("BanAn").insert({
   "_id": ObjectId("4fb3299153d2af1613155668"),
@@ -242,7 +247,8 @@ db.getCollection("BanAn").insert({
   "MaBanAn": "BAKV102",
   "MaKV": "KV01",
   "MaNH": "NH002",
-  "SoLuong": 2
+  "SoLuong": 2,
+  "TinhTrang" : 0
 });
 db.getCollection("BanAn").insert({
   "_id": ObjectId("4fb3299153d2af1613155669"),
@@ -250,7 +256,8 @@ db.getCollection("BanAn").insert({
   "MaBanAn": "BAKV103",
   "MaKV": "KV01",
   "MaNH": "NH002",
-  "SoLuong": 8
+  "SoLuong": 8,
+  "TinhTrang" : 0
 });
 db.getCollection("BanAn").insert({
   "_id": ObjectId("4fb3299153d2af161315566a"),
@@ -258,7 +265,8 @@ db.getCollection("BanAn").insert({
   "MaBanAn": "BAKV104",
   "MaKV": "KV01",
   "MaNH": "NH002",
-  "SoLuong": 12
+  "SoLuong": 12,
+  "TinhTrang" : 0
 });
 
 /** CaLamViec records **/
