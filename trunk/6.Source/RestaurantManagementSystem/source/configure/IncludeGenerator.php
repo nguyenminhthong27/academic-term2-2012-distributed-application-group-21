@@ -10,8 +10,7 @@ class IncludeGenerator {
 	 * @author vantuanlee@gmail.com
 	 * */
 	public static function CSSGenerate(){
-		return '
-		';
+		return '';
 	}
 	
 	/**

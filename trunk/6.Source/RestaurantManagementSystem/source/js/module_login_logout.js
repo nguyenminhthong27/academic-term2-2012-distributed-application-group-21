@@ -15,7 +15,7 @@ function login(){
 	var nocache = Math.random();
 	
 	var http = createXMLHttpRequest();
-	var serverURL = "../controller/LoginController.php?action=login&uname=" + username + "&psswd=" + password + "&nocache=" + nocache;
+	var serverURL = "../controller/LoginController.php?action=login &uname=" + username + "&psswd=" + password + "&nocache=" + nocache;
 	http.open("POST", serverURL, true);
 	http.onreadystatechange = function()
 		{
