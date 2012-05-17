@@ -15,18 +15,18 @@ function login(){
 	var nocache = Math.random();
 	
 	var http = createXMLHttpRequest();
-	var serverURL = "../controller/LoginController.php?action=login &uname=" + username + "&psswd=" + password + "&nocache=" + nocache;
+	var serverURL = "../controller/LoginController.php?action=login&uname=" + username + "&psswd=" + password + "&nocache=" + nocache;
 	http.open("POST", serverURL, true);
 	http.onreadystatechange = function()
 		{
 			if(http.readyState==4 && http.status==200){
 				var respone = http.responseText;
-				if (respone == "Login Failed") {
-					// if login failed
-					document.getElementById("login_result").innerHTML = respone;
+				if (respone == true) {
+					// if login successful
+					window.location = "../gui/home.php";
 				} else {
 					// if login success					
-					window.location = "../gui/home.php";
+					document.getElementById("login_result").innerHTML = "Login Failed, please login again";
 				}
 			}
 		}
@@ -48,7 +48,6 @@ function logout(){
 		{
 			if(http.readyState==4 && http.status==200){
 				var respone = http.responseText;
-				alert(respone);
 				if (respone == "0") {
 					// if login failed
 					//document.getElementById("login_result").innerHTML = respone;

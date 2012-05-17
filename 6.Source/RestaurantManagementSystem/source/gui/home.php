@@ -2,6 +2,7 @@
 //check is_login
 session_start();
 $is_login = isset($_SESSION['is_login']) ? $_SESSION['is_login'] : false;
+$uname = isset($_SESSION['uname']) ? $_SESSION['uname'] : "";
 if ($is_login == false) {
 	require_once '../configure/GeneralFunctions.php';
 	echo GeneralFunctions::Alert("Bạn chưa đăng nhập.");	
@@ -28,7 +29,7 @@ require_once '../configure/IncludeGenerator.php';
             <!-- Logo + Search + Navigation -->
             <?php
             echo IncludeGenerator::LogoGenerate();
-            echo IncludeGenerator::LogoutLinkGenerate("Hà Thị Phương Thảo"); 
+            echo IncludeGenerator::LogoutLinkGenerate($uname); 
             ?>
             
             <!-- END Logo + Search + Navigation -->
