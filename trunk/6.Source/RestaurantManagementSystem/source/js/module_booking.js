@@ -1,39 +1,41 @@
 /**
  * all method support for booking management fucntions
+ * 
  * @author vantuanlee@gmail.com
  */
 
 function _init_slider(carousel) {
 	$('#slider .slider-controls a').bind('click', function() {
 		var index = $(this).parent().find('a').index(this) + 1;
-		carousel.scroll( index );
+		carousel.scroll(index);
 		return false;
 	});
-	
+
 	$('#slider .slider-nav .next').bind('click', function() {
 		carousel.next();
 		return false;
 	});
-	
+
 	$('#slider .slider-nav .prev').bind('click', function() {
 		carousel.prev();
 		return false;
 	});
-};
+};s
 
 function _set_slide(carousel, item, idx, state) {
 	var index = idx - 1;
-	
+
 	$('#slider .slider-controls a').removeClass('active');
 	$('#slider .slider-controls a').eq(index).addClass('active');
 };
 
 function check_fields(field) {
-	if (field.title==field.value || this.value == '') {
+	if (field.title == field.value || this.value == '') {
 		$(field).removeClass('field-focused');
 	} else {
 		$(field).addClass('field-focused');
-	};
+	}
+	;
 };
 
 function addTable()
@@ -52,90 +54,96 @@ function addTable()
 	 
     $('#bookingDetailInfoTable').append(elements);
 	// bookingDetailInfo
-    $('.fromDtPker').datetimepicker();
-    $('.toDtPker').datetimepicker();
+	$('.fromDtPker').datetimepicker();
+	$('.toDtPker').datetimepicker();
 }
 
 $(document).ready(function() {
 	$("#slider-holder").jcarousel({
-		scroll: 1,
-		auto: 5,
-		wrap: 'both',
-		initCallback: _init_slider,
-		itemFirstInCallback: _set_slide,
-		buttonNextHTML: null,
-		buttonPrevHTML: null
+		scroll : 1,
+		auto : 5,
+		wrap : 'both',
+		initCallback : _init_slider,
+		itemFirstInCallback : _set_slide,
+		buttonNextHTML : null,
+		buttonPrevHTML : null
 	});
-	
+
 	$('.field').each(function() {
 		check_fields(this);
 	});
-	
-	$('.field').focus(function() {
-        if(this.title==this.value) {
-            this.value = '';
-            check_fields(this);
-        }
-    }).blur(function(){
-        if(this.value=='') {
-            this.value = this.title;
-            check_fields(this);
-        }
-    });
-    
-    // bookingDetailInfo
-    $('.fromDtPker').datetimepicker();
-    $('.toDtPker').datetimepicker();
-    $('.tableInfoDialog').dialog({autoOpen: false,
-			height: 450,
-			width: 780,
-			modal: true});
-    
-    //END bookingDetailInfo
 
-    $('#button-show').click(function(){
-       $('#menuDiv').toggle("drop",{width: 30, height: 60}, 500);
-    });    
-    
-    $('#searchTableBut').click(function() {
-        $('.tableInfoDialog').dialog("open");
-    });
-    
-    //Food table link (href)
-    $('#regionInfoDialog').dialog({autoOpen: false,
-			height: 300,
-			width: 450,
-			modal: true});
-                    
-    $('#bookingDetailDialog').dialog({autoOpen: false,
-			height: 300,
-			width: 650,
-			modal: true});
+	$('.field').focus(function() {
+		if (this.title == this.value) {
+			this.value = '';
+			check_fields(this);
+		}
+	}).blur(function() {
+		if (this.value == '') {
+			this.value = this.title;
+			check_fields(this);
+		}
+	});
+
+	// bookingDetailInfo
+	$('.fromDtPker').datetimepicker();
+	$('.toDtPker').datetimepicker();
+	$('.tableInfoDialog').dialog({
+		autoOpen : false,
+		height : 450,
+		width : 780,
+		modal : true
+	});
+
+	// END bookingDetailInfo
+
+	$('#button-show').click(function() {
+		$('#menuDiv').toggle("drop", {
+			width : 30,
+			height : 60
+		}, 500);
+	});
+
+	$('#searchTableBut').click(function() {
+		$('.tableInfoDialog').dialog("open");
+	});
+
+	// Food table link (href)
+	$('#regionInfoDialog').dialog({
+		autoOpen : false,
+		height : 300,
+		width : 450,
+		modal : true
+	});
+
+	$('#bookingDetailDialog').dialog({
+		autoOpen : false,
+		height : 300,
+		width : 650,
+		modal : true
+	});
 });
 
 /*
-* functions control food table link 
-*/
-function regionInfoLinkClicked()
-{
-     $('#regionInfoDialog').dialog("open");
+ * functions control food table link
+ */
+function regionInfoLinkClicked() {
+	$('#regionInfoDialog').dialog("open");
 }
 
-function bookingDetailLinkClicked()
-{
-    $('#bookingDetailDialog').dialog("open");
+function bookingDetailLinkClicked() {
+	$('#bookingDetailDialog').dialog("open");
 }
 
 /*
-* END functions control food table link
-*/
-
+ * END functions control food table link
+ */
 
 /**
  * general method for booking management
  */
 function bookingManagement() {
-	window.location  = "../gui/booking.php";
+	window.location = "../gui/booking.php";
 }
 
 /**
@@ -147,57 +155,100 @@ function bookingManagement() {
  */
 function saveBookingDetail() {
 	// get customer info
-	var cusName = document.getElementById("customerNameTxtBox").value;
-	var cusIdNumber = document.getElementById("customerIdNumberTxtBox").value;
-	var cusPhoneNumber = document.getElementById("customerPhoneNumberTxtBox").value;
+	var cusName = $.trim(document.getElementById("customerNameTxtBox").value);
+	var cusIdNumber = $
+			.trim(document.getElementById("customerIdNumberTxtBox").value);
+	var cusPhoneNumber = $.trim(document
+			.getElementById("customerPhoneNumberTxtBox").value);
 
 	// validate customer info
-	if (!customerInfoValtion(cusIdNumber, cusPhoneNumber)) {
+	if (!customerInfoValidation(cusIdNumber, cusPhoneNumber) || cusName == "") {
 		alert("Thông tin khách hàng không hợp lệ");
 		return;
 	}
 
-	var tableId = $(".tableId").get();
-	var fromDtPker = $(".fromDtPker").get();
-	var toDtPker = $(".toDtPker").get();
+	// get table booking info
+	var tableId = $("#bookingDetailInfoTable .tableId").get();
+	var fromDtPker = $("#bookingDetailInfoTable .fromDtPker").get();
+	var toDtPker = $("#bookingDetailInfoTable .toDtPker").get();
 
 	var tableIdStr = "";
 	var fromDateStr = "";
 	var toDateStr = "";
 
+	// validate booking info
 	for ( var i = 0; i < fromDtPker.length; i++) {
-		if (!dateValidation(fromDtPker[i].value, toDtPker[i].value)) {
-			alert("Thông tin ngày ở bàn thứ" + (i + 1).toString()
+		var from = $.trim(fromDtPker[i].value);
+		var to = $.trim(toDtPker[i].value);
+		var table_id = $.trim(tableId[i].value);
+
+		if (table_id == "") {
+			alert("Thông tin mã bàn ăn ở bàn thứ " + (i + 1).toString()
+					+ " không hợp lệ");
+			return false;
+		}
+
+		if (!dateValidation(from, to)) {
+			alert("Thông tin ngày ở bàn thứ " + (i + 1).toString()
 					+ " không hợp lệ");
 			return;
 		} else {
-			tableIdStr = tableIdStr + "&tableId=" + tableId[i].value;
-			fromDateStr = fromDateStr + "&fromDate=" + fromDtPker[i].value;
-			toDateStr = toDateStr + "&toDate=" + toDtPker[i].value;
+			tableIdStr = tableIdStr + "&tableId=" + table_id;
+			fromDateStr = fromDateStr + "&fromDate=" + from;
+			toDateStr = toDateStr + "&toDate=" + to;
 		}
 	}
-	
+
+	// send request
+	var http = createXMLHttpRequest();
+	var serverURL = "../controller/ModuleBookingController.php?action=save"
+			+ "&cusName=" + cusName + "&cusIdNumber=" + cusIdNumber
+			+ "&cusPhoneNumber=" + cusPhoneNumber + tableIdStr + fromDateStr
+			+ toDateStr;
+
+	http.open("POST", serverURL, true);
+	http.onreadystatechange = function() {
+		if (http.readyState == 4 && http.status == 200) {
+			var response = http.responseText;
+			if (response == true) {
+				// if booking is successful
+				alert("Đặt chỗ thành công");
+				window.location = "../gui/booking.php";
+			} else {
+				if (response == "invalid table id") {
+					alert("Mã bàn ăn nhập sai. Đặt chỗ không thành công");
+					return;
+				}
+				// if booking is not success
+				alert("Đặt chỗ không thành công");
+			}
+		}
+	};
+	http.send();
+
 }
 
 /**
  * general method for booking
+ * 
  * @author vantuanlee@gmail.com
  */
-function booking(){
-	window.location  = "../gui/booking.php";
+function booking() {
+	window.location = "../gui/booking.php";
 }
 
 /**
  * general method for table management
+ * 
  * @author vantuanlee@gmail.com
  */
-function showTableList(){
-	window.location  = "../gui/tableManagement.php";	
+function showTableList() {
+	window.location = "../gui/tableManagement.php";
 }
 
-
 /**
- * search table with condition 
+ * search table with condition
+ * 
  * @author vantuanlee@gmail.com
  */
 function searchTable(){	
@@ -225,7 +276,7 @@ function searchTable(){
 				var respone = http.responseText;		
 				document.getElementById("searchTableResult").innerHTML = respone;
 			}
-		}
+		};
 	http.send();
 }
 	
@@ -233,21 +284,46 @@ function searchTable(){
 /**
  * validate customer's info: idenitity number, phone number
  * 
- * @param idnumber string
+ * @param idnumber
+ *            string
  * @param phonenumber-string
  * @returns boolean
  * @author hathao298@gmail.com
  */
-function customerInfoValtion(idNumber, phoneNumber) {
 
+function customerInfoValidation(idNumber, phoneNumber) {
+	for ( var i = 0; i < idNumber.length; i++) {
+		if (!(idNumber[i] >= '0' && idNumber[i] <= '9'))
+			return false;
+	}
+
+	for ( var i = 0; i < phoneNumber.length; i++) {
+		if (!(phoneNumber[i] >= '0' && phoneNumber[i] <= '9'))
+			return false;
+	}
+
+	return true;
 }
 
 /**
- * validate date 
- * @param fromDate date
- * @param toDate date
+ * validate date
+ * 
+ * @param fromDate
+ *            date
+ * @param toDate
+ *            date
  * @returns boolean
  * @author hathao298@gmail.com
  */
 function dateValidation(fromDate, toDate) {
+	if (fromDate == "" || toDate == "")
+		return false;
+
+	var regExp = /^([0]\d|[1][0-2])\/([0-2]\d|[3][0-1])\/([2][01]|[1][6-9])\d{2}(\s([0]\d|[1][0-2])(\:[0-5]\d){1,2})*\s*([aApP][mM]{0,2})?$/;
+	var matchArray1 = fromDate.match(regExp);
+	var matchArray2 = toDate.match(regExp);
+	if (matchArray1 == null || matchArray2 == null)
+		return false;
+	else
+		return true;
 }
