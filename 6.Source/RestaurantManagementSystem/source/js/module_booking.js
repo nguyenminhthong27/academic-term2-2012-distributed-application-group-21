@@ -39,13 +39,13 @@ function check_fields(field) {
 function addTable()
 {
     var elements = "<tr>"
-                          + "<td>M� b�n an</td>"
+                          + "<td>Mã bàn ăn</td>"
                           + "<td><input type='text'></input></td><br/>"
                           + "</tr>"
                           + "<tr>"
-                          + " <td>T?</td>"
+                          + " <td>Từ</td>"
                           + "<td><input type='text' class='fromDtPker'></input></td>"
-                          + "<td>�?n</td>"
+                          + "<td>Đến</td>"
                           + "<td><input type='text' class='toDtPker'></input></td>"
                           + "</tr>";
                       
@@ -201,8 +201,34 @@ function showTableList(){
  * @author vantuanlee@gmail.com
  */
 function searchTable(){	
+	var selectRestaurantObj = document.getElementById("selectRestaurant");
+	var restaurant = selectRestaurantObj.options[selectRestaurantObj.selectedIndex].value;
 	
+	var selectAreaObj = document.getElementById("selectArea");
+	var area = selectAreaObj.options[selectAreaObj.selectedIndex].value;
+	
+	var selectStatusObj = document.getElementById("selectStatus");
+	var status = selectStatusObj.options[selectStatusObj.selectedIndex].value;
+	
+	var from = document.getElementById("seachFromDtPker").value;
+	var to = document.getElementById("seachToDtPker").value;
+
+	var nocache = Math.random();
+	
+	var http = createXMLHttpRequest();
+	var serverURL = "../controller/ModuleBookingController.php?action=searchAvailTable&res=" + restaurant + 
+	"&area=" + area + "&status=" + status + "&from=" + from + "&to=" + to + "&nocache=" + nocache;
+	http.open("POST", serverURL, true);
+	http.onreadystatechange = function()
+		{
+			if(http.readyState==4 && http.status==200){
+				var respone = http.responseText;		
+				document.getElementById("searchTableResult").innerHTML = respone;
+			}
+		}
+	http.send();
 }
+	
 
 /**
  * validate customer's info: idenitity number, phone number
@@ -224,5 +250,4 @@ function customerInfoValtion(idNumber, phoneNumber) {
  * @author hathao298@gmail.com
  */
 function dateValidation(fromDate, toDate) {
-
 }

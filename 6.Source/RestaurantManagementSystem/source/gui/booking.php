@@ -38,6 +38,7 @@ require_once '../controller/GUIGenerator.php';
         <script src="../js/lib/jquery-ui-1.8.20.custom.min.js" type="text/javascript"></script>
         <script src="../js/lib/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
          <script src="../js/general_functions.js" type="text/javascript"></script>
+        <script src="../js/general_functions.js" type="text/javascript"></script>
         <script src="../js/module_booking.js" type="text/javascript"></script>
         
     </head>
@@ -126,7 +127,7 @@ require_once '../controller/GUIGenerator.php';
                                     <?php echo GUIGenerator::htmlShowAreaSelect();?>
                                 </td>
                                 <td>Tình trạng</td>
-                                <td><select>
+                                <td><select id="selectStatus">
                                         <option value="-1" selected>Tất cả</option>
                                         <option value="0">Chưa đặt</option>
                                         <option value="1">Đã đặt</option>                        
@@ -135,11 +136,11 @@ require_once '../controller/GUIGenerator.php';
                             <tr>
                                 <td>Từ</td>
                                 <td>
-                                    <input type="text" class="fromDtPker"></input>
+                                    <input id="seachFromDtPker"type="text" class="fromDtPker"></input>
                                 </td>
                                 <td>Đến</td>
                                 <td>
-                                    <input type="text" class="toDtPker"></input><br/>
+                                    <input id="seachToDtPker" type="text" class="toDtPker"></input><br/>
                                 </td>
                             </tr>
                             <tr>
@@ -182,32 +183,9 @@ require_once '../controller/GUIGenerator.php';
                             </table>
                         </div>
                         <!-- END Dialog for booking detail -->
-                        <table>
-                            <tr>
-                                <th>MÃ BÀN ĂN</th>
-                                <th>TÊN KHU VỰC</th>
-                                <th>GIÁ THÀNH</th>
-                                <th>SỐ NGƯỜI</th>
-                                <th>TÌNH TRẠNG</th>
-                            </tr>
-                            <tr>
-                                <td>123</td>
-                                <td><a onclick="regionInfoLinkClicked();" href="#">VIP</td>
-                                <td>1.200.000</td>
-                                <td>10</td>
-                                <td>Chưa đặt</td>
-                            </tr>       
-                            <tr>
-                                <td>123</td>
-                                <td>
-                                    <a onclick="regionInfoLinkClicked();" href="#">Bình thường</a>                                
-                                </td>                               
-                                <td>1.200.000</td>
-                                <td>10</td>
-                                <td><a onclick="bookingDetailLinkClicked();" href="#">Chi tiết</a></td>
-                            </tr>
-                        </table>
-
+                        <div id="searchTableResult">
+	                        
+                        </div>
                     </div>
                 </div>
                 <!-- END table of food table -->

@@ -8,6 +8,8 @@ class GUIGenerator {
 	
 	/**
 	 * show select box restaurants
+	 * @author vantuanlee@gmail.com
+	 * 
 	 */
 	public static function htmlShowRestaurantSelect(){
 		$currentRes = $_SESSION["restaurant"];
@@ -31,6 +33,7 @@ class GUIGenerator {
 	
 	/**
 	 * show select box area 
+	 * @author vantuanlee@gmail.com
 	 */
 	public static function htmlShowAreaSelect(){
 		$areas = MongoDatabase::getAllDataFrom("KhuVuc");
