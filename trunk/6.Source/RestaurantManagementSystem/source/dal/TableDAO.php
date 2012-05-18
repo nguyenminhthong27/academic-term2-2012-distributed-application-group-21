@@ -128,7 +128,7 @@ class TableDAO implements IDatabaseConfig {
 <?php
 // hard code to test
 
-$dao = new TableDAO();
-$arr = $dao->getAvailableTable(null, null, null, "2012-05-03 09:00:00", "2012-05-03 11:00:00"); 
-print_r($arr);
+// $dao = new TableDAO();
+// $arr = $dao->getAvailableTable(null, null, null, "2012-05-03 09:00:00", "2012-05-03 11:00:00"); 
+// print_r($arr);
 ?>
