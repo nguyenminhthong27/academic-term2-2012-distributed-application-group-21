@@ -68,7 +68,7 @@ if ($action == "getAll"){
 	// do get list all food table of restaurants...
 	try {
 	$getData= new ModuleTableController();
-	$reusult = $getData->getListAllTablRestaurants();
+	$reusult = $getData->getListAllTableRestaurants();
      
 	echo $reusult;
 	}
