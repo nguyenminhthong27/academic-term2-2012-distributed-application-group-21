@@ -18,12 +18,16 @@ class IncludeGenerator {
 	 * */
 	public static function JSGenerate(){
 		return '
+		<script src="../js/lib/jquery-1.7.2.min.js" type="text/javascript"></script>
+        <script src="../js/lib/jquery.jcarousel.pack.js" type="text/javascript"></script>
+        <script src="../js/lib/jquery-ui-1.8.20.custom.min.js" type="text/javascript"></script>
+        <script src="../js/lib/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
 		<script src="../js/general_functions.js" type="text/javascript"></script>
-		<script src="../js/jquery-1.4.1.min.js" type="text/javascript"></script>
         <script src="../js/jquery.jcarousel.pack.js" type="text/javascript"></script>
         <script src="../js/jquery-func.js" type="text/javascript"></script>
-        <script src="../js/jquery-ui-1.8.20.custom.min.js" type="text/javascript"></script>
-        <script src="../js/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
+        <script src="../js/lib/jquery-1.4.1.min.js" type="text/javascript"></script>
+        <script src="../js/lib/jquery.jcarousel.pack.js" type="text/javascript"></script>
+        <script src="../js/lib/jquery-func.js" type="text/javascript"></script>
 		';
 	}
 	
@@ -254,5 +258,7 @@ class IncludeGenerator {
             </script>
 		';
 	}
+	
+	
 }
 ?>

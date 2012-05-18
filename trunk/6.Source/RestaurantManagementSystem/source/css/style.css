@@ -8,7 +8,8 @@ body, html {
      height: 100%;
 }
 
-body {
+body 
+{
      background: none repeat scroll 0% 0% #E1E5E8;
      color: #888888;
      font-family: "Georgia",Tahoma,Sans-Serif;
@@ -125,10 +126,10 @@ button:hover
      width: 874px;
 }
 
-#page {
+#page {    
      background: url("images/bg.gif") repeat-y scroll center 0pt transparent;
+     min-height:100%;
      height: auto ! important;
-     min-height: 100%;
      padding: 0pt 28px;
 }
 
@@ -202,7 +203,9 @@ button:hover
 
 
 #main {
-     margin-bottom: 6px;
+    height: auto !important;
+    min-height: 100%;
+     margin-bottom: -20px;     
 }
 
 h2.txt-we-love-mondays {

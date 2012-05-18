@@ -33,7 +33,8 @@ class ModuleLoginLogoutController{
 				session_start();
 				$_SESSION['is_login'] = true;
 				$_SESSION['staff_type'] = $account["LoaiNV"];
-				$_SESSION['uname'] = $username;
+				$_SESSION['uname'] = $account["TenNV"];
+				$_SESSION['restaurant'] = $account["MaNH"];
 				return true;
 			}
 		}

@@ -1,0 +1,377 @@
+/* 
+    Document   : createBill
+    Created on : May 14, 2012, 8:09:08 AM
+    Author     : JML
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#main
+{
+    font-size: 14px;
+    font-family: Times New Roman;
+}
+
+#main-header
+{
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Times New Roman;
+    padding-left: 300px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+.customerInfo
+{
+    border-bottom: 1px solid #E3E7E9;
+    margin-bottom: 20px;
+}
+
+.bookingDetailInfo
+{
+    border-bottom: 1px solid #E3E7E9;
+    margin-bottom: 20px;
+}
+
+.main-content
+{
+    padding-left: 100px;
+}
+.main-content-dialog
+{
+    padding-left: 30px;
+}
+
+.buttonToolBar
+{
+    margin-left: 220px;
+}
+
+/*bill-general-info*/
+.bill-general-info {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.bill-general-info table tr td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+}
+
+.bill-general-info table tr td input {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 150px;
+}
+
+/*END bill-general-info*/
+
+/*food-detail*/
+.food-detail p{
+    font-size: 16px;
+    margin-left: 20px;
+}
+.food-detail table {
+    margin-left: 150px;
+}
+
+.food-detail table tr th
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #31B2D6;
+    color: white;
+    font-family: arial, sans-serif;
+    font-size: 16px;
+    height: 35px;
+    min-width: 70px;
+    text-align: center;
+}
+
+.food-detail table tr th:first-child
+{    
+    border-radius: 10px 0px 0px 0px;
+    min-width: 5px;
+}
+
+.food-detail table tr th:last-child
+{
+
+    border-radius: 0px 10px 0px 0px;
+}
+
+.food-detail table td {
+    border-color: white;
+    border: 1px solid #BBE0EB;
+    padding-left: 10px;
+}
+.food-detail table tr td:first-child
+{    
+    max-width: 10px;
+    text-indent: 10px;
+}
+
+.food-detail table tr {
+    height: 35px;
+}
+
+.food-detail table tr:hover {
+    background-color: #BBE0EB;
+}
+
+#addFoodAmountBut {
+    margin-top: 20px;
+    margin-left: 230px;    
+    margin-bottom: 50px;
+}
+/*END food-detail*/
+
+/*booking-search-div*/
+.booking-search-div
+{
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+
+.booking-search-div table tr {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.booking-search-div table tr td:fist-child{
+    margin-top: 20px;
+}
+
+.booking-search-div table tr td input{
+    font-size: 14px;
+    margin-left: 20px;
+    margin-top: 5px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+#bookingSearchDialogBut
+{
+    font-size: 16px;
+    margin-left: 150px;
+    margin-top: 30px;
+}
+
+/*END booking-search-div*/
+
+/*booking-detail-div*/
+
+
+.booking-detail-div table 
+{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 35px;
+}
+.booking-detail-div table tr
+{
+    height: 30px;
+}
+
+.booking-detail-div table tr th
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #4896AC;
+    color: white;
+    font-family: arial, sans-serif;
+    font-size: 14px;
+    height: 35px;
+    text-align: center;
+} 
+
+.booking-detail-div table td {
+    border-color: white;
+    border: 1px solid #BBE0EB;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/*END booking-detail-div*/
+
+/*food-amount*/
+
+.food-amount
+{
+    margin-top: 50px;
+    margin-left: 100px;
+}
+.food-amount table
+{
+    margin-bottom: 30px;
+}
+
+.food-amount .backBut
+{
+    margin-left: 120px;
+}
+
+.food-amount table tr th
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #31B2D6;
+    color: white;
+    font-size: 18px;
+    height: 35px;
+    min-width: 70px;
+    text-align: center;
+}
+
+.food-amount table tr th:first-child
+{    
+    border-radius: 10px 0px 0px 0px;
+    min-width: 5px;
+}
+
+.food-amount table tr th:last-child
+{
+
+    border-radius: 0px 10px 0px 0px;
+} 
+
+
+.food-amount table td {
+    border-color: white;
+    border: 1px solid #BBE0EB;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+.food-amount table tr {
+    height: 35px;
+}
+
+.food-amount table tr:hover {
+    background-color: #BBE0EB;
+}
+
+.food-amount table tr td input {
+    font-size: 16px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+/*END food-amount*/
+
+/*bill-confirmation*/
+
+.bill-confirmation p{
+    font-size: 18px;
+}
+
+.bill-confirmation table
+{
+    margin-top: 15px;
+    margin-bottom: 20px;
+    margin-left: 80px;
+}
+
+.bill-confirmation .backBut{
+    margin-left: 200px;
+}
+
+.bill-confirmation table tr th
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #31B2D6;
+    border-radius: 10px 10px 0px 0px;
+    color: white;
+    font-family: arial, sans-serif;
+    font-size: 18px;
+    height: 35px;
+    min-width: 70px;
+    text-align: center;
+}
+
+
+.bill-confirmation table td {
+    border-color: white;
+    border: 1px solid #BBE0EB;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+}
+
+.bill-confirmation table tr {
+    height: 35px;
+}
+
+.bill-confirmation table tr:hover {
+    background-color: #BBE0EB;
+}
+/*END bill-confirmation*/
+
+
+/*Slider*/
+#slider-holder {
+    height: 90%;
+    font-size: 14px;
+}
+
+#slider-holder .jcarousel-clip {
+    overflow: hidden;
+    position: relative;
+    width: 874px;
+}
+
+#slider-holder ul {
+    overflow: hidden;
+    position: relative;
+    width: 874px;
+}
+
+#slider-holder ul li {
+    display: inline;
+    float: left;
+    list-style-type: none;
+    overflow: hidden;
+    padding: 5px 10px 4px 50px;
+    position: relative;
+    width: 800px;
+}
+
+/*END slider */
+
+/*----- NumericUpDownControl's Style -----*/
+.numericupdown{
+    padding-right: 10px;
+}
+.val
+{
+    height: 18px;
+    margin:0px;
+    padding-top:0px;
+    padding-bottom:0px;
+    float:left;
+}
+.up
+{
+    border: 0px none white;
+    width:15px;
+    height:10px;
+    overflow:hidden;
+}
+.down
+{
+    border: 0px none white;
+    width:15px;
+    height:10px;
+    overflow:hidden;
+}
+/*----------------------------------------*/
