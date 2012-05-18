@@ -232,42 +232,6 @@ db.getCollection("BanAn").insert({
   "TinhTrang" : 0,
   "_id": ObjectId("4f9d809eb0bed39c13000054")
 });
-db.getCollection("BanAn").insert({
-  "_id": ObjectId("4fb3299153d2af1613155667"),
-  "GiaThanh": 1000000,
-  "MaBanAn": "BAKV101",
-  "MaKV": "KV01",
-  "MaNH": "NH002",
-  "SoLuong": 4,
-  "TinhTrang" : 0
-});
-db.getCollection("BanAn").insert({
-  "_id": ObjectId("4fb3299153d2af1613155668"),
-  "GiaThanh": 900000,
-  "MaBanAn": "BAKV102",
-  "MaKV": "KV01",
-  "MaNH": "NH002",
-  "SoLuong": 2,
-  "TinhTrang" : 0
-});
-db.getCollection("BanAn").insert({
-  "_id": ObjectId("4fb3299153d2af1613155669"),
-  "GiaThanh": 1200000,
-  "MaBanAn": "BAKV103",
-  "MaKV": "KV01",
-  "MaNH": "NH002",
-  "SoLuong": 8,
-  "TinhTrang" : 0
-});
-db.getCollection("BanAn").insert({
-  "_id": ObjectId("4fb3299153d2af161315566a"),
-  "GiaThanh": 1500000,
-  "MaBanAn": "BAKV104",
-  "MaKV": "KV01",
-  "MaNH": "NH002",
-  "SoLuong": 12,
-  "TinhTrang" : 0
-});
 
 /** CaLamViec records **/
 db.getCollection("CaLamViec").insert({
