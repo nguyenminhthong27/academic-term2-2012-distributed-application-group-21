@@ -1,0 +1,393 @@
+/* 
+    Document   : billManagement
+    Created on : May 14, 2012, 8:09:08 AM
+    Author     : JML
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#main
+{
+    font-size: 14px;
+    font-family: Arial;
+}
+
+#main-header
+{
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Times New Roman;
+    padding-left: 300px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+.customerInfo
+{
+    border-bottom: 1px solid #E3E7E9;
+    margin-bottom: 20px;
+}
+
+.bookingDetailInfo
+{
+    border-bottom: 1px solid #E3E7E9;
+    margin-bottom: 20px;
+}
+
+.main-content
+{
+    padding-left: 100px;
+}
+.main-content-dialog
+{
+    padding-left: 30px;
+}
+
+.buttonToolBar
+{
+    margin-left: 220px;
+}
+
+/*Search table*/
+.search-table{
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.search-table table tr td {
+    padding-top: 20px;
+}
+
+.search-table table tr td {
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+.search-table table tr td input {
+    height: 20px;
+}
+/*END Search table*/
+
+
+/*unpaid-bill-table, paid-bill-table*/
+
+fieldset
+{
+    margin-left: -30px;
+    margin-bottom: 50px;
+    border-radius:10px 10px 10px 10px;
+    width: 730px;
+    border: 3px solid #05AAED;
+}
+
+fieldset legend{
+    margin-left: 30px;
+    font-weight: bold;
+    color: #05AAED;
+}
+
+fieldset table{
+    margin: 30px 20px 30px 70px;
+    border-collapse: collapse;
+}
+
+fieldset table tbody tr th{ 
+    border-bottom: 2px solid #05AAED;
+}
+
+fieldset table tr th{
+    padding-bottom: 10px;
+    padding-left: 15px;
+    margin-bottom: 50px;
+}
+
+fieldset table tr td{
+    margin-bottom: 5px;
+    text-indent: 30px;
+}
+
+fieldset table tr:hover{
+    background-color: #BBE0EB;
+}
+
+fieldset table tr:first-child:hover{
+    background-color: white;
+}
+
+fieldset table tbody tr:nth-child(2) td{
+    padding-top: 10px;
+} 
+
+fieldset table tr td:nth-child(1)
+{
+    min-width: 30px;
+    text-indent: 0px;
+}
+
+fieldset table tr td:nth-child(2)
+{
+    min-width: 0px;
+    text-indent: 0px;
+}
+
+fieldset table tr td:nth-child(3)
+{
+    min-width: 0px;
+    text-indent: 0px;
+}
+
+fieldset table tr td a img{
+    width: 30px;
+    height: 30px;
+}
+
+/*END unpaid-bill-table, paid-bill-table*/
+
+/*delete-confirmation-box-dialog-dialog*/
+#okDeleteBillBut
+{
+    margin-left: 90px;
+}
+/*END delete-confirmation-box-dialog-dialog*/
+
+.jcarousel-skin-default .jcarousel {
+    position: relative;
+    overflow: hidden;
+    width: 75%;
+    height: 75px;
+    border: 1px solid #000;
+}
+
+.jcarousel-skin-default ul {
+    width: 20000px;
+    position: absolute;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.jcarousel-skin-default li {
+    float: left;
+    margin: 0 10px 0 0;
+    padding: 0;
+}
+
+*[dir=rtl] .jcarousel-skin-default li {
+    float: right;
+    margin: 0 0 0 10px;
+}
+
+/*pay-for-bill-info-dialog*/
+
+.pay-for-bill-info table{
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.pay-for-bill-info table tr
+{
+    height: 30px;
+}
+
+.pay-for-bill-info table tr th
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #4896AC;
+    color: white;
+    font-family: arial, sans-serif;
+    font-size: 14px;
+    height: 35px;
+    min-width: 70px;
+    text-align: center;
+} 
+.pay-for-bill-info table td {
+    border-color: white;
+    border: 1px solid #BBE0EB;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
+.pay-for-bill-info table tr:last-child
+{
+    font-weight: bold;
+}
+
+.pay-for-bill-info div p span
+{
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+}
+
+.pay-for-bill-info div button:first-child
+{
+    margin-left: 230px;
+}
+/*END pay-for-bill-info*/
+
+/*pay-for-bill*/
+
+.pay-for-bill
+{
+    margin-top: 100px;
+    margin-left: 100px;
+    font-size: 14px
+}
+
+.pay-for-bill table tr td{
+    padding-right: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+#returnedMoney{
+    font-size: 18px;
+    color: red;
+    font-weight: bold;
+}
+
+.pay-for-bill table tr td input{
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.pay-for-bill div {
+    margin-top: 30px;
+}
+
+.pay-for-bill div button:first-child{
+    margin-left: 150px;
+}
+/*END pay-for-bill*/
+
+
+/*bill-detail-info-dialog*/
+
+.bill-detail-info-dialog table 
+{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 60px;
+}
+.bill-detail-info-dialog table tr
+{
+    height: 30px;
+}
+
+.bill-detail-info-dialog table tr th
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #4896AC;
+    color: white;
+    font-family: arial, sans-serif;
+    font-size: 14px;
+    height: 35px;
+    min-width: 70px;
+    text-align: center;
+} 
+.bill-detail-info-dialog table td {
+    border-color: white;
+    border: 1px solid #BBE0EB;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+/*END bill-detail-info-dialog*/
+
+/*booking-note-detail-dialog*/
+.booking-note-detail-dialog table:first-child
+{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 35px;
+}
+
+.booking-note-detail-dialog table
+{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 120px;
+}
+.booking-note-detail-dialog table tr
+{
+    height: 30px;
+}
+
+.booking-note-detail-dialog table tr th
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #4896AC;
+    color: white;
+    font-family: arial, sans-serif;
+    font-size: 14px;
+    height: 35px;
+    min-width: 70px;
+    text-align: center;
+} 
+.booking-note-detail-dialog table td {
+    border-color: white;
+    border: 1px solid #BBE0EB;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+/*END booking-note-detail-dialog*/
+
+/** Custom **/
+
+.jcarousel-skin-default li img {
+    border: 0;
+}
+
+#slider {     
+    height: 200px;
+    position: relative;
+}
+
+#slider-holder {
+    width: 150px;
+}
+
+#slider-holder .jcarousel-clip {
+    overflow: hidden;
+    position: relative;
+    width: 700px;
+}
+
+#slider-holder .slide-info {
+    display: inline;
+    float: left;
+    padding-left: 50px;
+    padding-top: 23px;
+    width: 300px;
+}
+
+#slider-holder .slide-info p {
+    padding-bottom: 8px;
+}
+
+#slider-holder ul {
+    overflow: hidden;
+    position: relative;
+    width: 800px;
+}
+
+#slider-holder ul li {
+    display: inline;
+    float: left;
+    list-style-type: none;
+    overflow: hidden;
+    padding: 5px 10px 40px 50px;
+    position: relative;
+    width: 750px;
+}
+
+#slider-holder ul li:nth-child(2) {    
+    height: 350px;
+}
