@@ -1238,27 +1238,6 @@ db.getCollection("KhuVuc").insert({
   "TenKV": "Khu Vực 3",
   "_id": ObjectId("4f9d7fcab0bed39c13000050")
 });
-db.getCollection("KhuVuc").insert({
-  "_id": ObjectId("4fb3299153d2af16131556a6"),
-  "MaKV": "KV01",
-  "MaNH": "NH002",
-  "MoTa": "Khu vực trang trọng, được trang trí theo kiến trúc cổ điển",
-  "TenKV": "Khu Vực 1"
-});
-db.getCollection("KhuVuc").insert({
-  "_id": ObjectId("4fb3299153d2af16131556a7"),
-  "MaKV": "KV02",
-  "MaNH": "NH002",
-  "MoTa": "Khu vực trang trọng, được trang trí theo kiến trúc gần gũi với thiên nhiên",
-  "TenKV": "Khu Vực 2"
-});
-db.getCollection("KhuVuc").insert({
-  "_id": ObjectId("4fb3299153d2af16131556a8"),
-  "MaKV": "KV03",
-  "MaNH": "NH002",
-  "MoTa": "Khu vực dành cho khách hàng bình dân",
-  "TenKV": "Khu Vực 3"
-});
 
 /** LichCongViec records **/
 
