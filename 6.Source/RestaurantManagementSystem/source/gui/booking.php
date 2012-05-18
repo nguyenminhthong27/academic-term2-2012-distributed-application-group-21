@@ -65,15 +65,15 @@ require_once '../controller/GUIGenerator.php';
                         <table>
                             <tr>
                                 <td>Họ tên khách hàng</td>
-                                <td><input type="text"></input></td>
+                                <td><input type="text" id="customerNameTxtBox"></input></td>
                             </tr>
                             <tr>
                                 <td>Chứng minh nhân dân</td>
-                                <td><input type="text"></input></td>
+                                <td><input type="text" id="customerIdNumberTxtBox"></input></td>
                             </tr>
                             <tr>
                                 <td>Số điện thoại</td>
-                                <td><input type="text"></input></td>
+                                <td><input type="text" id="customerPhoneNumberTxtBox"></input></td>
                             </tr>
                         </table>
                     </div>
@@ -81,7 +81,7 @@ require_once '../controller/GUIGenerator.php';
                         <table id="bookingDetailInfoTable">
                             <tr>
                                 <td>Mã bàn ăn</td>
-                                <td><input type="text"></input></td><br/>
+                                <td><input type="text" class="tableId" ></input></td><br/>
                             </tr>
                             <tr>
                                 <td>Từ</td>
@@ -92,7 +92,7 @@ require_once '../controller/GUIGenerator.php';
                         </table>                        
                     </div>
                     <div class="buttonToolBar">
-                        <button>Lưu</button>
+                        <button onclick="saveBookingDetail()">Lưu</button>
                         <button onclick="addTable();">Thêm bàn ăn</button>
                         <button id="searchTableBut">Tra cứu bàn ăn</button>
                     </div>
