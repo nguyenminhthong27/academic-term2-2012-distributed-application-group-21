@@ -5,6 +5,7 @@ class ModuleBookingController{
 	
 	
 	/**
+	 *@author thanhtuan
 	 * main search_Booking method
 	 * @param $restaurant string
 	 * @param $area string
@@ -61,6 +62,7 @@ class ModuleBookingController{
 	}
 	
 	/**
+	 * @author thanhtuan
 	 * main detail_Booking method
 	 * @param $ID string
 	 * @return gui information about detail booking of table food
@@ -98,6 +100,7 @@ class ModuleBookingController{
 		return $data;
 	}
 	/**
+	 * @author thanhtuan
 	 * main  decribe_Decoration method
 	 * @param $id string
 	
@@ -114,6 +117,8 @@ class ModuleBookingController{
 	
 	}
 	/**
+	 * 
+	 * @author thanhtuan
 	 * main save_Booking method
 	 * @param $table array
 	
@@ -124,7 +129,7 @@ class ModuleBookingController{
 		try {
 			foreach ($array as $value){
 			
-				//do add table for PhieuDatCho and  ChiTietDatCho
+				
 				$dao = new TableDAO() ;//suppose
 				$dao->addTableTo($value); //suppose method DAO is addTableTo();
 			}
@@ -135,8 +140,16 @@ class ModuleBookingController{
 	
 		return false;
 	}
+	public function changeFormatDate($date)
+	{
+		$result = new DateTime($date);
+		$result =  $result->format('Y-m-d H:i:s');
+		return $result;
+	}
 	
 }
+
+
 // get action form request params
 $action = isset($_REQUEST["action"]) ? $_REQUEST["action"] : "";
 if ($action == "save"){
@@ -144,7 +157,8 @@ if ($action == "save"){
 	
 	// do save
 	$save = new ModuleBookingController();
-	$reusult = $save->saveBooking();
+	$reusult = $save->saveBooking($table);
+	
 	echo $reusult;
 	
 }
@@ -155,11 +169,16 @@ if ($action == "save"){
    	$status = isset($_REQUEST["status"]) ? $_REQUEST["status"] : "";
    	$from= isset($_REQUEST["from"]) ? $_REQUEST["from"] : "";
    	$to= isset($_REQUEST["to"]) ? $_REQUEST["to"] : "";
-   	
+   	//change format date : 2012-05-17 18:19:20
+   	if($from != "" && $to != ""){
+   	$format = new ModuleBookingController();	
+   	$date_from = $format->changeFormatDate($from);
+   	$date_to =  $format->changeFormatDate($to);
+   	}
    	try {
    		// do search
    		$search = new ModuleBookingController();
-   		$SearchResult = $search->searchBooking($restaurant,$area,$status,$from, $to);
+   		$SearchResult = $search->searchBooking($restaurant,$area,$status,$date_from, $date_to);
    		echo $SearchResult;
    	
    	} catch (Exception $e) {
@@ -173,7 +192,7 @@ if ($action == "save"){
       	
       	
       	try {
-      		// do login
+      		// do view detail booking
       		$detail_booking = new ModuleBookingController();
       		$Result = $search->detailBooking($id);
       		echo $Result;
