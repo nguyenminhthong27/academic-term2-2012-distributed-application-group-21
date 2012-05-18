@@ -4,9 +4,7 @@ require_once '../dal/AccountDAO.php';
  * login handle
  * @author vantuanlee@gmail.com
  * */
-class LoginController{
-
-	public $type = "MaLoaiNV";//temporary staff_type
+class ModuleLoginLogoutController{
 
 	/**
 	 * @param string $username
@@ -43,13 +41,37 @@ class LoginController{
 		return false;
 	}
 
+
+	/**
+	 * logout
+	 * @date May 12, 2012
+	 * @return boolean
+	 * @author vantuanlee@gmail.com
+	 */
+	public function logout(){
+		// get user
+		session_start();
+		if ($_SESSION['is_login'] != true) {
+			return false;
+		}
+		try {
+			//$username = $_SESSION['uname'];
+			unset($_SESSION['uname']);
+			unset($_SESSION['staff_type']);
+			$_SESSION['is_login'] = false;
+			return true;
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+
 	/**
 	 *
 	 * */
 	public function getForgotPassword(){
-
-
 	}
+
+
 }
 
 // get action form request params
@@ -62,7 +84,7 @@ if ($action == "login") {
 	if ($username != "" && $password != "") {
 		try {
 			// do login
-			$loginCtrl = new LoginController();
+			$loginCtrl = new ModuleLoginLogoutController();
 			$loginResult = $loginCtrl->login($username, $password);
 			echo $loginResult;
 
@@ -72,5 +94,8 @@ if ($action == "login") {
 	} else {
 		echo "Login Failed";
 	}
+} else if ($action == "logout") {
+	$logoutCtrl = new ModuleLoginLogoutController();
+	echo $logoutCtrl->logout();
 }
 ?>

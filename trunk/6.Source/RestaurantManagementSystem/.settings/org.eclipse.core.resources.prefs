@@ -1,7 +1,6 @@
 eclipse.preferences.version=1
 encoding//source/configure/IncludeGenerator.php=UTF-8
 encoding//source/controller/GUIGenerator.php=UTF-8
-encoding//source/controller/LogoutController.php=UTF-8
 encoding//source/dal/AccountDAO.php=UTF-8
 encoding//source/dal/IDatabaseConfig.php=UTF-8
 encoding//source/dal/MongoDatabase.php=UTF-8
