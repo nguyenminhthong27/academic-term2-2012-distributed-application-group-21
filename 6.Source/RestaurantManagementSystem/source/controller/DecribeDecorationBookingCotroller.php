@@ -9,8 +9,8 @@ class DecribeDecoration{
 	 */
 	/**
 	 * main  decribe_Decoration method
-	 * @param $id area
-	
+	 * @param $id string
+	 
 	 * @return gui information about decribe Decoration for area.
 	 * */	
 public function decribe_Decoration($id)
