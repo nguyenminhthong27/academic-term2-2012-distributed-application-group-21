@@ -39,13 +39,13 @@ function check_fields(field) {
 function addTable()
 {
     var elements = "<tr>"
-                          + "<td>Mã bàn ăn</td>"
+                          + "<td>M� b�n an</td>"
                           + "<td><input type='text'></input></td><br/>"
                           + "</tr>"
                           + "<tr>"
-                          + " <td>Từ</td>"
+                          + " <td>T?</td>"
                           + "<td><input type='text' class='fromDtPker'></input></td>"
-                          + "<td>Đến</td>"
+                          + "<td>�?n</td>"
                           + "<td><input type='text' class='toDtPker'></input></td>"
                           + "</tr>";
                       
@@ -133,10 +133,50 @@ function bookingDetailLinkClicked()
 
 /**
  * general method for booking management
- * @author vantuanlee@gmail.com
- * */
-function bookingManagement(){
+ */
+function bookingManagement() {
 	window.location  = "../gui/booking.php";
+}
+
+/**
+ * save booking detail info to db
+ * 
+ * @param null
+ * @returns alert message and clear form
+ * @author hathao298@gmail.com
+ */
+function saveBookingDetail() {
+	// get customer info
+	var cusName = document.getElementById("customerNameTxtBox").value;
+	var cusIdNumber = document.getElementById("customerIdNumberTxtBox").value;
+	var cusPhoneNumber = document.getElementById("customerPhoneNumberTxtBox").value;
+
+	// validate customer info
+	if (!customerInfoValtion(cusIdNumber, cusPhoneNumber)) {
+		alert("Thông tin khách hàng không hợp lệ");
+		return;
+	}
+
+	var tableId = $(".tableId").get();
+	var fromDtPker = $(".fromDtPker").get();
+	var toDtPker = $(".toDtPker").get();
+
+	var tableIdStr = "";
+	var fromDateStr = "";
+	var toDateStr = "";
+
+	for ( var i = 0; i < fromDtPker.length; i++) {
+		if (!dateValidation(fromDtPker[i].value, toDtPker[i].value)) {
+			alert("Thông tin ngày ở bàn thứ" + (i + 1).toString()
+					+ " không hợp lệ");
+			return;
+		} else {
+			tableIdStr = tableIdStr + "&tableId=" + tableId[i].value;
+			fromDateStr = fromDateStr + "&fromDate=" + fromDtPker[i].value;
+			toDateStr = toDateStr + "&toDate=" + toDtPker[i].value;
+		}
+	}
+	
 }
 
 /**
@@ -160,7 +200,29 @@ function showTableList(){
  * search table with condition 
  * @author vantuanlee@gmail.com
  */
-function searchTable(){
+function searchTable(){	
 	
-	
+}
+
+/**
+ * validate customer's info: idenitity number, phone number
+ * 
+ * @param idnumber string
+ * @param phonenumber-string
+ * @returns boolean
+ * @author hathao298@gmail.com
+ */
+function customerInfoValtion(idNumber, phoneNumber) {
+
+}
+
+/**
+ * validate date 
+ * @param fromDate date
+ * @param toDate date
+ * @returns boolean
+ * @author hathao298@gmail.com
+ */
+function dateValidation(fromDate, toDate) {
+
 }
