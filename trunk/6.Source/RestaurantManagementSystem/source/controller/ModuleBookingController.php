@@ -1,6 +1,6 @@
 <?php
 require_once 'BookingDAO.php';
-require_once 'Table.php';
+require_once 'TableDAO.php';
 class ModuleBookingController{
 	
 	
@@ -60,6 +60,7 @@ class ModuleBookingController{
 		return $data;
 	
 	}
+	
 	
 	/**
 	 * @author thanhtuan
@@ -140,6 +141,14 @@ class ModuleBookingController{
 	
 		return false;
 	}
+	
+	
+	
+	/*
+	 * @author thanhtuan
+	 * @param $datime string
+	 * @return string $datetime after format.
+	 */
 	public function changeFormatDate($date)
 	{
 		$result = new DateTime($date);
