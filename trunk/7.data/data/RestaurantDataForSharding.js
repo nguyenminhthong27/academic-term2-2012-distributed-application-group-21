@@ -301,75 +301,75 @@ db.getCollection("CaLamViec").insert({
 
 /** ChiTietDatCho records **/
 db.getCollection("ChiTietDatCho").insert({
-  "DenThoiGian": "11:00 03\/05\/2012",
+  "DenThoiGian": new Date(2012,5,3,11,0,0),
   "GiaThanh": 1000000,
   "MaBanAn": "BAKV101",
   "MaNH": "NH001",
   "MaPhieu": "PD001",
-  "TuThoiGian": "9:00 03-05-2012",
+  "TuThoiGian": new Date(2012,5,3,9,0,0),
   "_id": ObjectId("4f9d844eb0bed39c13000058")
 });
 db.getCollection("ChiTietDatCho").insert({
-  "DenThoiGian": "14:00 14\/05\/2012",
+  "DenThoiGian": new Date(2012,5,3,14,0,0),
   "GiaThanh": 900000,
   "MaBanAn": "BAKV102",
   "MaNH": "NH001",
   "MaPhieu": "PD002",
-  "TuThoiGian": "13:00 14-05-2012",
+  "TuThoiGian": new Date(2012,5,3,13,0,0),
   "_id": ObjectId("4f9d84a7b0bed39c13000059")
 });
 db.getCollection("ChiTietDatCho").insert({
-  "DenThoiGian": "13:00 15\/05\/2012",
+  "DenThoiGian": new Date(2012,5,15,13,0,0),
   "GiaThanh": 1200000,
   "MaBanAn": "BAKV103",
   "MaNH": "NH001",
   "MaPhieu": "PD003",
-  "TuThoiGian": "10:00 15-05-2012",
+  "TuThoiGian": new Date(2012,5,15,10,0,0),
   "_id": ObjectId("4f9d8504b0bed39c1300005a")
 });
 db.getCollection("ChiTietDatCho").insert({
-  "DenThoiGian": "11:00 14\/05\/2012",
+  "DenThoiGian": new Date(2012,5,14,11,0,0),
   "GiaThanh": 1500000,
   "MaBanAn": "BAKV104",
   "MaNH": "NH001",
   "MaPhieu": "PD004",
-  "TuThoiGian": "9:00 14-05-2012",
+  "TuThoiGian": new Date(2012,5,14,9,0,0),
   "_id": ObjectId("4f9d8525b0bed39c1300005b")
 });
 db.getCollection("ChiTietDatCho").insert({
   "_id": ObjectId("4fb3299153d2af161315566d"),
-  "DenThoiGian": "11:00 03\/05\/2012",
+  "DenThoiGian": new Date(2012,5,3,11,0,0),
   "GiaThanh": 1000000,
   "MaBanAn": "BAKV101",
   "MaNH": "NH002",
   "MaPhieu": "PD001",
-  "TuThoiGian": "9:00 03-05-2012"
+  "TuThoiGian": new Date(2012,5,3,9,0,0)
 });
 db.getCollection("ChiTietDatCho").insert({
-  "DenThoiGian": "14:00 14\/05\/2012",
+  "DenThoiGian": new Date(2012,5,14,11,0,0),
   "GiaThanh": 900000,
   "MaBanAn": "BAKV102",
   "MaNH": "NH002",
   "MaPhieu": "PD002",
-  "TuThoiGian": "13:00 14-05-2012",
+  "TuThoiGian": new Date(2012,5,14,9,0,0),
   "_id": ObjectId("4fb3299153d2af161315566e")
 });
 db.getCollection("ChiTietDatCho").insert({
-  "DenThoiGian": "13:00 15\/05\/2012",
+  "DenThoiGian": new Date(2012,5,14,21,0,0),
   "GiaThanh": 1200000,
   "MaBanAn": "BAKV103",
   "MaNH": "NH002",
   "MaPhieu": "PD003",
-  "TuThoiGian": "10:00 15-05-2012",
+  "TuThoiGian": new Date(2012,5,14,19,0,0),
   "_id": ObjectId("4fb3299153d2af161315566f")
 });
 db.getCollection("ChiTietDatCho").insert({
-  "DenThoiGian": "11:00 14\/05\/2012",
+  "DenThoiGian": new Date(2012,5,14,19,0,0),
   "GiaThanh": 1500000,
   "MaBanAn": "BAKV104",
   "MaNH": "NH002",
   "MaPhieu": "PD004",
-  "TuThoiGian": "9:00 14-05-2012",
+  "TuThoiGian": new Date(2012,5,14,16,0,0),
   "_id": ObjectId("4fb3299153d2af1613155670")
 });
 
