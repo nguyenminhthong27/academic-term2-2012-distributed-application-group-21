@@ -9,11 +9,11 @@ class SearchBookingController
  */
 /**
  * main search_Booking method
- * @param $restaurant
- * @param $aream
- * @param $status
- * @param $from
- * @param $to
+ * @param $restaurant string
+ * @param $area string
+ * @param $status bit
+ * @param $from date(example 18-5-2012 7:10:00 AM)
+ * @param $to date (example 18-5-2012 9:10:00 AM)
  * @return gui information about booking
  * */
  

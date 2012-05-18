@@ -9,29 +9,34 @@ class SaveBookingController{
 	 */
 	/**
 	 * main save_Booking method
-	 * @param 
-	
-	 * @return return true
-	 * */
-public function save_Booking()
+	 * @param $table array
+	 
+	 * @return return true if success else  return false
+	 *  * */
+public function save_Booking($table)
 {
-	
- 
-	
-	
+	try {
+	   foreach ($array as $value)
+      	{
+      		//do add table for PhieuDatCho and  ChiTietDatCho
+        	$dao = new TableDAO() ;//suppose
+	        $dao->addTableTo($value); //suppose method DAO is addTableTo();
+     	}
+     	return true;
+     } catch (Exception $e) {
+     		echo "Not Connect to database";
+     	}
+     	
+	return false;
 }
 }
 // get action form request params
+ $table = isset($_REQUEST["array"]) ? $_REQUEST["array"] : "";
 
-try {
 	// do login
 	$save = new SaveBookingController();
-	$Result = $save->save_Booking();
-	echo $Result;
-
-} catch (Exception $e) {
-	echo "Not Connect to database";
-}
+	$reusult = $save->save_Booking();
+    echo $reusult;
 
 
 ?>

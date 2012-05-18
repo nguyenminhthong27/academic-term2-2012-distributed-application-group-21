@@ -9,8 +9,7 @@ class DetailBookingController{
 	 */
 	/**
 	 * main detail_Booking method
-	 * @param $ID table
-	
+	 * @param $ID string
 	 * @return gui information about detail booking of table food
 	 * */
 public function detail_Booking($ID_Table)
@@ -61,7 +60,7 @@ try {
 	echo $Result;
 
 } catch (Exception $e) {
-	echo "Not Connect to database";
+	echo "Not Connect to database! ";
 }
 
 
