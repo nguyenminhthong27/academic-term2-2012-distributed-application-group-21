@@ -18,7 +18,9 @@ class BookingDAO {
 		// insert
 		try {
 			MongoDatabase::addDataTo("PhieuDatCho", $arrBookingInfo);
-			MongoDatabase::addDataTo("ChiTietDatCho", $arrBookingDetailInfo);			
+			foreach ($arrBookingDetailInfo as $detailInfo) {
+				MongoDatabase::addDataTo("ChiTietDatCho", $detailInfo);
+			}			
 			return true;
 		} catch (Exception $e) {
 			return false;
