@@ -20,8 +20,9 @@ class MongoDatabase implements IDatabaseConfig {
 			$db = $connection->selectDB(IDatabaseConfig::DbName);
 			$collection = $db->{$collection_name};
 			
+			$condition = $condition == null ? array() : $condition;
 			// get all from collection, except '_id'
-			$cursor = $collection->find(array($condition), array('_id' => 0));
+			$cursor = $collection->find($condition, array('_id' => 0));
 			
 			$arr = array();
 			// fetch cursor to arr

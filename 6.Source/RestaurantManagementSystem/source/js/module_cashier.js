@@ -138,10 +138,9 @@ function searchBill(){
 	var nocache = Math.random();
 	
 	var http = createXMLHttpRequest();
-	var serverURL = "../controller/CashierController.php?action=searchBill&time=" + time + 
+	var serverURL = "../controller/CashierController.php?action=search&time=" + time + 
 		"&fromValue=" + fromValue + "&toValue=" + toValue  + "&nocache=" + nocache;
 	
-	alert(serverURL);
 	http.open("POST", serverURL, true);
 	http.onreadystatechange = function()
 		{
