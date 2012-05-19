@@ -358,7 +358,7 @@ switch ($action) {
 			
 
 		try {
-			// do search
+			// do delete
 			$delete = new CashierController();
 			$result = $delete->deleteBill($id);
 			echo $SearchResult;
