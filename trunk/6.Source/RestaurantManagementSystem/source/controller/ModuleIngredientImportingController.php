@@ -2,6 +2,7 @@
 require_once '../dal/IngredientDAO.php';
 class ModuleIngredientImportingController {
 
+	private $dao = 
 	private $databaseMapKey = array("ingreName" => "TenNL",
 			"minAmount" => "SOLUONGMIN",
 			"maxAmount" => "SOLUONGMAX",
