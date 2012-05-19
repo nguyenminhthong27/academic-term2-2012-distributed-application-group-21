@@ -268,7 +268,7 @@ switch ($action) {
 		try {
 			// do view detail booking
 			$detail_booking = new ModuleBookingController();
-			$Result = $search->detailBooking($id);
+			$Result = $detail_booking->detailBooking($id);
 			echo $Result;
 		} catch (Exception $e) {
 			echo "Not Connect to database! ";
