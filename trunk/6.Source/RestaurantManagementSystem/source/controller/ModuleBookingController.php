@@ -127,7 +127,7 @@ class ModuleBookingController{
 			foreach($tableId as $id){
 				$table = $dao->getTableInfo($id);
 				if($table == null)	{
-					return "invalid table id";
+					return "invalid";
 				}
 				else
 					array_push($price, $table["GiaThanh"]);
@@ -250,8 +250,9 @@ switch ($action) {
 		}
 
 		//get MaNH, NguoiTiepNhan
+		session_start();
 		$bookingInfo["MaNH"] = $_SESSION["restaurant"];
-		$bookingInfo["NguoiTiepNhan"] = $_SESSION["MaNV"];
+		$bookingInfo["NguoiTiepNhan"] = $_SESSION["staff_id"];
 		$bookingInfo["MaPhieu"] = time();
 		$bookingInfo["NgayLap"] = date('Y-m-d H:i:s');
 

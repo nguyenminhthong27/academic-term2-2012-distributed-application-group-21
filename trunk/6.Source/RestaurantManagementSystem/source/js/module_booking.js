@@ -210,7 +210,7 @@ function saveBookingDetail() {
 				alert("Đặt chỗ thành công");
 				window.location = "../gui/booking.php";
 			} else {
-				if (response == "invalid table id") {
+				if (response == "\r\n\r\ninvalid") {
 					alert("Mã bàn ăn nhập sai. Đặt chỗ không thành công");
 					return;
 				}
@@ -293,9 +293,8 @@ function customerInfoValidation(idNumber, phoneNumber) {
  */
 function dateValidation(fromDate, toDate) {
 	if (fromDate == "" || toDate == "")
-		return false;
-
-	var regExp = /^([0]\d|[1][0-2])\/([0-2]\d|[3][0-1])\/([2][01]|[1][6-9])\d{2}(\s([0]\d|[1][0-2])(\:[0-5]\d){1,2})*\s*([aApP][mM]{0,2})?$/;
+		return false;	
+	var regExp = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/([0-9][0-9][0-9][0-9]) ([0-1][0-9]|2[0-3]):([0-5][0-9])$/;
 	var matchArray1 = fromDate.match(regExp);
 	var matchArray2 = toDate.match(regExp);
 	if (matchArray1 == null || matchArray2 == null)
