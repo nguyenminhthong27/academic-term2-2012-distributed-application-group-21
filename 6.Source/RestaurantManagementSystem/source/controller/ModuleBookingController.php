@@ -1,9 +1,8 @@
 <?php
 require_once '../dal/BookingDAO.php';
 require_once '../dal/TableDAO.php';
+require_once '../configure/GeneralFunctions.php';
 class ModuleBookingController{
-		
-	
 	/**
 	 * @author thanhtuan
 	 * main search_Booking method
@@ -15,17 +14,16 @@ class ModuleBookingController{
 	 * @return gui information about booking
 	 * */
 	public function searchAvailableTable($restaurant,$area,$status,$from,$to){
-
 		$dao = new TableDAO() ;
 		$array = $dao->getAvailableTable($restaurant,$area,$status,$from, $to);
 		$data = "";
 		$data = $data." <table>
 		<tr>
-		<th>MÃ BÀN ĂN</th>
-		<th>TÊN KHU VỰC</th>
+		<th>MÃ BÀN AN</th>
+		<th>TÊN KHU V?C</th>
 		<th>GIÁ THÀNH</th>
-		<th>SỐ NGƯỜI</th>
-		<th>TÌNH TRẠNG</th>
+		<th>S? NGU?I</th>
+		<th>TÌNH TR?NG</th>
 		</tr>
 		<tr>  " ;
 		foreach ($array as $value){
@@ -44,12 +42,12 @@ class ModuleBookingController{
 			$data = $data. "<td>$SoNguoi</td>";
 			if($TinhTrang == "0"){
 					
-				$TinhTrang_change = "Chưa đặt";
-				$data  = $data."<td>Chưa đặt</td>";
+				$TinhTrang_change = "Chua d?t";
+				$data  = $data."<td>Chua d?t</td>";
 			}
 			else{
 					
-				$data  = $data."<td><a onclick='bookingDetailLinkClicked();' href='#'>Chi tiết</a></td>";
+				$data  = $data."<td><a onclick='bookingDetailLinkClicked();' href='#'>Chi ti?t</a></td>";
 			}
 			$data = $data."</tr>";
 		}
@@ -58,7 +56,6 @@ class ModuleBookingController{
 
 		$data = $data ."</div>";
 		return $data;
-
 	}
 
 
@@ -69,15 +66,14 @@ class ModuleBookingController{
 	 * @return gui information about detail booking of table food
 	 * */
 	public function detailBooking($ID_Table){
-
 		$dao = new TableDAO() ;//supose
 		$array = $dao->getDetail($ID_Table);
 		$data = "";
 		$data = $data." <table>
 		<tr>
 		<th>Khách Hàng</th>
-		<th>Từ</th>
-		<th>Đến</th>
+		<th>T?</th>
+		<th>Ð?n</th>
 		<th>Giá</th>
 		</tr>
 		<tr>  " ;
@@ -104,58 +100,50 @@ class ModuleBookingController{
 	 * @author thanhtuan
 	 * main  decribe_Decoration method
 	 * @param $id string
-
 	 * @return gui information about decribe Decoration for area.
 	 * */
 	public function decribeDecoration($id){
-
-
 		$dao = new TableDAO() ;//supose
 		$result = $dao->getDecribe($ID_Table);
-		$data =  "<p>Mô tả trang trí</p>";
+		$data =  "<p>Mô t? trang trí</p>";
 		$data = $data."<p>$result</p>";
 		return $data;
-
 	}
+
 	/**
-	 *  
 	 * main save_Booking method
 	 * @param $cusInfo array customer info: customer name, id number, phone number
-	 * @param $tableId array 
+	 * @param $tableId array
 	 * @param $fromDate array
 	 * @param $toDate array
-	 * @author hathao298@gmail.com	
+	 * @author hathao298@gmail.com, thanhtuan
 	 * @return return true if success else  return false
 	 *  * */
-	public function saveBooking($cusInfo, $tableId, $fromDate, $toDate){
-
+	public function saveBooking($table){
 		try {
-// 			foreach ($array as $value){			
-				
-// 				$dao = new TableDAO() ;//suppose
-// 				$dao->addTableTo($value); //suppose method DAO is addTableTo();
-// 			}
-// 			return true;
+			// 			foreach ($array as $value){
+			// 				$dao = new TableDAO() ;//suppose
+			// 				$dao->addTableTo($value); //suppose method DAO is addTableTo();
+			// 			}
+			// 			return true;
 
 			//check table id
 			$dao = new TableDAO();
-			foreach($tableId as $id)
-			{
+			foreach($tableId as $id){
 				$table = $dao->getTableInfo($id);
-				if($table == null)
-				{
+				if($table == null)	{
 					echo "invalid table id";
 					return false;
 				}
 			}
-			
+
 			//save data
-			
+
 			//add customer info
-			
+
 			//add booking detail
-			echo true;
-			return true;			
+			//echo true;
+			return true;
 		} catch (Exception $e) {
 			echo "Not Connect to database";
 		}
@@ -170,8 +158,7 @@ class ModuleBookingController{
 	* @param $datime string
 	* @return string $datetime after format.
 	*/
-	public function changeFormatDate($date)
-	{
+	public function changeFormatDate($date)	{
 		$result = new DateTime($date);
 		$result =  $result->format('Y-m-d H:i:s');
 		return $result;
@@ -183,41 +170,95 @@ class ModuleBookingController{
 // get action form request params
 $action = isset($_REQUEST["action"]) ? $_REQUEST["action"] : "";
 switch ($action) {
-	case "save":	
+	case "searchAvailTable":
+		$restaurant = isset($_REQUEST["res"]) ? $_REQUEST["res"] : "";
+		$area= isset($_REQUEST["area"]) ? $_REQUEST["area"] : "";
+		$status = isset($_REQUEST["status"]) ? $_REQUEST["status"] : "";
+		$from= isset($_REQUEST["from"]) ? $_REQUEST["from"] : "";
+		$to= isset($_REQUEST["to"]) ? $_REQUEST["to"] : "";
+	
+		//change format date : 2012-05-17 18:19:20
+		if($from != "" && $to != ""){
+			$format = new ModuleBookingController();
+			$date_from = $format->changeFormatDate($from);
+			$date_to =  $format->changeFormatDate($to);
+		} else {
+			echo "Bạn phải chọn thời gian tìm kiếm.";
+			continue;
+		}
+	
+		try {
+			// do search
+			$search = new ModuleBookingController();
+			$SearchResult = $search->searchAvailableTable($restaurant,$area,$status,$date_from, $date_to);
+			echo $SearchResult;
+		} catch (Exception $e) {
+			echo "Not Connect to database";
+		}
+		break;
+		
+	case "save":
 		$table = isset($_REQUEST["array"]) ? $_REQUEST["array"] : "";
+
+		//get customer info
+		$cusInfo = array();
+		$tableId = array();
+		$fromDate = array();
+		$toDate= array();
+
+		$cusInfoKey = array("cusName" =>"HoTenKH",
+				"resId" =>"MaNH",
+				"cusIdNumber" =>"CMND",
+				"cusPhoneNumber" =>"SDT"
+		);
+		$tableBookingKey=array("tableId" => "MaBanAn",
+				"fromDate" => "TuThoiGian",
+				"toDate" => "DenThoiGian");
+
+		foreach($cusInfoKey as $key => $value){
+			$cusInfo[$value] = isset($_REQUEST[$key]) ? $_REQUEST[$key] : "";
+		}
+
+		foreach($tableBookingKey as $key=> $value){
+			${$key} =  isset($_REQUEST[$key."[]"]) ? $_REQUEST[$key."[]"] : "";
+		}
+
+		//get MaNH, NguoiTiepNhan
+
+		// do save
+		$save = new ModuleBookingController();
+		$result = $save->saveBooking($table);
+
+		echo $result;
+		break;
 	
-	//get customer info
-	$cusInfo = array();
-	$tableId = array();
-	$fromDate = array();
-	$toDate= array();
-	
-	$cusInfoKey = array("cusName" =>"HoTenKH",
-			"resId" =>"MaNH",
-			"cusIdNumber" =>"CMND",
-			"cusPhoneNumber" =>"SDT"
-			);
-	$tableBookingKey=array("tableId" => "MaBanAn",
-			"fromDate" => "TuThoiGian",
-			"toDate" => "DenThoiGian");	
-	
-	foreach($cusInfoKey as $key => $value)
-	{
-		$cusInfo[$value] = isset($_REQUEST[$key]) ? $_REQUEST[$key] : "";
-	}
-	
-	foreach($tableBookingKey as $key=> $value)
-	{
-		${$key} =  isset($_REQUEST[$key."[]"]) ? $_REQUEST[$key."[]"] : "";
-	}
-	
-	//get MaNH, NguoiTiepNhan
-	
-	// do save
-	$save = new ModuleBookingController();
-	$reusult = $save->saveBooking($table);
-	
-	echo $reusult;
-	
+	case "detail":
+		$id = isset($_REQUEST["ID"]) ? $_REQUEST["ID"] : "";
+
+		try {
+			// do view detail booking
+			$detail_booking = new ModuleBookingController();
+			$Result = $search->detailBooking($id);
+			echo $Result;
+		} catch (Exception $e) {
+			echo "Not Connect to database! ";
+		}
+		break;
+	case "decribe":
+		$id = isset($_REQUEST["ID"]) ? $_REQUEST["ID"] : "";
+
+		try {
+			// do detail booking
+			$decribe = new ModuleBookingController();
+			$Result = $decribe->decribeDecoration($id);
+			echo $Result;
+
+		} catch (Exception $e) {
+			echo "Not Connect to database";
+		};
+		break;
+	default:
+		break;
 }
 
+?>
