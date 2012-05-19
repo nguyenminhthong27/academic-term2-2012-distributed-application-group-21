@@ -31,3 +31,36 @@ function includeJS(jsPath) {
 	script.setAttribute("src", jsPath);
 	document.getElementsByTagName("head")[0].appendChild(script);
 }
+
+
+/**
+ * general method for booking
+ * 
+ * @author vantuanlee@gmail.com
+ */
+function booking() {
+	window.location = "../gui/booking.php";
+}
+
+/**
+ * general method for booking management
+ */
+function bookingManagement() {
+	window.location = "../gui/booking.php";
+}
+
+/**
+ * general method for table management
+ * 
+ * @author vantuanlee@gmail.com
+ */
+function showTableList() {
+	window.location = "../gui/tableManagement.php";
+}
+
+/**
+ * redirect to billingmanagement.php
+ */
+function billingManagement(){
+	window.location = "../gui/billManagement.php";
+}
