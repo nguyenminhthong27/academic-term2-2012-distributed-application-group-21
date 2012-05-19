@@ -20,7 +20,7 @@ function _init_slider(carousel) {
 		carousel.prev();
 		return false;
 	});
-};s
+};
 
 function _set_slide(carousel, item, idx, state) {
 	var index = idx - 1;
@@ -273,7 +273,7 @@ function searchTable(){
 	http.onreadystatechange = function()
 		{
 			if(http.readyState==4 && http.status==200){
-				var respone = http.responseText;		
+				var respone = http.responseText;
 				document.getElementById("searchTableResult").innerHTML = respone;
 			}
 		};

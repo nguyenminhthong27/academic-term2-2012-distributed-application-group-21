@@ -10,7 +10,7 @@ class GeneralFunctions{
 	 * @author vantuanlee@gmail.com
 	 * */
 	public static function Alert($content){
-		return '
+		echo '
 		<script type="text/javascript">
 		alert("'. $content . '");
 		</script>
