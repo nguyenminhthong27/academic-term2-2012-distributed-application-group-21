@@ -14,19 +14,23 @@ class CashierController{
 		// HARDCODE
 		// make $to from $from		
 		
-// 		$from = date("Y-m-d");// current date
-// 		$to = strtotime(date("Y-m-d", strtotime($from)) . " +1 day");
-// 		$from = new DateTime($from);
-// 		$to = new DateTime($to);
+// 		$fromText = date("Y-m-d");// current date
+// 		$toText = strtotime(date("Y-m-d", strtotime($fromText)) . " +1 day");
+// 		$from = new DateTime($fromText);
+// 		$to = new DateTime($toText);
 
-// 		$from = new DateTime("2012-05-19");
-// 		$to = new DateTime("2012-05-20");
+		$from = new DateTime(date("Y-m-d"));
+		$to = new DateTime(date("Y-m-d"));
+		$to->modify("+1 day");
+		
+		//$from = new DateTime("2012-05-19");
+		//$to = new DateTime("2012-05-20");
 		//$to = $from;
 		//$to->add(new DateInterval('P1D'));
 
 		// search bill
 		$dao = new CashierDAO();
-		$array = $dao->searchBill($from, null, $totalMoneyFrom,$totalMoneyTo);
+		$array = $dao->searchBill($from->format('Y-m-d H:i:s'), $to->format('Y-m-d H:i:s'), $totalMoneyFrom,$totalMoneyTo);
 		// $data for unpaid bills
 		$data = "";
 		$data = $data."<div>

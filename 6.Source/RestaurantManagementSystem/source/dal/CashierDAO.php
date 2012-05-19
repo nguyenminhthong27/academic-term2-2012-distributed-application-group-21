@@ -38,7 +38,7 @@ class CashierDAO implements IDatabaseConfig {
 		
 		$arrCondition["NgayLap"] = array (
 				'$gte' => $start,
-				//'$lte' => $end
+				'$lte' => $end
 		);
 		$arrCondition["TongTien"] = array(
 				'$gte' => (int)$fromValue,
