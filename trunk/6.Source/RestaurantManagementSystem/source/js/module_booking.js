@@ -41,8 +41,8 @@ function check_fields(field) {
 function addTable()
 {
     var elements = "<tr>"
-                          + "<td>Mã bàn ăn</td>"
-                          + "<td><input type='text'></input></td><br/>"
+                          + "<td>Mã bàn ăn</td>" 
+                          + "<td><input type='text' class='tableId'></input></td><br/>"
                           + "</tr>"
                           + "<tr>"
                           + " <td>Từ</td>"
@@ -188,9 +188,9 @@ function saveBookingDetail() {
 					+ " không hợp lệ");
 			return;
 		} else {
-			tableIdStr = tableIdStr + "&tableId=" + table_id;
-			fromDateStr = fromDateStr + "&fromDate=" + from;
-			toDateStr = toDateStr + "&toDate=" + to;
+			tableIdStr = tableIdStr + "&tableId[]=" + table_id;
+			fromDateStr = fromDateStr + "&fromDate[]=" + from;
+			toDateStr = toDateStr + "&toDate[]=" + to;
 		}
 	}
 
