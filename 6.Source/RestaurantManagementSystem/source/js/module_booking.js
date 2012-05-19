@@ -139,12 +139,7 @@ function bookingDetailLinkClicked() {
  * END functions control food table link
  */
 
-/**
- * general method for booking management
- */
-function bookingManagement() {
-	window.location = "../gui/booking.php";
-}
+
 
 /**
  * save booking detail info to db
@@ -226,24 +221,6 @@ function saveBookingDetail() {
 	};
 	http.send();
 
-}
-
-/**
- * general method for booking
- * 
- * @author vantuanlee@gmail.com
- */
-function booking() {
-	window.location = "../gui/booking.php";
-}
-
-/**
- * general method for table management
- * 
- * @author vantuanlee@gmail.com
- */
-function showTableList() {
-	window.location = "../gui/tableManagement.php";
 }
 
 /**
