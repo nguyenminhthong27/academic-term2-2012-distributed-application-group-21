@@ -1,4 +1,29 @@
+<?php
+//check is_login
+session_start();
+$is_login = isset($_SESSION['is_login']) ? $_SESSION['is_login'] : false;
+$uname = isset($_SESSION['uname']) ? $_SESSION['uname'] : "";
+$staff_type = isset($_SESSION['staff_type']) ? $_SESSION['staff_type'] : "";
 
+// check login
+if ($is_login == false) {
+	require_once '../configure/GeneralFunctions.php';
+	echo GeneralFunctions::Alert("Bạn chưa đăng nhập.");
+	header("Location: index.php");
+}
+
+// hard code to test staff_type
+$staff_type = "LNV001";
+if ($staff_type != "LNV001") {
+	require_once '../configure/GeneralFunctions.php';
+	echo GeneralFunctions::Alert("Bạn không có đủ quyền để thực hiện chức năng này.");
+	header("Location: home.php");
+}
+
+require_once '../configure/IncludeGenerator.php';
+require_once '../controller/ModuleIngredientImportingController.php';
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -54,8 +79,11 @@
                                         <tr>
                                             <td>Tên nhà cung cấp</td>
                                             <td><select>
-                                                    <option selected>ABC</option>
-                                                    <option>123</option>
+<!--                                                     <option selected>ABC</option> -->
+<!--                                                     <option>123</option> -->
+                                            <?php
+                                            echo ModuleIngredientImportingController::getSupplierName(); 
+                                            ?>
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -65,8 +93,11 @@
                                         <tr>
                                             <td>Mã hợp đồng</td>
                                             <td><select>
-                                                    <option>125</option>
-                                                    <option>128</option>
+<!--                                                     <option>125</option> -->
+<!--                                                     <option>128</option> -->
+                                            <?php
+                                            echo ModuleIngredientImportingController::getContractId();
+                                            ?>
                                                 </select></td>
                                         </tr>
                                     </table>
@@ -82,18 +113,18 @@
                                             <th>Số lượng tối thiểu</th>
                                             <th>Số lượng tối đa</th>
                                         </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></input></td>
-                                            <td>Thịt gà(kg)</td>
-                                            <td>3</td>
-                                            <td>10</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></input></td>
-                                            <td>Pepsi(thùng)</td>
-                                            <td>10</td>
-                                            <td>50</td>
-                                        </tr>  
+<!--                                         <tr> -->
+<!--                                             <td><input type="checkbox"></input></td> -->
+<!--                                             <td>Thịt gà(kg)</td> -->
+<!--                                             <td>3</td> -->
+<!--                                             <td>10</td> -->
+<!--                                         </tr> -->
+<!--                                         <tr> -->
+<!--                                             <td><input type="checkbox"></input></td> -->
+<!--                                             <td>Pepsi(thùng)</td> -->
+<!--                                             <td>10</td> -->
+<!--                                             <td>50</td> -->
+<!--                                         </tr>   -->                                            
                                     </table>
                                     <!-- END food-tab -->
                                     <button class="nextBut" id="addIngredientAmountBut">Nhập số lượng</button>
