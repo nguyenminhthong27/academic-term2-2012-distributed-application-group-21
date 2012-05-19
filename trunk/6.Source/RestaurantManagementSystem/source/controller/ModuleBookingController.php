@@ -19,11 +19,11 @@ class ModuleBookingController{
 		$data = "";
 		$data = $data." <table>
 		<tr>
-		<th>MÃ BÀN AN</th>
-		<th>TÊN KHU V?C</th>
+		<th>MÃ BÀN ĂN</th>
+		<th>TÊN KHU VỰC</th>
 		<th>GIÁ THÀNH</th>
-		<th>S? NGU?I</th>
-		<th>TÌNH TR?NG</th>
+		<th>SỐ NGƯỜI</th>
+		<th>TÌNH TRẠNG</th>
 		</tr>
 		<tr>  " ;
 		foreach ($array as $value){
@@ -42,12 +42,12 @@ class ModuleBookingController{
 			$data = $data. "<td>$SoNguoi</td>";
 			if($TinhTrang == "0"){
 					
-				$TinhTrang_change = "Chua d?t";
-				$data  = $data."<td>Chua d?t</td>";
+				$TinhTrang_change = "Chưa đặt";
+				$data  = $data."<td>Chưa đặt</td>";
 			}
 			else{
 					
-				$data  = $data."<td><a onclick='bookingDetailLinkClicked();' href='#'>Chi ti?t</a></td>";
+				$data  = $data."<td><a onclick='bookingDetailLinkClicked();' href='#'>Chi tiết</a></td>";
 			}
 			$data = $data."</tr>";
 		}
@@ -121,12 +121,6 @@ class ModuleBookingController{
 	 *  * */
 	public function saveBooking($table){
 		try {
-			// 			foreach ($array as $value){
-			// 				$dao = new TableDAO() ;//suppose
-			// 				$dao->addTableTo($value); //suppose method DAO is addTableTo();
-			// 			}
-			// 			return true;
-
 			//check table id
 			$dao = new TableDAO();
 			foreach($tableId as $id){
@@ -136,21 +130,25 @@ class ModuleBookingController{
 					return false;
 				}
 			}
-
+			
+			// prepare data to saving
+			$arrBookingInfo = array();
+			$arrBookingDetailInfo = array();
+			
 			//save data
-
-			//add customer info
-
-			//add booking detail
-			//echo true;
-			return true;
+			try {				
+				$dao = new BookingDAO();
+				return $dao->save($arrBookingInfo, $arrBookingDetailInfo);
+			} catch (Exception $e) {
+				return false;
+			}			
+			return false;
 		} catch (Exception $e) {
 			echo "Not Connect to database";
 		}
 
 		return false;
 	}
-
 
 
 	/*
@@ -163,7 +161,6 @@ class ModuleBookingController{
 		$result =  $result->format('Y-m-d H:i:s');
 		return $result;
 	}
-
 }
 
 
@@ -198,8 +195,6 @@ switch ($action) {
 		break;
 		
 	case "save":
-		$table = isset($_REQUEST["array"]) ? $_REQUEST["array"] : "";
-
 		//get customer info
 		$cusInfo = array();
 		$tableId = array();
