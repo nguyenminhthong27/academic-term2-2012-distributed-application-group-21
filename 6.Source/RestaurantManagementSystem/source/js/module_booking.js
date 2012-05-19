@@ -284,8 +284,7 @@ function searchTable(){
 /**
  * validate customer's info: idenitity number, phone number
  * 
- * @param idnumber
- *            string
+ * @param idnumber string
  * @param phonenumber-string
  * @returns boolean
  * @author hathao298@gmail.com
