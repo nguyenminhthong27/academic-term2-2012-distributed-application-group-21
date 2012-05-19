@@ -2,7 +2,7 @@
 //check is_login
 session_start();
 $is_login = isset($_SESSION['is_login']) ? $_SESSION['is_login'] : false;
-$uname = isset($_SESSION['uname']) ? $_SESSION['uname'] : "";
+$uname = isset($_SESSION['username']) ? $_SESSION['username'] : "";
 if ($is_login == false) {
 	require_once '../configure/GeneralFunctions.php';
 	echo GeneralFunctions::Alert("Bạn chưa đăng nhập.");	
