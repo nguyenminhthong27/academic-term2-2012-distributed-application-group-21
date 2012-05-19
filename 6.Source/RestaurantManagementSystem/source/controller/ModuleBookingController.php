@@ -112,33 +112,47 @@ class ModuleBookingController{
 
 	/**
 	 * main save_Booking method
-	 * @param $cusInfo array customer info: customer name, id number, phone number
+	 * @param $bookingInfo array customer info: customer name, id number, phone number
 	 * @param $tableId array
 	 * @param $fromDate array
 	 * @param $toDate array
 	 * @author hathao298@gmail.com, thanhtuan
 	 * @return return true if success else  return false
 	 *  * */
-	public function saveBooking($table){
+	public function saveBooking($bookingInfo, $tableId, $fromDate, $toDate){
 		try {
 			//check table id
 			$dao = new TableDAO();
+			$price = array();
 			foreach($tableId as $id){
 				$table = $dao->getTableInfo($id);
 				if($table == null)	{
-					echo "invalid table id";
-					return false;
+					return "invalid table id";
 				}
+				else
+					array_push($price, $table["GiaThanh"]);
 			}
-				
+
 			// prepare data to saving
 			$arrBookingInfo = array();
 			$arrBookingDetailInfo = array();
-				
+
+			for($i=0; $i<sizeof($tableId); $i++)
+			{
+				$bookingDetailInfo = array( "MaBanAn" =>$tableId[$i],
+						"MaNH" => $bookingInfo["MaNH"],
+						"MaPhieu" =>$bookingInfo["MaPhieu"],
+						"GiaThanh" => $price[$i],
+						"TuThoiGian" => $fromDate[$i],
+						"DenThoiGian" =>$toDate[$i]
+				);
+				array_push($arrBookingDetailInfo, $bookingDetailInfo);
+			}
+
 			//save data
 			try {
 				$dao = new BookingDAO();
-				return $dao->save($arrBookingInfo, $arrBookingDetailInfo);
+				return $dao->save($bookingInfo, $arrBookingDetailInfo);
 			} catch (Exception $e) {
 				return false;
 			}
@@ -196,12 +210,12 @@ switch ($action) {
 
 	case "save":
 		//get customer info
-		$cusInfo = array();
+		$bookingInfo = array();
 		$tableId = array();
 		$fromDate = array();
 		$toDate= array();
 
-		$cusInfoKey = array("cusName" =>"HoTenKH",
+		$bookingInfoKey = array("cusName" =>"HoTenKH",
 				"resId" =>"MaNH",
 				"cusIdNumber" =>"CMND",
 				"cusPhoneNumber" =>"SDT"
@@ -210,20 +224,39 @@ switch ($action) {
 				"fromDate" => "TuThoiGian",
 				"toDate" => "DenThoiGian");
 
-		foreach($cusInfoKey as $key => $value){
-			$cusInfo[$value] = isset($_REQUEST[$key]) ? $_REQUEST[$key] : "";
+		foreach($bookingInfoKey as $key => $value){
+			$bookingInfo[$value] = isset($_REQUEST[$key]) ? $_REQUEST[$key] : "";
 		}
 
+
+		$ctl = new ModuleBookingController();
+
 		foreach($tableBookingKey as $key=> $value){
-			${
-				$key} =  isset($_REQUEST[$key."[]"]) ? $_REQUEST[$key."[]"] : "";
+			if(strcmp($key, "tableId"))			{
+				$valArr= isset($_REQUEST[$key]) ? $_REQUEST[$key]: "";
+				foreach($valArr as $val)
+				{
+					array_push(${$key}, $ctl->changeFormatDate($val));
+				}
+			}
+
+			else
+			{
+				$valArr =  isset($_REQUEST[$key]) ? $_REQUEST[$key]: "";
+				foreach($valArr as $val)
+					array_push(${$key}, $val);
+
+			}
 		}
 
 		//get MaNH, NguoiTiepNhan
+		$bookingInfo["MaNH"] = $_SESSION["restaurant"];
+		$bookingInfo["NguoiTiepNhan"] = $_SESSION["MaNV"];
+		$bookingInfo["MaPhieu"] = time();
+		$bookingInfo["NgayLap"] = date('Y-m-d H:i:s');
 
 		// do save
-		$save = new ModuleBookingController();
-		$result = $save->saveBooking($table);
+		$result = $ctl->saveBooking($bookingInfo, $tableId, $fromDate, $toDate);
 
 		echo $result;
 		break;
