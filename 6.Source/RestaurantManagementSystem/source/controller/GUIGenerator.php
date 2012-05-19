@@ -48,5 +48,7 @@ class GUIGenerator {
 		
 		return $html;
 	}
+	
+	
 } 
 ?>
