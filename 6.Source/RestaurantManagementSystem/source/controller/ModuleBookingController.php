@@ -13,9 +13,9 @@ class ModuleBookingController{
 	 * @param $to date (example 18-5-2012 9:10:00 AM)
 	 * @return gui information about booking
 	 * */
-	public function searchAvailableTable($restaurant, $area, $status, $from, $to){
+	public function searchTable($restaurant, $area, $status, $from, $to){
 		$dao = new TableDAO() ;
-		$array = $dao->getAvailableTable($restaurant,$area,$status,$from, $to);
+		$array = $dao->getTableWithCondition($restaurant,$area,$status,$from, $to);
 		$data = "";
 		$data = $data." <table>
 		<tr>
@@ -187,7 +187,7 @@ switch ($action) {
 		try {
 			// do search
 			$search = new ModuleBookingController();
-			$SearchResult = $search->searchAvailableTable($restaurant, $area, $status, $date_from, $date_to);
+			$SearchResult = $search->searchTable($restaurant, $area, $status, $date_from, $date_to);
 			echo $SearchResult;
 		} catch (Exception $e) {
 			echo "Not Connect to database";
