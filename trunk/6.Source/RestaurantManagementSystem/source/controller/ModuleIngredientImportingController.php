@@ -1,14 +1,18 @@
 <?php
 require_once '../dal/IngredientDAO.php';
+
 class ModuleIngredientImportingController {
 
-	private $dao = 
+	private $dao;
 	private $databaseMapKey = array("ingreName" => "TenNL",
 			"minAmount" => "SOLUONGMIN",
 			"maxAmount" => "SOLUONGMAX",
 			"contractDetailId" =>"MaCTHD"
 	);
 
+	public function __construct(){
+		$this->dao = new IngredientDAO();
+	}
 	/**
 	 * @author hathao298@gmail.com
 	 */
