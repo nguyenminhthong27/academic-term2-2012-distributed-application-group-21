@@ -9,7 +9,7 @@ require_once 'MongoDatabase.php';
 class TableDAO implements IDatabaseConfig {
 
 	/**
-	 * get available table
+	 * get  table with condition
 	 * @param string $restaurant local restaurant or the other
 	 * @param string $areaID area
 	 * @param string $status table status
@@ -17,7 +17,7 @@ class TableDAO implements IDatabaseConfig {
 	 * @param datetime $to php datetime, formatted with standard ("2010-01-15 00:00:00")
 	 * @return array table + info
 	 */
-	public function getAvailableTable($restaurant = null, $areaID = null, $status = null, $from, $to){
+	public function getTableWithCondition($restaurant = null, $areaID = null, $status = null, $from, $to){
 		
 		try {
 			// create connection
