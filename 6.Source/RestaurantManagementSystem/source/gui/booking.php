@@ -127,16 +127,18 @@ require_once '../controller/GUIGenerator.php';
                                     <?php echo GUIGenerator::htmlShowAreaSelect();?>
                                 </td>
                                 <td>Tình trạng</td>
-                                <td><select id="selectStatus">
+                                <td>
+                                	<select id="selectStatus">
                                         <option value="-1" selected>Tất cả</option>
                                         <option value="0">Chưa đặt</option>
                                         <option value="1">Đã đặt</option>                        
-                                    </select></td>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Từ</td>
                                 <td>
-                                    <input id="seachFromDtPker"type="text" class="fromDtPker"></input>
+                                    <input id="seachFromDtPker" type="text" class="fromDtPker"></input>
                                 </td>
                                 <td>Đến</td>
                                 <td>

@@ -13,7 +13,7 @@ class ModuleBookingController{
 	 * @param $to date (example 18-5-2012 9:10:00 AM)
 	 * @return gui information about booking
 	 * */
-	public function searchAvailableTable($restaurant,$area,$status,$from,$to){
+	public function searchAvailableTable($restaurant, $area, $status, $from, $to){
 		$dao = new TableDAO() ;
 		$array = $dao->getAvailableTable($restaurant,$area,$status,$from, $to);
 		$data = "";
@@ -130,18 +130,18 @@ class ModuleBookingController{
 					return false;
 				}
 			}
-			
+				
 			// prepare data to saving
 			$arrBookingInfo = array();
 			$arrBookingDetailInfo = array();
-			
+				
 			//save data
-			try {				
+			try {
 				$dao = new BookingDAO();
 				return $dao->save($arrBookingInfo, $arrBookingDetailInfo);
 			} catch (Exception $e) {
 				return false;
-			}			
+			}
 			return false;
 		} catch (Exception $e) {
 			echo "Not Connect to database";
@@ -173,7 +173,7 @@ switch ($action) {
 		$status = isset($_REQUEST["status"]) ? $_REQUEST["status"] : "";
 		$from= isset($_REQUEST["from"]) ? $_REQUEST["from"] : "";
 		$to= isset($_REQUEST["to"]) ? $_REQUEST["to"] : "";
-	
+
 		//change format date : 2012-05-17 18:19:20
 		if($from != "" && $to != ""){
 			$format = new ModuleBookingController();
@@ -183,17 +183,17 @@ switch ($action) {
 			echo "Bạn phải chọn thời gian tìm kiếm.";
 			continue;
 		}
-	
+
 		try {
 			// do search
 			$search = new ModuleBookingController();
-			$SearchResult = $search->searchAvailableTable($restaurant,$area,$status,$date_from, $date_to);
+			$SearchResult = $search->searchAvailableTable($restaurant, $area, $status, $date_from, $date_to);
 			echo $SearchResult;
 		} catch (Exception $e) {
 			echo "Not Connect to database";
 		}
 		break;
-		
+
 	case "save":
 		//get customer info
 		$cusInfo = array();
@@ -215,7 +215,8 @@ switch ($action) {
 		}
 
 		foreach($tableBookingKey as $key=> $value){
-			${$key} =  isset($_REQUEST[$key."[]"]) ? $_REQUEST[$key."[]"] : "";
+			${
+				$key} =  isset($_REQUEST[$key."[]"]) ? $_REQUEST[$key."[]"] : "";
 		}
 
 		//get MaNH, NguoiTiepNhan
@@ -226,7 +227,7 @@ switch ($action) {
 
 		echo $result;
 		break;
-	
+
 	case "detail":
 		$id = isset($_REQUEST["ID"]) ? $_REQUEST["ID"] : "";
 

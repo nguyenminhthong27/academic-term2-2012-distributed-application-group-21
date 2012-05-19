@@ -108,15 +108,31 @@ class TableDAO implements IDatabaseConfig {
 				"DenThoiGian" => array('$lte' => $end));
 		// if search table on direct restaurant
 		if ($restaurant != null) {
-			$arrCondition["MaNH"] =  $restaurant;
+			// if not all restaurant
+			if ($restaurant != "-1") {
+				$arrCondition["MaNH"] =  $restaurant;
+			}
 		}
 		// if search with direct area
 		if ($areaID != null) {
-			$arrCondition["MaKV"] = $areaID;
+			// if not all areas
+			if ($areaID != "-1") {				
+				$arrCondition["MaKV"] = $areaID;
+			}
 		}
+		
 		// if search with status
 		if ($status != null) {
-			$arrCondition["TinhTrang"] = $status;
+			switch ($status) {				
+				case "0":
+					$arrCondition["TinhTrang"] = 0;
+					break;
+				case "1":
+					$arrCondition["TinhTrang"] = 1;
+					break;
+				default: // all status
+					break;
+			}
 		}
 		
 		return $arrCondition;
