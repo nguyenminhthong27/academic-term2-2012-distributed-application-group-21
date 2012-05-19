@@ -14,7 +14,11 @@ class BookingDAO {
 	 */
 	public function save($arrBookingInfo, $arrBookingDetailInfo){
 		// check input
-		
+			$arrBookingInfo["NgayLap"] = new MongoDate(strtotime($arrBookingInfo["NgayLap"]));
+		foreach($arrBookingDetailInfo as $bookingDetailInfo){			
+			$bookingDetailInfo["TuThoiGian"] = new MongoDate(strtotime($bookingDetailInfo["TuThoiGian"]));
+			$bookingDetailInfo["DenThoiGian"] = new MongoDate(strtotime($bookingDetailInfo["DenThoiGian"]));
+		}
 		// insert
 		try {
 			MongoDatabase::addDataTo("PhieuDatCho", $arrBookingInfo);

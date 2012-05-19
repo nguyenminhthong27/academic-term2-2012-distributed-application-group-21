@@ -59,8 +59,8 @@ $(document).ready(function() {
     });
     
     //Search food table
-    $('#seachFromDtPker').datetimepicker();
-    $('#seachToDtPker').datetimepicker();
+    $('#fromDtPker').datetimepicker();
+    $('#toDtPker').datetimepicker();
     
     //END Search food table
     

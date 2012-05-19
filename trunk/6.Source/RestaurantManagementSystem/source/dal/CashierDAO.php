@@ -16,12 +16,12 @@ class CashierDAO implements IDatabaseConfig {
 	 * @param int $toValue
 	 */
 	public function searchBill($from, $to, $fromValue, $toValue){
-		//$condition = $this->createConditionToSearchBill($from, $to, $fromValue, $toValue);
+		$condition = $this->createConditionToSearchBill($from, $to, $fromValue, $toValue);
 		
-		//return MongoDatabase::getAllDataFrom("HoaDon", $condition);
-		$conn = new Mongo(IDatabaseConfig::Host);
-		$db = $conn->selectDB(IDatabaseConfig::DbName);
-		return $db->execute('function(manv) {return db.NhanVien.findOne({MaNV : manv});}', array("NV0001"));
+		return MongoDatabase::getAllDataFrom("HoaDon", $condition);
+// 		$conn = new Mongo(IDatabaseConfig::Host);
+// 		$db = $conn->selectDB(IDatabaseConfig::DbName);
+// 		return $db->execute('function(manv) {return db.NhanVien.findOne({MaNV : manv});}', array("NV0001"));
 	}
 	
 	/**
@@ -38,10 +38,11 @@ class CashierDAO implements IDatabaseConfig {
 		
 		$arrCondition["NgayLap"] = array (
 				'$gte' => $start,
-				'$lte' => $end);
+				//'$lte' => $end
+		);
 		$arrCondition["TongTien"] = array(
-				'$gte' => $fromValue,
-				'$lte' => $toValue);
+				'$gte' => (int)$fromValue,
+				'$lte' => (int)$toValue);
 		
 		return $arrCondition;		
 	}

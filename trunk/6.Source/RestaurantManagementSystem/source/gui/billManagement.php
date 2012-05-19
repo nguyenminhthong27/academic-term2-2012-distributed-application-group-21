@@ -86,82 +86,11 @@ require_once '../controller/GUIGenerator.php';
                         </table>
                     </div>
                     <!-- END Search div -->
-                    <!-- Div for Unpaid bill -->
-                    <div>     
-                        <fieldset>
-                            <legend>Hóa đơn chưa thanh toán</legend>
-                            <div id="unpaid-bill">                      	
-	                            <table class="unpaid-bill-table">
-	                                <tr>
-	                                    <th></th>
-	                                    <th></th>
-	                                    <th></th>
-	                                    <th>MÃ HÓA ĐƠN</th>
-	                                    <th>NGÀY LẬP</th>
-	                                    <th>TỔNG TIỀN</th>
-	                                    <th>MÃ PHIẾU ĐẶT CHỖ</th>
-	                                </tr>
-	                                <tr>
-	                                    <td><a onclick="payForBill()" title="Thanh toán"><img src="../css/images/calculatorIcon.png"/></a></td>
-	                                    <td><a onclick="deleteConfirm()" title="Xóa hóa đơn"><img src="../css/images/trashIcon.png"/></a></td>
-	                                    <td><a onclick="viewBillDetail()" title="Xem chi tiết"><img src="../css/images/infoIcon.png"/></a></td>
-	                                    <td>123</td>
-	                                    <td>14:00 23/03/2012</td>
-	                                    <td>140.000</td>
-	                                    <td><a onclick="viewBookingNoteDetail()">PDC123</a></td>
-	                                </tr>
-	                                <tr>
-	                                   <td><a onclick="payForBill()" title="Thanh toán"><img src="../css/images/calculatorIcon.png"/></a></td>
-	                                    <td><a onclick="deleteConfirm()" title="Xóa hóa đơn"><img src="../css/images/trashIcon.png"/></a></td>
-	                                    <td><a onclick="viewBillDetail()" title="Xem chi tiết"><img src="../css/images/infoIcon.png"/></a></td>
-	                                    <td>121</td>
-	                                    <td>15:00 23/03/2012</td>
-	                                    <td>125.000</td>
-	                                    <td><a onclick="viewBookingNoteDetail()">PDC125</a></td>
-	                                </tr>
-	                            </table>
-                            </div>
-                        </fieldset>                       
+                    
+                    <!-- Bill search result div -->
+                    <div id="searchBillResult">
                     </div>
-                    <!-- END div for unpaid bill -->                    
-                    <!-- Div for paid bill -->
-                    <div>
-                        <fieldset>
-                            <legend>Hóa đơn đã thanh toán</legend>
-                            <div id="paid-bill">
-                            	<table class="paid-bill-table">
-	                                <tr>
-	                                    <th></th>
-	                                    <th></th>
-	                                    <th></th>
-	                                    <th>MÃ HÓA ĐƠN</th>
-	                                    <th>NGÀY LẬP</th>
-	                                    <th>TỔNG TIỀN</th>
-	                                    <th>MÃ PHIẾU ĐẶT CHỖ</th>
-	                                </tr>
-	                                <tr>
-	                                    <td></td>
-	                                    <td><a onclick="deleteConfirm()" title="Xóa hóa đơn"><img src="../css/images/trashIcon.png"/></a></td>
-	                                    <td><a onclick="viewBillDetail()" title="Xem chi tiết"><img src="../css/images/infoIcon.png"/></a></td>                 
-	                                    <td>121</td>
-	                                    <td>15:00 22/03/2012</td>
-	                                    <td>125.000</td>
-	                                    <td><a onclick="viewBookingNoteDetail()">PDC123</a></td>
-	                                </tr>
-	                                <tr>
-	                                    <td></td>
-	                                    <td><a onclick="deleteConfirm()" title="Xóa hóa đơn"><img src="../css/images/trashIcon.png"/></a></td>
-	                                    <td><a onclick="viewBillDetail()" title="Xem chi tiết"><img src="../css/images/infoIcon.png"/></a></td>                                 
-	                                    <td>121</td>
-	                                    <td>15:00 20/03/2012</td>
-	                                    <td>125.000</td>
-	                                    <td><a onclick="viewBookingNoteDetail()">PDC125</a></td>
-	                                </tr>
-	                            </table>
-                            </div>                            
-                        </fieldset>
-                    </div>
-                    <!-- END div for paid bill -->                    
+                                      
                     <!-- Div for additional dialog boxes -->
                     <div>
                         <!-- slider -->
