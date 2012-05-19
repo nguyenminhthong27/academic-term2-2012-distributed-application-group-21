@@ -38,6 +38,7 @@ require_once '../controller/ModuleIngredientImportingController.php';
         <script src="../js/lib/jquery-ui-1.8.20.custom.min.js" type="text/javascript"></script>
         <script src="../js/lib/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
         <script src="../js/ingredientImportingFunc.js" type="text/javascript"></script>
+        <script src="../js/module_ingredient_importing.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="page" class="shell">
@@ -78,9 +79,9 @@ require_once '../controller/ModuleIngredientImportingController.php';
                                     <table>
                                         <tr>
                                             <td>Tên nhà cung cấp</td>
-                                            <td><select>
-<!--                                                     <option selected>ABC</option> -->
-<!--                                                     <option>123</option> -->
+                                            <td><select id='supplierSbox' onchange='supplierSBoxChanged()'>
+                                                    <option selected>ABC</option>
+                                                    <option>123</option>
                                             <?php
                                             echo ModuleIngredientImportingController::getSupplierName(); 
                                             ?>
