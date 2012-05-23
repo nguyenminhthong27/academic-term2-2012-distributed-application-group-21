@@ -86,7 +86,7 @@ $(document).ready(function()
 }
 );
 
-function payForBill()
+function payForBill(billID)
 {
     $('#slider').dialog("open");
 }
@@ -96,17 +96,32 @@ function cancelPayForBillButClicked()
     $('#slider').dialog("close");
 }
 
-function viewBillDetail()
+function viewBillDetail(billID)
 {
     $('.bill-detail-info-dialog').dialog("open");
 }
 
-function viewBookingNoteDetail()
+function viewBookingNoteDetail(billID)
 {
-    $('.booking-note-detail-dialog').dialog("open");
+	var http = createXMLHttpRequest();
+	
+	var nocache = Math.random();
+	
+	var serverURL = "../controller/ModuleCashierController.php?action=detailBooking&billID=" + billID + "&nocache=" + nocache;
+	http.open("POST", serverURL, true);
+	http.onreadystatechange = function()
+		{
+			if(http.readyState==4 && http.status==200){
+				var respone = http.responseText;
+				alert(respone);
+				$('.booking-note-detail-dialog').innerHTML = respone;
+			    $('.booking-note-detail-dialog').dialog("open");
+			}
+		}
+	http.send();
 }
 
-function deleteConfirm()
+function deleteConfirm(billID)
 {
     $('.delete-confirmation-box-dialog').dialog("open");
 }
@@ -138,7 +153,7 @@ function searchBill(){
 	var nocache = Math.random();
 	
 	var http = createXMLHttpRequest();
-	var serverURL = "../controller/CashierController.php?action=search&time=" + time + 
+	var serverURL = "../controller/ModuleCashierController.php?action=search&time=" + time + 
 		"&fromValue=" + fromValue + "&toValue=" + toValue  + "&nocache=" + nocache;
 	
 	http.open("POST", serverURL, true);
