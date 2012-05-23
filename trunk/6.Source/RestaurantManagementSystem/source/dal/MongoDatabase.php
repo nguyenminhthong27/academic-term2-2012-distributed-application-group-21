@@ -14,16 +14,57 @@ class MongoDatabase implements IDatabaseConfig {
 	 * @param @collection_name  name of collection
 	 * @return Array
 	 */
-	public static function getAllDataFrom($collection_name, $condition = null) {
+// 	public static function getAllDataFrom($collection_name, $condition = null) {
+// 		try {
+// 			$connection = new Mongo(IDatabaseConfig::Host);
+// 			$db = $connection->selectDB(IDatabaseConfig::DbName);
+// 			$collection = $db->{$collection_name};
+			
+// 			$condition = $condition == null ? array() : $condition;
+// 			// get all from collection, except '_id'
+// 			$cursor = $collection->find($condition, array('_id' => 0));
+			
+// 			$arr = array();
+// 			// fetch cursor to arr
+// 			foreach ($cursor as $idx => $document){
+// 				foreach ($document as $key => $value){
+// 					$arr[$idx][$key] = $value;
+// 				}
+// 			}
+// 			// close connection
+// 			$connection->close();
+			
+// 			return $arr;
+// 		} catch (MongoConnectionException $e) {
+// 			die('Error connecting to MongoDB server');
+// 		} catch (MongoException $e) {
+// 		  	die('Error: ' . $e->getMessage());
+// 		}		
+// 	}
+	
+	/**
+	 * get all data from collection $collection_name
+	 * @param @collection_name  name of collection
+	 * @param $condition condition to find
+	 * @param $keys list of keys need to find
+	 * @return Array
+	 */
+	public static function getAllDataFrom($collection_name, $condition = null, $keys = null) {
 		try {
+			$keys = $keys == null ? null : $keys;
+			if ($keys == null) {
+				$keys = array(
+						'_id' => 0
+						);
+			}
 			$connection = new Mongo(IDatabaseConfig::Host);
 			$db = $connection->selectDB(IDatabaseConfig::DbName);
 			$collection = $db->{$collection_name};
-			
+				
 			$condition = $condition == null ? array() : $condition;
 			// get all from collection, except '_id'
-			$cursor = $collection->find($condition, array('_id' => 0));
-			
+			$cursor = $collection->find($condition, $keys);
+				
 			$arr = array();
 			// fetch cursor to arr
 			foreach ($cursor as $idx => $document){
@@ -33,13 +74,13 @@ class MongoDatabase implements IDatabaseConfig {
 			}
 			// close connection
 			$connection->close();
-			
+				
 			return $arr;
 		} catch (MongoConnectionException $e) {
 			die('Error connecting to MongoDB server');
 		} catch (MongoException $e) {
-		  	die('Error: ' . $e->getMessage());
-		}		
+			die('Error: ' . $e->getMessage());
+		}
 	}
 	
 	/**

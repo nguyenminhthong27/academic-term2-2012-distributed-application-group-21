@@ -49,12 +49,87 @@ class CashierDAO implements IDatabaseConfig {
 		
 		return $arrCondition;		
 	}
+	
+	/**
+	 * get booking info by booking id
+	 * @param string $bookingID
+	 * @return array data
+	 */
+	public function getBookingInfo($bookingID){
+		$condition = 'MaPhieu=' . $bookingID;
+		return MongoDatabase::getOneDataFrom("PhieuDatCho", $condition);		
+	}
+	
+	/**
+	 * get booking detail by booking id
+	 * @param unknown_type $booingID
+	 */
+	public function getBookingDetail($bookingID){
+		$condition = array(
+				"MaPhieu" => $bookingID
+		);
+		return MongoDatabase::getAllDataFrom("ChiTietDatCho", $condition);
+	}
+	
+	public function getBillDetail($billID){
+		$condition = array(
+				"MaHD" => $billID
+		);
+		$keys = array(
+				'_id' => 0,
+				'MaCTTD_MA' => 1,
+				'SoLuong' => 1
+		);
+		$MaCTTD_MAs  =  MongoDatabase::getAllDataFrom("ChiTietHoaDon", $condition, $keys);
+		
+		$result = array();
+		$temp = array();
+		foreach ($MaCTTD_MAs as $MaCTTD_MA){
+			$temp["SoLuong"] = $MaCTTD_MA["SoLuong"];
+			$menuFood = $this->getMenuFoodsByBill_Food_ID($MaCTTD_MA["MaCTTD_MA"]);
+			$temp["DonGia"] = $menuFood["DonGia"];
+			$temp["TenMonAn"] = $this->getNameOfFood($menuFood["MaMonAn"]);
+			$result[] = $temp;
+		}
+		
+		return $result;
+	}
+	
+	/**
+	 * get name of food by food id
+	 * @param string $foodID
+	 * @return name of food
+	 */
+	private function getNameOfFood($foodID){
+		$condition = array(
+				'MaMonAn' => $foodID
+		);
+		$keys = array(
+				'_id' => 0,
+				'TenMonAn' => 1
+		);
+		$data = MongoDatabase::getAllDataFrom("MonAn", $condition, $keys);
+		return $data == null ? null : $data[0]["TenMonAn"];
+	}
+	
+	/**
+	 * @param string $bill_food_id bill food id
+	 */
+	private function getMenuFoodsByBill_Food_ID($bill_food_id){
+		$condition = array(
+				'MaChiTiet' => $bill_food_id
+		);
+		$keys = array(
+				'_id' => 0
+		);
+		$foods = MongoDatabase::getAllDataFrom("ChiTietThucDon_MonAn", $condition, $keys);
+		return $foods == null ? null : $foods[0];
+	}
 } 
 
 // hard code to test
 // $dao = new CashierDAO();
-// $date = new MongoDate(strtotime("2012-05-01 00:00:00"));
-// print_r($date);
-// $data = $dao->searchBill("2012-05-01 00:00:00", "2012-05-01 23:59:59", 0, 2000000);
+
+// $data = $dao->getBillDetail("HD001");
 // print_r($data);
 ?>

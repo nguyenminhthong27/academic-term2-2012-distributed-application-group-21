@@ -68,7 +68,7 @@ class ModuleCashierController{
 				$data = $data."<td>$MaHD</td>";
 				$data = $data."<td>$NgayLap</td>";
 				$data = $data."<td>$TongTien</td>";
-				$data = $data."<td><a onclick='viewBookingNoteDetail(\"" . $MaHD . "\")'>$MaPhieu</a></td>";
+				$data = $data."<td><a onclick='viewBookingNoteDetail(\"" . $MaPhieu . "\")'>$MaPhieu</a></td>";
 				$data = $data."</tr>";
 			}
 			else {
@@ -79,7 +79,7 @@ class ModuleCashierController{
 				$data1 = $data1."<td>$MaHD</td>";
 				$data1 = $data1."<td>$NgayLap</td>";
 				$data1 = $data1."<td>$TongTien</td>";
-				$data1 = $data1."<td><a onclick='viewBookingNoteDetail(\"" . $MaHD . "\")'>$MaPhieu</a></td>";
+				$data1 = $data1."<td><a onclick='viewBookingNoteDetail(\"" . $MaPhieu . "\")'>$MaPhieu</a></td>";
 				$data1 = $data1."</tr>";
 			}
 		}
@@ -99,11 +99,11 @@ class ModuleCashierController{
 	* @parram $id(of billing)
 	* @return Gui contain information bout detail billing
 	*/
-	public function detailBill($id){
+	public function viewBillDetail($id){
 
-		$dao = new billingDAO() ;
+		$dao = new CashierDAO() ;
 		// get detail billing from  Dao
-		$array = $dao->getDetailBillingDAO($id);
+		$array = $dao->getBillDetail($id);
 		$data = "";
 		$data = $data."<table>
 		<tr>
@@ -232,17 +232,16 @@ class ModuleCashierController{
 	* @return GUI contain information about detail Booking
 	*/
 	public function viewBookingDetail($id){
-
-		$dao = new billingDAO() ;
+		$dao = new CashierDAO();
 		// get detail booking
-		$array = $dao->getDetailBooking($id);
+		$array = $dao->getBookingInfo($id);
 		$NgayLap = isset($array["NgayLap"]) ? $array["NgayLap"] : "";
 		$HoTenKH = isset($array["HoTenKH"]) ? $array["HoTenKH"] : "";
 		$CMND = isset($array["CMND"]) ? $array["CMND"] : "";
 		$SDT = isset($array["SDT"]) ? $array["SDT"] : "";
 		$NguoiLap = isset($array["TenNV"]) ? $array["TenNV"] : "";
 		// get info area
-		$array1 = $dao->getInfoAreaDAO($id);
+		$array1 = $dao->getBookingDetail($id);
 		// $data of detail booking and information about area
 		$data = "";
 		$data = $data."<table>";
@@ -371,12 +370,12 @@ switch ($action) {
 
 		// cái này là xem chit tiết hóa đơn
 	case "detailBill":
-		$id = isset($_REQUEST["id"]) ? $_REQUEST["id"] : "";
+		$id = isset($_REQUEST["billID"]) ? $_REQUEST["billID"] : "";
 
 		try {
 			// do view detail bill
 			$detailBill = new ModuleCashierController();
-			$Result = $detailBill->detailBill($id);
+			$Result = $detailBill->viewBillDetail($id);
 			echo $Result;
 		} catch (Exception $e) {
 			echo "Not Connect to database! ";
@@ -389,7 +388,7 @@ switch ($action) {
 		try {
 
 			$excute = new ModuleCashierController();
-			$Result = $excute->executePaiding($id);
+			$Result = $excute->payment($id);
 			echo $Result;
 
 		} catch (Exception $e) {
@@ -398,12 +397,11 @@ switch ($action) {
 		break;
 		// cái này là xem chi tiết đặt chỗ
 	case "detailBooking":
-		$id = isset($_REQUEST["billID"]) ? $_REQUEST["billID"] : "";
+		$id = isset($_REQUEST["bookingID"]) ? $_REQUEST["bookingID"] : "";
 
 		try {
-
 			$detailBooking = new ModuleCashierController();
-			$result = $detailBooking->viewDetailBooking($id);
+			$result = $detailBooking->viewBookingDetail($id);
 			echo $result;
 
 		} catch (Exception $e) {
