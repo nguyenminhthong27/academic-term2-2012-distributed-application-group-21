@@ -1,3 +1,29 @@
+<?php
+//check is_login
+session_start();
+$is_login = isset($_SESSION['is_login']) ? $_SESSION['is_login'] : false;
+$staff_type = isset($_SESSION['staff_type']) ? $_SESSION['staff_type'] : "";
+
+// check login
+if ($is_login == false) {
+	require_once '../configure/GeneralFunctions.php';
+	echo GeneralFunctions::Alert("Bạn chưa đăng nhập.");
+	header("Location: index.php");
+}
+
+// hard code to test staff_type
+$staff_type = "NV Thu Ngan";
+if ($staff_type != "NV Thu Ngan") {
+	require_once '../configure/GeneralFunctions.php';
+	echo GeneralFunctions::Alert("Bạn không có đủ quyền để thực hiện chức năng này.");
+	header("Location: home.php");
+}
+
+require_once '../configure/IncludeGenerator.php';
+require_once '../controller/GUIGenerator.php';
+
+?>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -18,18 +44,9 @@
     <body>
         <div id="page" class="shell">
             <!-- Logo + Search + Navigation -->
-            <div id="top">
-                <div class="cl">&nbsp;</div>
-                <h1 id="logo"><a href="#">T4V RESTAURANT</a></h1>          
-                <div class="cl">&nbsp;</div>
-                <div id="navigation">
-                    <ul>
-                        <li><a href="#" class="active"><span>Trang chủ</span></a></li>                        
-                        <li><a href="#"><span>Giới thiệu</span></a></li>
-                        <li><a href="#"><span>Liên hệ</span></a></li>
-                    </ul>
-                </div>	
-            </div>
+            <?php
+            echo IncludeGenerator::LogoGenerate(); 
+            ?>
             <!-- END Logo + Search + Navigation -->                                  
             <!-- Main -->
             <div id="main">	

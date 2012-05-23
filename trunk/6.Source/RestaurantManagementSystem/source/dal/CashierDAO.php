@@ -19,9 +19,6 @@ class CashierDAO implements IDatabaseConfig {
 		$condition = $this->createConditionToSearchBill($from, $to, $fromValue, $toValue);
 		
 		return MongoDatabase::getAllDataFrom("HoaDon", $condition);
-// 		$conn = new Mongo(IDatabaseConfig::Host);
-// 		$db = $conn->selectDB(IDatabaseConfig::DbName);
-// 		return $db->execute('function(manv) {return db.NhanVien.findOne({MaNV : manv});}', array("NV0001"));
 	}
 	
 	/**

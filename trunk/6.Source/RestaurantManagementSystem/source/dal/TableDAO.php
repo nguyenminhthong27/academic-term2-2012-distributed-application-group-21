@@ -64,7 +64,8 @@ class TableDAO implements IDatabaseConfig {
 			foreach ($availTable as $idx => $val){
 				$availTableDetails[] = $this->getTableInfo($val);
 			}
-				
+			
+			$connection->close();
 			return $availTableDetails;
 		} catch (MongoConnectionException $e) {
 			die('Error connecting to MongoDB server');
