@@ -14,15 +14,19 @@ class BookingDAO {
 	 */
 	public function save($arrBookingInfo, $arrBookingDetailInfo){
 		// check input
-			$arrBookingInfo["NgayLap"] = new MongoDate(strtotime($arrBookingInfo["NgayLap"]));
+		$arrBookingInfo["NgayLap"] = new MongoDate(strtotime($arrBookingInfo["NgayLap"]));
+		
+		// convert date time string to MongoDate
+		$temp = array();	
 		foreach($arrBookingDetailInfo as $bookingDetailInfo){			
 			$bookingDetailInfo["TuThoiGian"] = new MongoDate(strtotime($bookingDetailInfo["TuThoiGian"]));
 			$bookingDetailInfo["DenThoiGian"] = new MongoDate(strtotime($bookingDetailInfo["DenThoiGian"]));
+			$temp[] = $bookingDetailInfo;
 		}
 		// insert
 		try {
 			MongoDatabase::addDataTo("PhieuDatCho", $arrBookingInfo);
-			foreach ($arrBookingDetailInfo as $detailInfo) {
+			foreach ($temp as $detailInfo) {
 				MongoDatabase::addDataTo("ChiTietDatCho", $detailInfo);
 			}			
 			return true;

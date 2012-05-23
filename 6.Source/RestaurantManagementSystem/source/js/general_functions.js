@@ -64,3 +64,7 @@ function showTableList() {
 function billingManagement(){
 	window.location = "../gui/billManagement.php";
 }
+
+function addBill(){
+	window.location = "../gui/createBill.php";
+}

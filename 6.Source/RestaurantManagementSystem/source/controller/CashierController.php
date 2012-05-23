@@ -10,23 +10,11 @@ class CashierController{
 	 * @return string
 	 * @author thanhtuan
 	 */
-	public function searchBill($from,$totalMoneyFrom,$totalMoneyTo){
-		// HARDCODE
-		// make $to from $from		
-		
-// 		$fromText = date("Y-m-d");// current date
-// 		$toText = strtotime(date("Y-m-d", strtotime($fromText)) . " +1 day");
-// 		$from = new DateTime($fromText);
-// 		$to = new DateTime($toText);
-
-		$from = new DateTime(date("Y-m-d"));
-		$to = new DateTime(date("Y-m-d"));
+	public function searchBill($fromText,$totalMoneyFrom,$totalMoneyTo){
+		// make $to from $from
+		$from = new DateTime($fromText);
+		$to = new DateTime($fromText);
 		$to->modify("+1 day");
-		
-		//$from = new DateTime("2012-05-19");
-		//$to = new DateTime("2012-05-20");
-		//$to = $from;
-		//$to->add(new DateInterval('P1D'));
 
 		// search bill
 		$dao = new CashierDAO();
