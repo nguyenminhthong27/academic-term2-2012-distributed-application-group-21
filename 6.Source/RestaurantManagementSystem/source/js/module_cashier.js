@@ -98,7 +98,21 @@ function cancelPayForBillButClicked()
 
 function viewBillDetail(billID)
 {
-    $('.bill-detail-info-dialog').dialog("open");
+var http = createXMLHttpRequest();
+	
+	var nocache = Math.random();
+	
+	var serverURL = "../controller/ModuleCashierController.php?action=detailBill&billID=" + billID + "&nocache=" + nocache;
+	http.open("POST", serverURL, true);
+	http.onreadystatechange = function()
+		{
+			if(http.readyState==4 && http.status==200){
+				var respone = http.responseText;
+				$('.bill-detail-info-dialog').innerHTML = respone;
+			    $('.bill-detail-info-dialog').dialog("open");
+			}
+		}
+	http.send();
 }
 
 function viewBookingNoteDetail(billID)
@@ -107,13 +121,12 @@ function viewBookingNoteDetail(billID)
 	
 	var nocache = Math.random();
 	
-	var serverURL = "../controller/ModuleCashierController.php?action=detailBooking&billID=" + billID + "&nocache=" + nocache;
+	var serverURL = "../controller/ModuleCashierController.php?action=detailBooking&bookingID=" + billID + "&nocache=" + nocache;
 	http.open("POST", serverURL, true);
 	http.onreadystatechange = function()
 		{
 			if(http.readyState==4 && http.status==200){
 				var respone = http.responseText;
-				alert(respone);
 				$('.booking-note-detail-dialog').innerHTML = respone;
 			    $('.booking-note-detail-dialog').dialog("open");
 			}
