@@ -1,7 +1,7 @@
 <?php
 require_once '../dal/CashierDAO.php';
 
-class CashierController{
+class ModuleCashierController{
 
 	/**
 	 * @param date $from
@@ -324,7 +324,7 @@ switch ($action) {
 
 		//change format date : 2012-05-17 00:00:00
 		if($date != ""){
-			$format = new CashierController();
+			$format = new ModuleCashierController();
 			$date_format = $format->changeFormatDate($date);
 		} else {
 			echo "Bạn phải chọn thời gian tìm kiếm.";
@@ -333,7 +333,7 @@ switch ($action) {
 
 		try {
 			// do search
-			$search = new CashierController();
+			$search = new ModuleCashierController();
 			$SearchResult = $search->searchBill($date_format,$totalMoneyFrom,$totalMoneyTo);
 			echo $SearchResult;
 		} catch (Exception $e) {
@@ -347,7 +347,7 @@ switch ($action) {
 
 		try {
 			// do delete
-			$delete = new CashierController();
+			$delete = new ModuleCashierController();
 			$result = $delete->deleteBill($id);
 			echo $SearchResult;
 		} catch (Exception $e) {
@@ -360,7 +360,7 @@ switch ($action) {
 
 		try {
 			// do view billing to  paid
-			$viewBill = new CashierController();
+			$viewBill = new ModuleCashierController();
 			$Result = $viewBill->viewBill($id);
 			echo $Result;
 		} catch (Exception $e) {
@@ -375,7 +375,7 @@ switch ($action) {
 
 		try {
 			// do view detail bill
-			$detailBill = new CashierController();
+			$detailBill = new ModuleCashierController();
 			$Result = $detailBill->detailBill($id);
 			echo $Result;
 		} catch (Exception $e) {
@@ -388,7 +388,7 @@ switch ($action) {
 
 		try {
 
-			$excute = new CashierController();
+			$excute = new ModuleCashierController();
 			$Result = $excute->executePaiding($id);
 			echo $Result;
 
@@ -402,7 +402,7 @@ switch ($action) {
 
 		try {
 
-			$detailBooking = new CashierController();
+			$detailBooking = new ModuleCashierController();
 			$result = $detailBooking->viewDetailBooking($id);
 			echo $result;
 
