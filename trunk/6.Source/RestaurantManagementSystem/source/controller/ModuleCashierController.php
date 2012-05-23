@@ -62,24 +62,24 @@ class CashierController{
 			if($TinhTrang == 0)
 			{
 				$data = $data."<tr>";
-				$data = $data."<td><a onclick='payForBill()'title= 'Thanh toán'><img src='../css/images/calculatorIcon.png'/></a></td>";
-				$data = $data."<td><a onclick='deleteConfirm()' title='Xóa hóa đơn'><img src='../css/images/trashIcon.png'/></a></td>";
-				$data = $data."<td><a onclick='viewBillDetail()' title='Xem chi tiết'><img src='../css/images/infoIcon.png'/></a></td>";
+				$data = $data."<td><a onclick='payForBill(\"" . $MaHD . "\")'title= 'Thanh toán'><img src='../css/images/calculatorIcon.png'/></a></td>";
+				$data = $data."<td><a onclick='deleteConfirm(\"" . $MaHD . "\")' title='Xóa hóa đơn'><img src='../css/images/trashIcon.png'/></a></td>";
+				$data = $data."<td><a onclick='viewBillDetail(\"" . $MaHD . "\")' title='Xem chi tiết'><img src='../css/images/infoIcon.png'/></a></td>";
 				$data = $data."<td>$MaHD</td>";
 				$data = $data."<td>$NgayLap</td>";
 				$data = $data."<td>$TongTien</td>";
-				$data = $data."<td><a onclick='viewBookingNoteDetail()'>$MaPhieu</a></td>";
+				$data = $data."<td><a onclick='viewBookingNoteDetail(\"" . $MaHD . "\")'>$MaPhieu</a></td>";
 				$data = $data."</tr>";
 			}
 			else {
 				$data1 = $data1."<tr>";
 				$data1 = $data1."<td></td>";
-				$data1 = $data1."<td><a onclick='deleteConfirm()' title='Xóa hóa đơn'><img src='../css/images/trashIcon.png'/></a></td>";
-				$data1 = $data1."<td><a onclick='viewBillDetail()' title='Xem chi tiết'><img src='../css/images/infoIcon.png'/></a></td>";
+				$data1 = $data1."<td><a onclick='deleteConfirm(\"" . $MaHD . "\")' title='Xóa hóa đơn'><img src='../css/images/trashIcon.png'/></a></td>";
+				$data1 = $data1."<td><a onclick='viewBillDetail(\"" . $MaHD . "\")' title='Xem chi tiết'><img src='../css/images/infoIcon.png'/></a></td>";
 				$data1 = $data1."<td>$MaHD</td>";
 				$data1 = $data1."<td>$NgayLap</td>";
 				$data1 = $data1."<td>$TongTien</td>";
-				$data1 = $data1."<td><a onclick='viewBookingNoteDetail()'>$MaPhieu</a></td>";
+				$data1 = $data1."<td><a onclick='viewBookingNoteDetail(\"" . $MaHD . "\")'>$MaPhieu</a></td>";
 				$data1 = $data1."</tr>";
 			}
 		}
@@ -95,7 +95,7 @@ class CashierController{
 	}
 	/*
 	 * @author thanhtuan
-	* method detail bills
+	* method view detail bill details
 	* @parram $id(of billing)
 	* @return Gui contain information bout detail billing
 	*/
@@ -130,7 +130,7 @@ class CashierController{
 		return $data;
 
 	}
-	/*method delete billing
+	/*method delete a bill
 	 * @author thanhtuan
 	* @parram $id
 	* @return result = true if success else result = false
@@ -142,7 +142,7 @@ class CashierController{
 	}
 	/*
 	 * @author thanhtuan
-	* method view billing
+	* method view bill info
 	* @parram $id
 	* @return Gui contains information about Paid Bill
 	*/
@@ -227,11 +227,11 @@ class CashierController{
 	}
 	/*
 	 * @author thanhtuan
-	* method view detail booking
+	* method view  booking detail
 	* @parram $id
 	* @return GUI contain information about detail Booking
 	*/
-	public function viewDetailBooking($id){
+	public function viewBookingDetail($id){
 
 		$dao = new billingDAO() ;
 		// get detail booking
@@ -288,12 +288,12 @@ class CashierController{
 		return $data;
 	}
 
-	/*method execut  paiding billing...update status of billing is 1
+	/*method execut  pay for bill...update status of billing is 1
 	 * @author thanhtuan
 	* @parram $id
 	* @return result = true if success else result = false
 	*/
-	public function executePaiding($id)
+	public function payment($id)
 	{
 
 		$dao = new billingDAO();
@@ -398,13 +398,13 @@ switch ($action) {
 		break;
 		// cái này là xem chi tiết đặt chỗ
 	case "detailBooking":
-		$id = isset($_REQUEST["id"]) ? $_REQUEST["id"] : "";
+		$id = isset($_REQUEST["billID"]) ? $_REQUEST["billID"] : "";
 
 		try {
 
 			$detailBooking = new CashierController();
-			$Result = $detailBooking->viewDetailBooking($id);
-			echo $Result;
+			$result = $detailBooking->viewDetailBooking($id);
+			echo $result;
 
 		} catch (Exception $e) {
 			echo "Not Connect to database";

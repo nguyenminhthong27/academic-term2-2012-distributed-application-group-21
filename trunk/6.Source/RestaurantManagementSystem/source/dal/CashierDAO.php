@@ -18,7 +18,13 @@ class CashierDAO implements IDatabaseConfig {
 	public function searchBill($from, $to, $fromValue, $toValue){
 		$condition = $this->createConditionToSearchBill($from, $to, $fromValue, $toValue);
 		
-		return MongoDatabase::getAllDataFrom("HoaDon", $condition);
+		$data = MongoDatabase::getAllDataFrom("HoaDon", $condition);
+		$result = array();
+		foreach ($data as $bill){
+			$bill["NgayLap"] = date('Y-M-d h:i:s', $bill["NgayLap"]->sec); 
+			$result[] = $bill;
+		}
+		return $result;
 	}
 	
 	/**
