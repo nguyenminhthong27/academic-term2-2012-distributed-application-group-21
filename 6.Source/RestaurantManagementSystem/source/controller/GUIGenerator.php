@@ -51,7 +51,7 @@ class GUIGenerator {
 	
 	public static function htmlShowSupplierSelect(){
 		$suppliers = MongoDatabase::getAllDataFrom("NhaCungCap");
-		$html = '<select id="selectSupplier">';
+		$html = '<select id="selectSupplier" onchange="javascript:supplierSelectOnChange(this)">';
 		
 		foreach ($suppliers as $supplier){
 			$html .= '<option value"' . $supplier["MaNCC"] . '">' . $supplier["TenNCC"] . '</option>';

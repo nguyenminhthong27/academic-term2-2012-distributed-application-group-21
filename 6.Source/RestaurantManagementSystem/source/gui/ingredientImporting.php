@@ -73,8 +73,6 @@ require_once '../controller/GUIGenerator.php';
 									<tr>
 										<td>Mã hợp đồng</td>
 										<td><select>
-												<!--                                                     <option>125</option> -->
-												<!--                                                     <option>128</option> -->
 												<?php
 												echo ModuleIngredientImportingController::getContractId();
 												?>
