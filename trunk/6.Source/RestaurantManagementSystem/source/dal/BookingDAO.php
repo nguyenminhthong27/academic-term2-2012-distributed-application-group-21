@@ -46,7 +46,15 @@ class BookingDAO {
 	 */
 	public function search($from, $to, $cusName, $cusID){
 		$condition = $this->createConditionToSearch($from, $to, $cusName, $cusID);
-		return MongoDatabase::getAllDataFrom("PhieuDatCho", $condition);
+		$data =  MongoDatabase::getAllDataFrom("PhieuDatCho", $condition);
+		
+		$result = array();
+		foreach($data as $booking){
+			$booking["NgayLap"] = date('Y-M-d h:i:s', $booking["NgayLap"]->sec);
+			$result[] = $booking;
+		}
+		
+		return $result;
 	}
 	
 	
@@ -66,7 +74,9 @@ class BookingDAO {
 					);
 		}
 		if ($cusName != null) {
-			$condition["HoTenKH"] = "/" . $cusName . "/i"; // RegEx, search with case insensitive.
+			//$condition["HoTenKH"] = "/" . $cusName . "/i"; // RegEx, search with case insensitive.
+			$regex = "/" . $cusName . "/iu";
+			$condition["HoTenKH"] = new MongoRegEx($regex);
 		}
 		if ($cusID != null) {
 			$condition["CMND"] = "/" . $cusID . "/i"; // RegEx, search with case insensitive

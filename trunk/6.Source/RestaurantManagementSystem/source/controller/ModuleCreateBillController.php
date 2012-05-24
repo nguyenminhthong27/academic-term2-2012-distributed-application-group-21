@@ -1,30 +1,32 @@
 <?php
 // add require CreateBillDAO
-
+require_once '../dal/bookingdao.php';
+require_once '../dal/fooddao.php';
 
 class CreateBillController{
-
-
-
 	/**
 	 * method  getListDish() get all Dish of restaurants
 	 * @param no
 	 *  @return Gui html
 	 * @author thanhtuan
 	 */
-	public function getListDish(){
-		$dao = new CreateBillDAO();
-		$arr = $dao->getListDishDAO();
-		$data = "";
-		$data = "table>
+	public function getListDish($date){
+		// make $to from $from
+		$from = new DateTime($date);
+		$to = new DateTime($date);
+		$to->modify("+1 day");
+		
+		$dao = new FoodDAO();
+		$arr = $dao->getListFoodWithUnitPrice($from->format('Y-m-d H:i:s'), $to->format('Y-m-d H:i:s'));
+		$data = "<p>Chọn món ăn nhập vào hóa đơn</p>";
+		$data .= "<table>
 		<tr>
 		<th><input type='checkbox' id='checkAllCBox' onclick='checkAllCBoxClicked();'></input></th>
 		<th>Món ăn</th>
 		<th>Giá thành</th>
 		</tr>";
 		foreach ($arr as $value){
-
-			$TenMoAn = isset($value["TenMonAn"]) ? $value["TenMonAn"] : "";
+			$TenMonAn = isset($value["TenMonAn"]) ? $value["TenMonAn"] : "";
 			$DonGia = isset($value["DonGia"]) ? $value["DonGia"] : "";
 			$data = $data."<tr>";
 			$data = $data."<td><input type='checkbox'></input></td>";
@@ -33,8 +35,9 @@ class CreateBillController{
 			$data = $data."</tr>";
 		}
 		$data = $data."</table>";
+		
+		$data .= '<button class="nextBut" id="addFoodAmountBut">Nhập số lượng</button>';
 		return $data;
-
 	}
 	/**
 	 * method  searchBooking by date, customer name, customer id, customner phone
@@ -72,7 +75,7 @@ class CreateBillController{
 			$SDT = isset($value["SDT"]) ? $value["SDT"] : "";
 			$NguoiTiepNhan = isset($value["NguoiTiepNhan"]) ? $value["NguoiTiepNhan"] : "";
 			$data = $data."<tr>";
-			$data = $data."<td>$MaPhieu</td>";
+			$data = $data."<td><a href='javascript:selectBooking(\"" . $MaPhieu. "\")'>$MaPhieu</a></td>";
 			$data = $data."<td>$NgayLap</td>";
 			$data = $data."<td>$HoTenKH</td>";
 			$data = $data."<td>$CMND</td>";
@@ -131,14 +134,17 @@ class CreateBillController{
 //get action form request params
 $action = isset($_REQUEST["action"]) ? $_REQUEST["action"] : "";
 switch ($action) {
-	case "searchListDish":
-
-
+	case "searchDish":
+		$date = isset($_REQUEST["date"]) ? $_REQUEST["date"] : "";
+		if($date != ""){
+			$format = new CreateBillController();
+			$date = $format->changeFormatDate($date);
+		}
 		try {
 			// do search
 			$search = new CreateBillController();
-			$SearchResult = $search->getListDish();
-			echo $SearchResult;
+			$result = $search->getListDish($date);
+			echo $result;
 		} catch (Exception $e) {
 			echo "Not Connect to database";
 		}
@@ -160,7 +166,7 @@ switch ($action) {
 			// do search
 			$search = new CreateBillController();
 			$result = $search->searchBooking($date, $customerName, $customerID, $customerPhone);
-			echo $SearchResult;
+			echo $result;
 		} catch (Exception $e) {
 			echo "Not Connect to database";
 		}

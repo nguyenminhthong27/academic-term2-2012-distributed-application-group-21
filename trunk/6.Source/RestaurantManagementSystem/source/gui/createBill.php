@@ -71,18 +71,19 @@ require_once '../controller/GUIGenerator.php';
                                     <table>
                                         <tr>
                                             <td>Ngày lập</td>
-                                            <td><input type="text" class="dtpker"></input></td>                                
+                                            <td><input id="date_founded" type="text" class="dtpker"></input></td>
+                                            <td><button id="btnSearchFood" onclick="javascript:searchFood()">Lấy món ăn</button></td>                                
                                         </tr>
                                         <tr>
                                             <td>Mã phiếu đặt chỗ</td>
-                                            <td><input type="text"></input></td>
+                                            <td><input id="bookingID" type="text"></input></td>
                                             <td><button id="bookingSearchBut">Tìm kiếm</button></td>
                                         </tr>
                                     </table>
                                 </div>
                                 <!-- END Div for bill info -->
                                 <!-- Div for food detail -->                    
-                                <div class="food-detail">
+                                <div id="food-list-detail" class="food-detail">
                                     <p>Chọn món ăn nhập vào hóa đơn</p>
                                     <table>
                                         <tr>
