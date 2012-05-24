@@ -4,9 +4,14 @@
  */
 
  function _init_slider(carousel) {    	
-    $('.nextBut').bind('click', function() {
-        carousel.next();
-        return false;
+//    $('.nextBut').bind('click', function() {
+//        carousel.next();
+//        return false;
+//    });
+    
+    $("#addFoodAmountBut").bind('click', function(){
+    	carousel.next();
+    	return false;
     });
     
     $('.backBut').bind('click', function() {
@@ -40,14 +45,16 @@ $(document).ready(function()
         modal: true
     });
     
-    $("#slider-holder").jcarousel({
-        scroll: 2,
-        wrap: 'both',
-        initCallback: _init_slider,
-        itemFallbackDimension:_set_slide,
-        buttonNextHTML: null,
-        buttonPrevHTML: null
-    });
+//    $("#slider-holder").jcarousel({
+//        scroll: 2,
+//        wrap: 'both',
+//        initCallback: _init_slider,
+//        itemFallbackDimension:_set_slide,
+//        buttonNextHTML: null,
+//        buttonPrevHTML: null
+//    });
+    
+    initSlider();
     
     $("#bookingSearchBut").click(function(){
         $('.booking-search-dialog').dialog("open");
@@ -102,4 +109,51 @@ function checkAllCBoxClicked()
             for(var i=0; i<cbox.length; i++)
                 cbox[i].checked = false;
             }
+}
+
+/**
+ * select booking when click to link that's contents booking id
+ * @param bookingID
+ */
+function selectBooking(bookingID){	
+	$('.booking-search-dialog').dialog("close");
+	document.getElementById("bookingID").value = bookingID;
+}
+
+/**
+ * search food with date
+ */
+function searchFood(){
+	var date_founded = document.getElementById("date_founded").value;
+	var nocache = Math.random();
+	
+	var http = createXMLHttpRequest();
+	var serverURL = "../controller/ModuleCreateBillController.php?action=searchDish&date=" + date_founded + 
+		"&nocache=" + nocache;
+	
+	http.open("POST", serverURL, true);
+	http.onreadystatechange = function()
+		{
+			if(http.readyState==4 && http.status==200){
+				var respone = http.responseText;
+				document.getElementById("food-list-detail").innerHTML = respone;
+				initSlider();
+			}
+		};
+	http.send();
+}
+
+
+/**
+ * initialize slider
+ */
+function initSlider(){
+	$("#slider-holder").jcarousel({
+        scroll: 2,
+        wrap: 'both',
+        initCallback: _init_slider,
+        itemFallbackDimension:_set_slide,
+        buttonNextHTML: null,
+        buttonPrevHTML: null
+    });
 }
