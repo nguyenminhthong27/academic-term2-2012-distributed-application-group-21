@@ -4,15 +4,11 @@
  */
 
  function _init_slider(carousel) {    	
-//    $('.nextBut').bind('click', function() {
-//        carousel.next();
-//        return false;
-//    });
-    
-    $("#addFoodAmountBut").bind('click', function(){
-    	carousel.next();
-    	return false;
+    $('.nextBut').bind('click', function() {
+        carousel.next();
+        return false;
     });
+    
     
     $('.backBut').bind('click', function() {
         carousel.prev();
@@ -45,16 +41,14 @@ $(document).ready(function()
         modal: true
     });
     
-//    $("#slider-holder").jcarousel({
-//        scroll: 2,
-//        wrap: 'both',
-//        initCallback: _init_slider,
-//        itemFallbackDimension:_set_slide,
-//        buttonNextHTML: null,
-//        buttonPrevHTML: null
-//    });
-    
-    initSlider();
+    $("#slider-holder").jcarousel({
+        scroll: 2,
+        wrap: 'both',
+        initCallback: _init_slider,
+        itemFallbackDimension:_set_slide,
+        buttonNextHTML: null,
+        buttonPrevHTML: null
+    });
     
     $("#bookingSearchBut").click(function(){
         $('.booking-search-dialog').dialog("open");
@@ -87,9 +81,7 @@ $(document).ready(function()
     $(".food-amount table tr td input").NumericUpDown();
     
     $("#addFoodAmountBut").click(function() {
-//    	alert("");
-    	$("#slider-holder").next();
-    	
+    	$("#slider-holder").next();    	
     });
 });
 
@@ -137,7 +129,6 @@ function searchFood(){
 			if(http.readyState==4 && http.status==200){
 				var respone = http.responseText;
 				document.getElementById("food-list-detail").innerHTML = respone;
-				initSlider();
 			}
 		};
 	http.send();
