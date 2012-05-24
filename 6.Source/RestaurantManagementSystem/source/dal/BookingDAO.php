@@ -35,5 +35,50 @@ class BookingDAO {
 		}
 		return false;
 	}
+	
+	
+	/**
+	 * search all booking with datetime, customer name or customer id.
+	 * @param string $date
+	 * @param string $cusName
+	 * @param string $cusID
+	 * @return array booking info.
+	 */
+	public function search($from, $to, $cusName, $cusID){
+		$condition = $this->createConditionToSearch($from, $to, $cusName, $cusID);
+		return MongoDatabase::getAllDataFrom("PhieuDatCho", $condition);
+	}
+	
+	
+	/**
+	 * create condition with datetime, customer name, custormer id to searching
+	 * @param string $date
+	 * @param string $cusName
+	 * @param string $cusID
+	 * @return array condition
+	 */
+	private function createConditionToSearch($from, $to, $cusName, $cusID){
+		$condition = array();
+		if ($from != null && $to != null) {
+			$condition["NgayLap"] = array(
+					'$gte' => new MongoDate(strtotime($from)),
+					'$lte' => new MongoDate(strtotime($to))
+					);
+		}
+		if ($cusName != null) {
+			$condition["HoTenKH"] = "/" . $cusName . "/i"; // RegEx, search with case insensitive.
+		}
+		if ($cusID != null) {
+			$condition["CMND"] = "/" . $cusID . "/i"; // RegEx, search with case insensitive
+		}
+		
+		return $condition;
+	}
 }
+
+
+// hard code to test
+// $dao = new BookingDAO();
+// $data = $dao->search("2012-05-23", "2012-05-24", null, null);
+// print_r($data);
 ?>

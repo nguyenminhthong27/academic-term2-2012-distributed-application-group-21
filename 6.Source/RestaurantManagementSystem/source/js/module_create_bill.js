@@ -54,16 +54,15 @@ $(document).ready(function()
     });    
     
     $("#bookingSearchDialogBut").click(function(){
-        alert("fda");
-        var date_booking_founded = $('#date_booking_founded').value;
-        var customer_name = $('#customer_name').value;
-        var customer_id = $('#customer_id').value;
-        var customer_phone = $('#customer_phone').value;
+        var date_booking_founded = document.getElementById("date_booking_founded").value;
+        var customer_name = document.getElementById("customer_name").value;
+        var customer_id = document.getElementById("customer_id").value;
+        var customer_phone = document.getElementById("customer_phone").value;
         
         var nocache = Math.random();
     	
     	var http = createXMLHttpRequest();
-    	var serverURL = "../controller/ModuleCreateBillController.php?action=search_booking&time=" + date_booking_founded + 
+    	var serverURL = "../controller/ModuleCreateBillController.php?action=searchBooking&date=" + date_booking_founded + 
     		"&cus_name=" + customer_name + "&cus_id=" + customer_id  + 
     		"&cus_phone=" + customer_phone + "&nocache=" + nocache;
     	
