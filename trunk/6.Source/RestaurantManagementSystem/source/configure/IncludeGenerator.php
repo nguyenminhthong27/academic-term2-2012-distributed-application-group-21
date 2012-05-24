@@ -145,8 +145,10 @@ class IncludeGenerator {
                             </ul>
                         </div>
                         <div class="smallToolbar">
+                        	<a href="javascript:addIngredient()"> <img src="../css/images/addIngredientIcon.png" title="Nhập hàng" /> </a>
+                        	<a href="javascript:addSupplier()"><img	src="../css/images/plusIcon.png" title="Thêm nhà cung cấp" /> </a>
                             <a href="javascript:supplierManagement()" title="Quản lý nhà cung cấp"><img src="../css/images/restaurantIcon.png" /></a>
-                            <a href="javascript:materialManagement()" title="Quản lý nguyên liệu trong kho hàng"><img src="../css/images/ingredientIcon.png" /></a>
+                            <a href="javascript:ingredientManagement()" title="Quản lý nguyên liệu trong kho hàng"><img src="../css/images/ingredientIcon.png" /></a>
                         </div>
                     </div>
                     <div class="cl">&nbsp;</div>
@@ -262,6 +264,29 @@ class IncludeGenerator {
 		';
 	}
 	
-	
+	/** 
+	 * UIs of repository management toolbar
+	 * @return string
+	 */
+	public static function ReporsitoryManagementToolbar(){
+		return '
+		<div id="menuDiv" class="menu" style="display: none">
+				<ul>
+					<li><a href="javascript:addIngredient()"><img
+							src="../css/images/addIngredientIcon.png" title="Nhập hàng" /> </a>
+					</li>
+					<li><a href="javascript:addSupplier()"><img
+							src="../css/images/plusIcon.png" title="Thêm nhà cung cấp" /> </a>
+					</li>
+					<li><a href="javascript:supplierManagement()"><img
+							src="../css/images/restaurantIcon.png"
+							title="Quản lý nhà cung cấp" /> </a></li>
+					<li><a href="javascript:ingredientManagement()"><img
+							src="../css/images/ingredientIcon.png" title="Quản lý kho hàng" />
+					</a></li>
+				</ul>
+			</div>
+		';
+	}
 }
 ?>
