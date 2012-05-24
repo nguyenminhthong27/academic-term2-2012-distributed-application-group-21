@@ -95,7 +95,10 @@ class IncludeGenerator {
                                 <li>Chỉ dành cho nhân viên thu ngân</li>
                             </ul>
                         </div>
-                        <div class="smallToolbar"></div>                        
+                        <div class="smallToolbar">
+                            <a href="javascript:addBill()" title="Tạo hóa đơn"><img alt="Tạo hóa đơn" src="../css/images/plusIcon.png" /></a>
+                            <a href="javascript:billingManagement()" title="Quản lý và thanh toán hóa đơn"><img src="../css/images/cashierIcon.png" /></a>
+                        </div>                        
                     </div>
                     <div class="col col-last">
                         <img src="../css/images/seatIcon.png" ></img>

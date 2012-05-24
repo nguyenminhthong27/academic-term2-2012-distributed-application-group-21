@@ -116,7 +116,7 @@ class ModuleCashierController{
 			$MonAn = isset($value["TenMonAn"]) ? $value["TenMonAn"] : "";
 			$DonGia = isset($value["DonGia"]) ? $value["DonGia"] : "";
 			$SoLuong = isset($value["SoLuong"]) ? $value["SoLuong"] : "";
-			$ThanhTien = isset($value["ThanhTien"]) ? $value["ThanhTien"] : "";
+			$ThanhTien = $DonGia * $SoLuong;
 
 			$data = $data."<tr>";
 			$data = $data."<td>$MonAn</td>";
@@ -172,7 +172,7 @@ class ModuleCashierController{
 			$MonAn = isset($value["TenMonAn"]) ? $value["TenMonAn"] : "";
 			$DonGia = isset($value["DonGia"]) ? $value["DonGia"] : "";
 			$SoLuong = isset($value["SoLuong"]) ? $value["SoLuong"] : "";
-			$ThanhTien = isset($value["ThanhTien"]) ? $value["ThanhTien"] : "";
+			$ThanhTien = $SoLuong * $DonGia;
 
 			$data = $data."<tr>";
 			$data = $data."<td>$MonAn</td>";
