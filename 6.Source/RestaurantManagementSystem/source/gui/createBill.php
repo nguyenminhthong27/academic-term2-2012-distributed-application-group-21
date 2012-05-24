@@ -39,7 +39,9 @@ require_once '../controller/GUIGenerator.php';
         <script src="../js/lib/jquery-ui-1.8.20.custom.min.js" type="text/javascript"></script>
         <script src="../js/lib/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
         <script src="../js/lib/jquery.numericupdown.js" type="text/javascript"></script>
-        <script src="../js/createBillFunc.js" type="text/javascript"></script>
+        
+        <script src="../js/module_create_bill.js" type="text/javascript"></script>
+        <script src="../js/general_functions.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="page" class="shell">
@@ -54,8 +56,8 @@ require_once '../controller/GUIGenerator.php';
                 <div ><img id="button-show" title="Click here" src="../css/images/button-next.gif"/></div>
                 <div id="menuDiv" class="menu" style="display:none">
                     <ul>
-                        <li><a href="#"><img src="../css/images/plusIcon.png" title="Thêm hóa đơn"/></a></li>
-                        <li><a href="#"><img src="../css/images/cashierIcon.png" title="Quản lý và thanh toán hóa đơn"/></a></li>
+                        <li><a href="javascript:addBill()"><img src="../css/images/plusIcon.png" title="Thêm hóa đơn"/></a></li>
+                        <li><a href="javascript:billingManagement()"><img src="../css/images/cashierIcon.png" title="Quản lý và thanh toán hóa đơn"/></a></li>
                     </ul>
                 </div>
                 <!-- END Menu -->         
@@ -187,25 +189,25 @@ require_once '../controller/GUIGenerator.php';
                     <table>
                         <tr>
                             <td>Ngày lập</td>
-                            <td><input type="text" class="dtpker" ></input></td>
+                            <td><input id="date_booking_founded" type="text" class="dtpker" ></input></td>
                         </tr>
                         <tr>
                             <td>Họ tên khách hàng</td>
-                            <td><input type="text"></input></td>
+                            <td><input id="customer_name" type="text"></input></td>
                         </tr>
                         <tr>
                             <td>Số CMND</td>
-                            <td><input type="text"></input></td>
+                            <td><input id="customer_id" type="text"></input></td>
                         </tr>
                         <tr>
                             <td>Số điện thoại</td>
-                            <td><input type="text"></input></td>
+                            <td><input id="customer_phone" type="text"></input></td>
                         </tr>
                     </table>
                     <button id="bookingSearchDialogBut">Tìm kiếm</button>
                 </div>
                 <!-- END booking-search-table -->
-                <div class="booking-detail-div">
+                <div id="booking-detail-div" class="booking-detail-div">
                     <table>
                         <tr>
                             <th>Mã phiếu</th>

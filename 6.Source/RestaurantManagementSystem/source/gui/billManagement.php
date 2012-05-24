@@ -56,7 +56,7 @@ require_once '../controller/GUIGenerator.php';
                 <div id="menuDiv" class="menu" style="display:none">
                     <ul>
                         <li><a href="javascript:addBill()"><img src="../css/images/plusIcon.png" title="Thêm hóa đơn"/></a></li>
-                        <li><a href="javascript:billManagement()"><img src="../css/images/cashierIcon.png" title="Quản lý và thanh toán hóa đơn"/></a></li>
+                        <li><a href="javascript:billingManagement()"><img src="../css/images/cashierIcon.png" title="Quản lý và thanh toán hóa đơn"/></a></li>
                     </ul>
                 </div>
                 <!-- END Menu -->         

@@ -7,7 +7,7 @@
     $('.nextBut').bind('click', function() {
         carousel.next();
         return false;
-    })
+    });
     
     $('.backBut').bind('click', function() {
         carousel.prev();
@@ -51,10 +51,40 @@ $(document).ready(function()
     
     $("#bookingSearchBut").click(function(){
         $('.booking-search-dialog').dialog("open");
-    });     
+    });    
+    
+    $("#bookingSearchDialogBut").click(function(){
+        alert("fda");
+        var date_booking_founded = $('#date_booking_founded').value;
+        var customer_name = $('#customer_name').value;
+        var customer_id = $('#customer_id').value;
+        var customer_phone = $('#customer_phone').value;
+        
+        var nocache = Math.random();
+    	
+    	var http = createXMLHttpRequest();
+    	var serverURL = "../controller/ModuleCreateBillController.php?action=search_booking&time=" + date_booking_founded + 
+    		"&cus_name=" + customer_name + "&cus_id=" + customer_id  + 
+    		"&cus_phone=" + customer_phone + "&nocache=" + nocache;
+    	
+    	http.open("POST", serverURL, true);
+    	http.onreadystatechange = function()
+    		{
+    			if(http.readyState==4 && http.status==200){
+    				var respone = http.responseText;
+    				document.getElementById("booking-detail-div").innerHTML = respone;
+    			}
+    		};
+    	http.send();
+    }); 
     
     $(".food-amount table tr td input").NumericUpDown();
     
+    $("#addFoodAmountBut").click(function() {
+//    	alert("");
+    	$("#slider-holder").next();
+    	
+    });
 });
 
 
