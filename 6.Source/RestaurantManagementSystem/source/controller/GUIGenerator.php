@@ -49,6 +49,16 @@ class GUIGenerator {
 		return $html;
 	}
 	
-	
+	public static function htmlShowSupplierSelect(){
+		$suppliers = MongoDatabase::getAllDataFrom("NhaCungCap");
+		$html = '<select id="selectSupplier">';
+		
+		foreach ($suppliers as $supplier){
+			$html .= '<option value"' . $supplier["MaNCC"] . '">' . $supplier["TenNCC"] . '</option>';
+		}
+		$html .= '</select>';
+		
+		return $html;
+	}
 } 
 ?>

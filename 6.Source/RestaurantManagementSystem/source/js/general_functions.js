@@ -65,6 +65,37 @@ function billingManagement(){
 	window.location = "../gui/billManagement.php";
 }
 
+/**
+ * create new bill 
+ */
 function addBill(){
 	window.location = "../gui/createBill.php";
+}
+
+/**
+ * add ingredient into reporsitory
+ */
+function addIngredient(){
+	window.location = "../gui/ingredientImporting.php";
+}
+
+/**
+ * add supplier
+ */
+function addSupplier(){
+	
+}
+
+/**
+ * supplier management
+ */
+function supplierManagement(){
+	
+}
+
+/**
+ * ingredient mangagement
+ */
+function ingredientManagement(){
+	
 }
