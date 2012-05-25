@@ -55,6 +55,10 @@ function checkAllCBoxClicked() {
 	}
 }
 
+/**
+ * when supplier select is changing, we need to load new contract select options.
+ * @param selectObj
+ */
 function supplierSelectOnChange(selectObj) {
 	var str = selectObj.options[selectObj.selectedIndex].value;
 	
@@ -66,6 +70,22 @@ function supplierSelectOnChange(selectObj) {
 			if(http.readyState==4 && http.status==200){
 				var respone = http.responseText;
 				document.getElementById("contractIDSelect").innerHTML = respone;
+			}
+		};
+	http.send();
+}
+
+function contractIDSelectOnchange(selectObj){
+	var contract = selectObj.options[selectObj.selectedIndex].value;
+	
+	var http = createXMLHttpRequest();
+	var nocache = Math.random();
+	var serverURL = "../controller/ModuleIngredientImportingController.php?action=searchContractDetail&contract=" + contract + "&nocache=" + nocache;
+	http.open("POST", serverURL, true);
+	http.onreadystatechange = function(){
+			if(http.readyState==4 && http.status==200){
+				var respone = http.responseText;
+				document.getElementById("ingredient-detail").innerHTML = respone;
 			}
 		};
 	http.send();
