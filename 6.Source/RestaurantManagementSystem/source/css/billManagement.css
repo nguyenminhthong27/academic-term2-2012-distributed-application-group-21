@@ -27,6 +27,16 @@
     padding-top: 20px;
 }
 
+#main-header
+{
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Times New Roman;
+    padding-left: 200px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
 .customerInfo
 {
     border-bottom: 1px solid #E3E7E9;
