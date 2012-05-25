@@ -70,7 +70,7 @@ $(document).ready(function()
     
     $('#editSupplierSlider').dialog({
         autoOpen: false,
-        height: 400,
+        height: 420,
         width: 600,
         modal: true,
         resizable:false
@@ -102,6 +102,7 @@ $(document).ready(function()
     
     initSupplierGrid();
 
+    setFontColorForDebtUnderQuota();
 }
 );
 
@@ -137,7 +138,7 @@ function initSupplierGrid()
 {
     supplierGrid = new dhtmlXGridObject("supplierInfoDiv");
     supplierGrid.setImagePath("dhtmlx/imgs/");//path to images required by grid7\4
-    supplierGrid.setHeader("#master_checkbox,MÃ NHÀ CUNG CẤP,TÊN NHÀ CUNG CẤP,ĐỊNH MỨC,CÔNG NỢ,ĐỊA CHỈ,SỐ ĐIỆN THOẠI,EMAIL,TÌNH TRẠNG");//set column names
+    supplierGrid.setHeader("#master_checkbox,MÃ NHÀ CUNG CẤP,TÊN NHÀ CUNG CẤP,ĐỊNH MỨC (VND),CÔNG NỢ (VND),ĐỊA CHỈ,SỐ ĐIỆN THOẠI,EMAIL,TÌNH TRẠNG");//set column names
     supplierGrid.attachHeader(",#text_filter,#text_filter,#numeric_filter,#numeric_filter,#text_filter,#numeric_filter,#text_filter,#select_filter");
     supplierGrid.setInitWidths("30,80,150,100,100,200,120,150,100");//set column width in px
     supplierGrid.setColAlign("left,center,left,left,left,left,left,left,left,center");//set column values align
@@ -150,9 +151,23 @@ function initSupplierGrid()
     
     //input data must be like below format    
     var str = "{rows:[{ id:1001, data:['','1001','A Time to Kill','10','150','123 Nguyễn Văn Cừ','12345', 'jml@gmail.com', 'Ngừng cung cấp']}, \n\
-{ id:1002, data:['','1002','A Time to Kill','11.99','15','123 Nguyễn Văn Thủ','12458','jml@gmail.com', 'Đang cung cấp']},\n\
+{ id:1002, data:['','1002','A Time to Kill','11.99','11.9','123 Nguyễn Văn Thủ','12458','jml@gmail.com', 'Đang cung cấp']},\n\
 { id:1003, data:['','1003','A Time to Kill','12.99','30','123 Nguyễn Văn Cừ','1258', 'jml@gmail.com', 'Đang cung cấp']}\n\
         ]}";
     var js = eval('(' + str + ')');
     supplierGrid.parse(js,"json");
+}
+
+
+function setFontColorForDebtUnderQuota(){
+    var debtArr= $('#supplierInfoDiv .objbox .obj tr td:nth-child(5)').get();
+    var quotaArr = $('#supplierInfoDiv .objbox .obj tr td:nth-child(4)').get();
+    for(var i=0; i<debtArr.length; i++){
+        var debt = parseFloat(debtArr[i].innerHTML);
+        var quota = parseFloat(quotaArr[i].innerHTML);
+        if(debt >= quota){
+            debtArr[i].style.color = "red";
+            debtArr[i].style.fontStyle = "italic";
+        }
+    }
 }
