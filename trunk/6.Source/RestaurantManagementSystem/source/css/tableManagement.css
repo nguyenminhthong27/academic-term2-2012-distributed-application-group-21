@@ -4,6 +4,15 @@
     padding-left: 100px;
 }
 
+#main-header
+{
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Times New Roman;
+    padding-left: 200px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
 
 .search-table select,input
 {
