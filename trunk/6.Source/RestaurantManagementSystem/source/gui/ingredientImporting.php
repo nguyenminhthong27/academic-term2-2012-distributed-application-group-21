@@ -38,7 +38,7 @@ require_once '../controller/GUIGenerator.php';
 <script src="../js/lib/jquery.jcarousel.pack.js" type="text/javascript"></script>
 <script src="../js/lib/jquery-ui-1.8.20.custom.min.js"	type="text/javascript"></script>
 <script src="../js/lib/jquery-ui-timepicker-addon.js"	type="text/javascript"></script>
-<script src="../js/ingredientImportingFunc.js" type="text/javascript"></script>
+<script src="../js/general_functions.js" type="text/javascript"></script>
 <script src="../js/module_ingredient_importing.js"	type="text/javascript"></script>
 </head>
 <body>
@@ -73,10 +73,8 @@ require_once '../controller/GUIGenerator.php';
 									</tr>									
 									<tr>
 										<td>Mã hợp đồng</td>
-										<td><select>
-												<?php
-												echo ModuleIngredientImportingController::getContractId();
-												?>
+										<td><select id="contractIDSelect">
+												
 										</select></td>
 									</tr>
 								</table>

@@ -52,9 +52,9 @@ class GUIGenerator {
 	public static function htmlShowSupplierSelect(){
 		$suppliers = MongoDatabase::getAllDataFrom("NhaCungCap");
 		$html = '<select id="selectSupplier" onchange="javascript:supplierSelectOnChange(this)">';
-		
+		$html .= '<option value="-1">' . "Chọn nhà cung cấp" . '</option>';
 		foreach ($suppliers as $supplier){
-			$html .= '<option value"' . $supplier["MaNCC"] . '">' . $supplier["TenNCC"] . '</option>';
+			$html .= '<option value="' . $supplier["MaNCC"] . '">' . $supplier["TenNCC"] . '</option>';
 		}
 		$html .= '</select>';
 		
