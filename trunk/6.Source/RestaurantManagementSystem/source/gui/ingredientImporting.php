@@ -73,35 +73,15 @@ require_once '../controller/GUIGenerator.php';
 									</tr>									
 									<tr>
 										<td>Mã hợp đồng</td>
-										<td><select id="contractIDSelect">
+										<td><select id="contractIDSelect" onchange="javascript:contractIDSelectOnchange(this)">
 												
 										</select></td>
 									</tr>
 								</table>
 							</div> <!-- END Div for bill info --> <!-- Div for food detail -->
-							<div class="ingredient-detail">
-								<p>Chọn nguyên liệu cần nhập vào kho hàng</p>
-								<table>
-									<tr>
-										<th><input type="checkbox" id="checkAllCBox"
-											onclick="checkAllCBoxClicked();"></input></th>
-										<th>Nguyên liệu</th>
-										<th>Số lượng tối thiểu</th>
-										<th>Số lượng tối đa</th>
-									</tr>
-									<!--                                         <tr> -->
-									<!--                                             <td><input type="checkbox"></input></td> -->
-									<!--                                             <td>Thịt gà(kg)</td> -->
-									<!--                                             <td>3</td> -->
-									<!--                                             <td>10</td> -->
-									<!--                                         </tr> -->
-									<!--                                         <tr> -->
-									<!--                                             <td><input type="checkbox"></input></td> -->
-									<!--                                             <td>Pepsi(thùng)</td> -->
-									<!--                                             <td>10</td> -->
-									<!--                                             <td>50</td> -->
-									<!--                                         </tr>   -->
-								</table>
+							<div class="ingredient-detail" >
+								<div id="ingredient-detail">
+								</div>
 								<!-- END food-tab -->
 								<button class="nextBut" id="addIngredientAmountBut">Nhập số
 									lượng</button>

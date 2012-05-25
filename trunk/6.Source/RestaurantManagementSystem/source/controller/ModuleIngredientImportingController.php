@@ -55,7 +55,7 @@ class ModuleIngredientImportingController {
 		return $str;
 	}
 
-	
+
 	/**
 	 * search for contract with supplier ID
 	 * @param string $supplierID
@@ -68,11 +68,11 @@ class ModuleIngredientImportingController {
 		foreach($data as $contract){
 			$contractIDs[] = $contract["MaHopDong"];
 		}
-		
+
 		// html show  contract id select box
 		return $this->htmlShowContractIDSelect($contractIDs);
 	}
-	
+
 	private function htmlShowContractIDSelect($contractIDs){
 		$html = '<option value="-1">' . "Chọn hợp đồng" . '</option>';
 		foreach($contractIDs as $contract){
@@ -81,24 +81,55 @@ class ModuleIngredientImportingController {
 		return $html;
 	}
 
-	/**
-	 * get supplier name
-	 * @param null
-	 * @return supplierName array
-	 */
-	public static function getSupplierName(){
 
-	}
 
 	/**
-	 * get contract detail info
+	 * get contract detail by contract id
 	 * @param contractId string
 	 * @return contractDetailInfo array
 	 */
-	public function getContractDetailInfo(){
-
+	public function getContractDetail($contractID){
+		$dao  = new ContractDAO();
+		$data = $dao->getContractDetail($contractID);
+		return $this->htmlShowIngredientTable($data);
 	}
-
+	
+	private function htmlShowIngredientTable($data){
+		$html = '
+		<p>Chọn nguyên liệu cần nhập vào kho hàng</p>
+		<table>
+			<tr>
+			<th><input type="checkbox" id="checkAllCBox"
+			onclick="checkAllCBoxClicked();"></input></th>
+			<th>Nguyên liệu</th>
+			<th>Số lượng tối thiểu</th>
+			<th>Số lượng tối đa</th>
+			</tr>
+		';
+		foreach($data as $material){
+			$html .= "<tr> <td><input value=\"" . $material["MaNL"] . "\"type='checkbox'></input></td>";
+			$html .= "<td>" . $material["TenNL"] . "</td>";
+			$html .= "<td>" . $material["SOLUONGMIN"] . "</td>";
+			$html .= "<td>" . $material["SOLUONGMAX"] . "</td></tr>";
+		}
+		$html .= '</table>';
+		return $html;
+		
+// 		<!--                                         <tr> -->
+// 		<!--                                             <td><input type="checkbox"></input></td> -->
+// 		<!--                                             <td>Thịt gà(kg)</td> -->
+// 		<!--                                             <td>3</td> -->
+// 		<!--                                             <td>10</td> -->
+// 		<!--                                         </tr> -->
+// 		<!--                                         <tr> -->
+// 		<!--                                             <td><input type="checkbox"></input></td> -->
+// 		<!--                                             <td>Pepsi(thùng)</td> -->
+// 		<!--                                             <td>10</td> -->
+// 		<!--                                             <td>50</td> -->
+// 		<!--                                         </tr>   -->
+// 		</table>
+	}
+	
 	/**
 	 * save ingredientImportingInfo array
 	 * @param ingredientImportingInfo array
@@ -118,6 +149,17 @@ switch ($action){
 		try {
 			$ctrl = new ModuleIngredientImportingController();
 			$result = $ctrl->getContract($supplier);
+			echo $result;
+		}
+		catch (Exception $e) {
+			echo "Not Connect to database! ";
+		}
+		break;
+	case 'searchContractDetail':
+		$contract = isset($_REQUEST["contract"]) ? $_REQUEST["contract"] : "";
+		try {
+			$ctrl = new ModuleIngredientImportingController();
+			$result = $ctrl->getContractDetail($contract);
 			echo $result;
 		}
 		catch (Exception $e) {
