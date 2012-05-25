@@ -1,18 +1,13 @@
 <?php
-require_once '../dal/IngredientDAO.php';
+require_once '../dal/contractdao.php';
 
 class ModuleIngredientImportingController {
-
-	private $dao;
 	private $databaseMapKey = array("ingreName" => "TenNL",
 			"minAmount" => "SOLUONGMIN",
 			"maxAmount" => "SOLUONGMAX",
 			"contractDetailId" =>"MaCTHD"
 	);
 
-	public function __construct(){
-		$this->dao = new IngredientDAO();
-	}
 	/**
 	 * @author hathao298@gmail.com
 	 */
@@ -60,13 +55,30 @@ class ModuleIngredientImportingController {
 		return $str;
 	}
 
+	
 	/**
-	 * search for contract detail
-	 * @param condition array
-	 * @return contractDetail with foodname array
+	 * search for contract with supplier ID
+	 * @param string $supplierID
+	 * @return html code of select box option.
 	 */
-	public function searchForContractDetail(){
-
+	public function getContract($supplierID){
+		$dao = new ContractDAO();
+		$data = $dao->getContract($supplierID);
+		$contractIDs = array();
+		foreach($data as $contract){
+			$contractIDs[] = $contract["MaHopDong"];
+		}
+		
+		// html show  contract id select box
+		return $this->htmlShowContractIDSelect($contractIDs);
+	}
+	
+	private function htmlShowContractIDSelect($contractIDs){
+		$html = '<option value="-1">' . "Chọn hợp đồng" . '</option>';
+		foreach($contractIDs as $contract){
+			$html .= '<option value="'. $contract . '">' . $contract . '</option>';
+		}
+		return $html;
 	}
 
 	/**
@@ -75,19 +87,8 @@ class ModuleIngredientImportingController {
 	 * @return supplierName array
 	 */
 	public static function getSupplierName(){
-		
+
 	}
-
-
-	/**
-	 * get contract Id
-	 * @param supplierName string
-	 * @return contractID array
-	 */
-	public static function getContractId($supplierName=null){
-		
-	}
-
 
 	/**
 	 * get contract detail info
@@ -106,7 +107,24 @@ class ModuleIngredientImportingController {
 	public function saveIngredientImportingInfo(){
 
 	}
-	
-	
-	// check action and handle
 }
+
+// check action and handle
+// get action form request params
+$action = isset($_REQUEST["action"]) ? $_REQUEST["action"] : "";
+switch ($action){
+	case 'searchContract':
+		$supplier = isset($_REQUEST["ncc"]) ? $_REQUEST["ncc"] : "";
+		try {
+			$ctrl = new ModuleIngredientImportingController();
+			$result = $ctrl->getContract($supplier);
+			echo $result;
+		}
+		catch (Exception $e) {
+			echo "Not Connect to database! ";
+		}
+		break;
+	default:
+		break;
+}
+?>
