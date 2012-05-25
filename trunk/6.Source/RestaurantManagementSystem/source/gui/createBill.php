@@ -62,7 +62,8 @@ require_once '../controller/GUIGenerator.php';
                 </div>
                 <!-- END Menu -->         
                 <!-- Main content -->
-                <div class="main-content">             
+                <div class="main-content">       
+                <div id="main-header">THÊM MỚI HÓA ĐƠN</div>      
                     <div id="slider-holder">
                         <ul>
                             <li>
