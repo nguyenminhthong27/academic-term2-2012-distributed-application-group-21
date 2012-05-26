@@ -65,7 +65,7 @@
                     <!-- Div for additional dialog boxes -->
                     <div>
                         <!-- add ingredient slider -->
-                        <div id="addIngredientDialog" title="Thêm nhà cung cấp">
+                        <div id="addIngredientDialog" title="Thêm Nguyên Liệu">
                             <!-- add new ingredient info -->
                             <div class="add-ingredient-info">
                                 <p>Nhập thông tin nguyên liệu mới</p>
