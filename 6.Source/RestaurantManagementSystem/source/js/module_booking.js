@@ -151,10 +151,8 @@ function bookingDetailLinkClicked() {
 function saveBookingDetail() {
 	// get customer info
 	var cusName = $.trim(document.getElementById("customerNameTxtBox").value);
-	var cusIdNumber = $
-			.trim(document.getElementById("customerIdNumberTxtBox").value);
-	var cusPhoneNumber = $.trim(document
-			.getElementById("customerPhoneNumberTxtBox").value);
+	var cusIdNumber = $.trim(document.getElementById("customerIdNumberTxtBox").value);
+	var cusPhoneNumber = $.trim(document.getElementById("customerPhoneNumberTxtBox").value);
 
 	// validate customer info
 	if (!customerInfoValidation(cusIdNumber, cusPhoneNumber) || cusName == "") {

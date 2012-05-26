@@ -1,5 +1,5 @@
 <?php
-// add require CreateBillDAO
+
 require_once '../dal/bookingdao.php';
 require_once '../dal/fooddao.php';
 
@@ -89,26 +89,25 @@ class CreateBillController{
 	}
 	/*
 	 * @author: thanhtuan
-	* method saveBill save a bill with status = 0(do DAO status = 0)
-	* @param: $maHD string
-	* @param: $tongTien : float (sum money of all bills)
-	*  @param : $ngaLap date (date of)
-	* @param :maNH string (ID of restaurant)
-	* @param:maPhieuDatCho : string (ID of booking)
-	* @param: $tenMonAn string
-	* $param: $soLuong integer
+	* method saveBill save a bill,billdetail and status of bill = 0(do DAO status(HoaDon) = 0)
+	* @param: $idBill string
+	* @param: $tatalMoney : float (sum money of all dishes)
+	*  @param : $date (date of)
+	* @param :restaurant_id string (ID of restaurant)
+	* @param:cardBooking_id : string (ID of booking)
+	* @param :$idCardBooking : string
 	* return true if succes else return false
 	*/
-	public function saveBill($maHD,$tongTien,$ngayLap,$nguoiLap,$maNH,$maPhieuDatCho,$tenMonAn,$soLuong){
+	public function saveBill($idBill,$Restaurant_id,$date,$idCardBooking,$totalMoney,$listDish){
 
 		try {
 				
 				
 			$dao = new CreateBillDAO();
-			$bool = $dao->checkBooking($maPhieuDatCho);//check exist of card booking,recive value = true if card booking exist else value = false
+			$bool = $dao->checkBooking($idCardBooking);//check exist of card booking,recive value = true if card booking exist else value = false
 			if($bool== true)
 			{
-				return $dao->save($maHD,$tongTien,$ngayLap,$nguoiLap,$maNH,$maPhieuDatCho,$tenMonAn,$soLuong);
+				return $dao->save($idBill,$Restaurant_id,$date,$idCardBooking,$totalMoney,$listDish);
 			}
 			else
 				return false;
@@ -172,14 +171,19 @@ switch ($action) {
 		}
 		break;
 	case "saveBill":
-		$tongTien = isset($_REQUEST["sumMoney"]) ? $_REQUEST["sumMoney"] : "";
+		
 		$date = isset($_REQUEST["date"]) ? $_REQUEST["date"] : "";
-		$maPhieuDatCho= isset($_REQUEST["idCardBooking"]) ? $_REQUEST["idCardBooking"] : "";
-		$tenMonAn = isset($_REQUEST["dish"]) ? $_REQUEST["dish"] : "";
-		$soLuong= isset($_REQUEST["number"]) ? $_REQUEST["number"] : "";
-		$maNH = $_SESSION["restaurant"];
-		$nguoiLap = $_SESSION["staff_id"];
-		$maHD = time();
+		$idCardBooking= isset($_REQUEST["cardBooking_id"]) ? $_REQUEST["cardBooking_id"] : "";
+		// array contain dish name,price,quantity
+		$listDish = isset($_REQUEST["listDish"]) ? $_REQUEST["listDish"] : "";
+		$totalMoney  = 0;
+		foreach($listDish as $value){
+			$totalMoney = $totalMoney + $value[2]; 
+		}
+		session_start();
+		$Restaurant_id = $_SESSION["restaurant"];
+		$staff_id = $_SESSION["staff_id"];
+		$idBill = time();
 		if($date != ""){
 			$format = new CreateBillController();
 			$date = $format->changeFormatDate($date);
@@ -191,7 +195,7 @@ switch ($action) {
 		try {
 			// do save
 			$save = new CreateBillController();
-			$result = $save->saveBill($maHD, $tongTien, $ngayLap, $nguoiLap, $maNH, $maPhieuDatCho, $tenMonAn, $soLuong);
+			$result = $save->saveBill($idBill,$Restaurant_id,$date, $idCardBooking,$totalMoney,$listDish);
 			echo $result;
 		} catch (Exception $e) {
 			echo "Not Connect to database";
