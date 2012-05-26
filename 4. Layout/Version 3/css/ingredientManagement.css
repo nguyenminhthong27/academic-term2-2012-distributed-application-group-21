@@ -1,0 +1,193 @@
+/* 
+    Document   : billManagement
+    Created on : May 14, 2012, 8:09:08 AM
+    Author     : JML
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#main
+{
+    font-size: 14px;
+    font-family: Arial;
+}
+
+#main-header
+{
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Times New Roman;
+    padding-left: 300px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+.ingredientImportingInfo2
+{
+    border-bottom: 1px solid #E3E7E9;
+    margin-bottom: 20px;
+}
+
+.bookingDetailInfo
+{
+    border-bottom: 1px solid #E3E7E9;
+    margin-bottom: 20px;
+}
+
+.main-content
+{
+    padding-left: 100px;
+}
+
+#main-header
+{
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Times New Roman;
+    padding-left: 200px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+
+.main-content-dialog
+{
+    padding-left: 30px;
+}
+
+.tool-bar
+{
+    margin-left: -30px;
+}
+
+/*Tool-bar*/
+.tool-bar button img 
+{
+    width: 20px;
+    height: 20px;
+}
+
+.tool-bar button{
+    min-width: 60px;
+}
+/*END Tool-bar*/
+
+
+/*ingredient Info Div*/
+#ingredientInfoDiv{
+    border-radius: 10px 10px 10px 10px;
+    width: 750px;
+    height: 500px;
+    margin-top: 10px;
+    margin-left: -30px;
+}
+/*END ingredient Info Div*/
+
+/*delete-confirmation-box-dialog-dialog*/
+#okDeleteBillBut
+{
+    margin-left: 90px;
+}
+/*END delete-confirmation-box-dialog-dialog*/
+
+.jcarousel-skin-default .jcarousel {
+    position: relative;
+    overflow: hidden;
+    width: 75%;
+    height: 75px;
+    border: 1px solid #000;
+}
+
+.jcarousel-skin-default ul {
+    width: 20000px;
+    position: absolute;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.jcarousel-skin-default li {
+    float: left;
+    margin: 0 10px 0 0;
+    padding: 0;
+}
+
+*[dir=rtl] .jcarousel-skin-default li {
+    float: right;
+    margin: 0 0 0 10px;
+}
+
+/*add-ingredient-info*/
+.add-ingredient-info{
+    margin-top: 20px;
+}
+
+.add-ingredient-info p{
+    font-style: italic;
+    color: red;
+}
+
+.add-ingredient-info table{
+    margin-left: 70px;
+    margin-bottom: 20px;
+}
+.add-ingredient-info table tr td{
+    padding-right: 30px;
+    margin-bottom: 20px;
+}
+
+.add-ingredient-info table tr td input{
+    padding-bottom: 3px;
+    padding-top: 3px;
+    margin-bottom: 5px;
+    margin-top:5px;
+}
+
+.add-ingredient-info button{
+    margin-left: 250px;
+}
+
+/*END add-ingredient-info*/
+
+/*edit-ingredient-info*/
+.edit-ingredient-info{
+    margin-top: 20px;
+}
+
+.edit-ingredient-info p{
+    font-style: italic;
+    color: red;
+}
+
+.edit-ingredient-info table{
+    margin-left: 70px;
+    margin-bottom: 20px;
+}
+.edit-ingredient-info table tr td{
+    padding-right: 30px;
+    margin-bottom: 20px;
+}
+
+.edit-ingredient-info table tr td input{
+    padding-bottom: 3px;
+    padding-top: 3px;
+    margin-bottom: 5px;
+    margin-top:5px;
+}
+.edit-ingredient-info table tr td select{
+    padding-bottom: 3px;
+    padding-top: 3px;
+    margin-bottom: 5px;
+    margin-top:5px;
+}
+
+.edit-ingredient-info button{
+    margin-left: 250px;
+}
+/*END edit-ingredient-info*/
+
