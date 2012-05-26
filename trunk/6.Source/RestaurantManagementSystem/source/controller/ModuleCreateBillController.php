@@ -119,7 +119,7 @@ class CreateBillController{
 		return false;
 	}
 	/*
-	 * @author thanhtuan
+	* @author thanhtuan
 	* method change format of a date
 	* @param $datime string
 	* @return string $datetime after format.
@@ -174,11 +174,11 @@ switch ($action) {
 		
 		$date = isset($_REQUEST["date"]) ? $_REQUEST["date"] : "";
 		$idCardBooking= isset($_REQUEST["cardBooking_id"]) ? $_REQUEST["cardBooking_id"] : "";
-		// array contain dish name,price,quantity
+		// a array 2 dim contain dish name,price,quantity
 		$listDish = isset($_REQUEST["listDish"]) ? $_REQUEST["listDish"] : "";
 		$totalMoney  = 0;
 		foreach($listDish as $value){
-			$totalMoney = $totalMoney + $value[2]; 
+			$totalMoney = $totalMoney + ($value[1] *$value[2]); 
 		}
 		session_start();
 		$Restaurant_id = $_SESSION["restaurant"];
