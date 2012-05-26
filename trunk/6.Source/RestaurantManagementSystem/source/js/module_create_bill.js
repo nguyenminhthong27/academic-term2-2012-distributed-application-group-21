@@ -148,3 +148,5 @@ function initSlider(){
         buttonPrevHTML: null
     });
 }
+
+
