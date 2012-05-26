@@ -136,10 +136,13 @@ class MongoDatabase implements IDatabaseConfig {
 			$collection->save($data);
 			// close connection
 			$connection->close();
+			return true;
 		} catch (MongoConnectionException $e) {
-		  	die('Error connecting to MongoDB server');
+		  	die('Error connecting to MongoDB server');		 	
+		 	return false;
 		} catch (MongoException $e) {
-		 	die('Error: ' . $e->getMessage());
+		 	die('Error: ' . $e->getMessage());		 	
+		 	return false;
 		}
 	}
 	
