@@ -83,60 +83,28 @@ require_once '../controller/GUIGenerator.php';
 								<div id="ingredient-detail">
 								</div>
 								<!-- END food-tab -->
-								<button class="nextBut" id="addIngredientAmountBut">Nhập số
-									lượng</button>
+<!-- 								<button class="nextBut" id="addIngredientAmountBut">Nhập số lượng</button> -->
+								<button id="addIngredientAmountBut">Nhập số lượng</button>
 							</div>
 
 						</li>
 						<li>
 							<!-- Div for food amount -->
 							<div class="ingredient-amount">
-								<table>
-									<!-- Note: to create a user-friendly GUI, set value of food amount (so luong mon an) to 1 (default)-->
-									<tr>
-										<th>Nguyên liệu</th>
-										<th>Đơn giá</th>
-										<th>Số lượng nhập vào</th>
-									</tr>
-									<tr>
-										<td>Thịt gà(kg)</td>
-										<td><input type="text"></input></td>
-										<td><input type="text"></input></td>
-									</tr>
-									<tr>
-										<td>Pepsi(thùng)</td>
-										<td><input type="text"></input></td>
-										<td><input type="text"></input></td>
-									</tr>
-								</table>
+								<div  id="ingredient-selected">
+								</div>
 								<button class="backBut">Trở về</button>
-								<button class="nextBut">Kế tiếp</button>
+								<button id="confirmIngredient">Kế tiếp</button>
 							</div> <!-- END Div for food amount -->
 						</li>
 						<li>
 							<!-- Div for creating bill confirmation -->
-							<div class="ingredient-importing-confirmation"
-								title="Xác nhận thông tin nhập hàng">
-								<p>Xin xác nhận lại thông tin đã nhập và nhấp "Lưu"</p>
-								<table>
-									<tr>
-										<th>Nguyên liệu</th>
-										<th>Đơn giá</th>
-										<th>Số lượng nhập vào</th>
-									</tr>
-									<tr>
-										<td>Thịt gà(kg)</td>
-										<td>45000</td>
-										<td>10</td>
-									</tr>
-									<tr>
-										<td>Pepsi(thùng)</td>
-										<td>200000</td>
-										<td>20</td>
-									</tr>
-								</table>
+							<div id="ingredient-importing-result" class="ingredient-importing-confirmation" 
+									title="Xác nhận thông tin nhập hàng">
+								<div id="ingredient-importing-confirmation">
+								</div>
 								<button class="backBut">Trở về</button>
-								<button>Lưu</button>
+								<button onclick="javascript:saveImporting()">Lưu</button>
 							</div> <!-- END Div for creating bill confirmation -->
 						</li>
 					</ul>
