@@ -1,0 +1,130 @@
+/* 
+    Document   : restaurantReporting
+    Created on : May 14, 2012, 8:09:08 AM
+    Author     : JML
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#main
+{
+    font-size: 14px;
+    font-family: Arial;
+}
+
+#main-header
+{
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Times New Roman;
+    padding-left: 300px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+.main-content
+{
+    padding-left: 100px;
+}
+
+#main-header
+{
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Times New Roman;
+    padding-left: 200px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+
+.main-content-dialog
+{
+    padding-left: 30px;
+}
+
+.tool-bar
+{
+    margin-left: -30px;
+}
+
+/*Tool-bar*/
+.tool-bar button img 
+{
+    width: 20px;
+    height: 20px;
+}
+
+.tool-bar button{
+    min-width: 60px;
+}
+/*END Tool-bar*/
+
+/* reportingCriteriaDiv*/
+#reportingCriteriaDiv p{
+    font-style: italic;
+}
+#reportingCriteriaDiv table tr td{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    font-size: 14px;
+}
+
+#reportingCriteriaDiv table tr td input{
+    padding-bottom: 3px;
+    padding-top: 3px;
+    font-size: 14px;
+    font-family: Arial;
+}
+
+#reportingCriteriaDiv table tr td select{
+    padding-bottom: 3px;
+    padding-top: 3px;
+    padding-right: 3px;
+    font-size: 14px;
+    font-family: Arial;
+}
+
+#reportingCriteriaDiv table tr td select option{
+    font-family: Arial;
+}
+
+
+#dateHint{
+    display: none;
+}
+/*END reportingCriteriaDiv*/
+
+#reportBut{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 290px;
+}
+
+#exportBut{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 230px;
+}
+/*report Div*/
+#reportDiv{
+    border-radius: 10px 10px 10px 10px;
+    width: 750px;
+    height: 300px;
+    margin-top: 10px;
+    margin-left: -30px;
+}
+
+/*END report Div*/
+
+#chartDiv{
+    display:none;
+    width: 650px;
+    height: 350px;
+}
