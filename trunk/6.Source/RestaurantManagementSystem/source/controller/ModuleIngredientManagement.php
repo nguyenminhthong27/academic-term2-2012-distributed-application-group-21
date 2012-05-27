@@ -95,7 +95,7 @@ class ModuleIngredientManagement{
   public function getMaterial($id){
   	try{
   	   $dao = new IngredientManagementDAO();
-  	   $arr = $dao->getMaterial($id);
+  	   $arr = $dao->getMaterialDAO($id);
   	  
   	   $data = "";
   	   if($arr != null){
@@ -152,7 +152,7 @@ class ModuleIngredientManagement{
   public function deleteMaterial($arrid){
   	try{
   	$dao = new IngredientManagementDAO();
-  	return $dao->deleteMaterial($arrid);
+  	return $dao->deleteMaterialDAO($arrid);
   	}
   	catch (Exception $e) {
   		echo "Not Connect to database! ";
