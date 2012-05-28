@@ -11,6 +11,7 @@ class ModuleIngredientManagement{
 	 */
 	public function getAllMaterial(){
 		try{
+	    $n = 0;
 		$strjson = "{rows:[";
 		$dao = new IngredientManagementDAO();
 		$arr = $dao->getAllMaterialDAO();
@@ -18,6 +19,7 @@ class ModuleIngredientManagement{
 			$n = count($arr);
 		
 		}
+		if($n > 0){
 		for($i = 0;$i < ($n -1); $i++){
 		 
 			
@@ -37,7 +39,7 @@ class ModuleIngredientManagement{
 		$soLuongMax = $arr[$n-1][5];
 		$strjson = $strjson." {id:$maNL, data:['','$maNL','$tenNL','$tenLoaiNL','$soLuong','$soLuongMin','$soLuongMax']}";
 		
-			
+		}	
 		$strjson = $strjson." ]}";
 		
 		
@@ -193,7 +195,7 @@ switch ($action) {
 			echo $result;
 		
 		break;
-	case "load": // get a row from database base on $MaNL
+	case "update": 
 		$id = isset($_REQUEST["id"]) ? $_REQUEST["id"] : "";
 		$materialName = isset($_REQUEST["materialname"]) ? $_REQUEST["materialname"] : "";
 		$materialTypee= isset($_REQUEST["materialtype"]) ? $_REQUEST["materialtype"] : "";
