@@ -19,6 +19,7 @@
         <script src="dhtmlx/dhtmlxgrid.js" type="text/javascript"></script>
         <script src="dhtmlx/ext/dhtmlxgrid_filter.js" type="text/javascript"></script>
         <script src="dhtmlx/dhtmlxgridcell.js" type="text/javascript"></script>
+        <script src="../js/general_functions.js" type="text/javascript"></script>
         <script src="../js/ingredientManagementFunc.js" type="text/javascript"></script>
     </head>
     <body>
@@ -54,8 +55,8 @@
                     <div id="main-header">QUẢN LÝ KHO HÀNG</div>
                     <!-- tool-bar -->
                     <div class="tool-bar">
-                        <button title="Thêm nguyên liệu" onclick="addIngredient()"><img src="../css/images/plusIcon.png" /></button>
-                        <button title="Cập nhật thông tin nguyên liệu" onclick="editIngredient()"><img src="../css/images/editIcon_w.png" /></button>
+                        <button title="Thêm nguyên liệu" onclick="openAddIngredientDialog()"><img src="../css/images/plusIcon.png" /></button>
+                        <button title="Cập nhật thông tin nguyên liệu" onclick="openEditIngredientDialog()"><img src="../css/images/editIcon_w.png" /></button>
                         <button title="Xóa nguyên liệu" onclick="deleteConfirm()"><img src="../css/images/trashIcon_w.png" /></button>                       
                     </div>
                     <!-- END tool-bar -->                    
@@ -72,26 +73,23 @@
                                 <table>                                                
                                     <tr>
                                         <td>Tên nguyên liệu</td>
-                                        <td><input type="text" title="Tên nguyên liệu"></input></td>                                                    
+                                        <td><input type="text" title="Tên nguyên liệu"  id="nameInput_addIngredient"></input></td>                                                    
                                     </tr>
                                     <tr>
                                         <td>Loại nguyên liệu</td>
-                                        <td><select>
-                                                <option>Thịt</option>
-                                                <option>Rau</option>
-                                                <option>Gạo</option>
+                                        <td><select id="typeSBox_addIngredient">
                                             </select></td>
                                     </tr>
                                     <tr>
                                         <td>Số lượng tối thiểu</td>
-                                        <td><input type="text"></input></td>
+                                        <td><input type="text" id="minAmountInput_addIngredient"></input></td>
                                     </tr>
                                     <tr>
                                         <td>Số lượng tối đa</td>
-                                        <td><input type="text"></input></td>
+                                        <td><input type="text" id="minAmountInput_addIngredient"></input></td>
                                     </tr>                                               
                                 </table>
-                                <button>Thêm mới</button>
+                                <button onclick="addIngredientButClicked()">Thêm mới</button>
                             </div>
                             <!-- END add new ingredient info -->
 
@@ -104,28 +102,25 @@
                                 <p>Thay đổi thông tin và nhấp Lưu</p>
                                 <table>                                                
                                     <tr>
-                                        <td>Tên nguyên liệu</td>
-                                        <td><input type="text" title="Tên nguyên liệu"></input></td>                                                    
+                                        <td value="manguyenlieu">Tên nguyên liệu</td>
+                                        <td><input type="text" title="Tên nguyên liệu" id="nameInput_editIngredient"></input></td>                                                    
                                     </tr>
                                     <tr>
                                         <td>Loại nguyên liệu</td>
-                                        <td><select>
-                                                <option>Thịt</option>
-                                                <option>Rau</option>
-                                                <option>Gạo</option>
+                                        <td><select id="typeSBox_editIngredient">
                                             </select></td>
                                     </tr>
                                     <tr>
                                         <td>Số lượng</td>
-                                        <td><input type="text"></input></td>
+                                        <td><input type="text" id="amountInput_editIngredient"></input></td>
                                     </tr>
                                     <tr>
                                         <td>Số lượng tối thiểu</td>
-                                        <td><input type="text"></input></td>
+                                        <td><input type="text" id="minAmountInput_editIngredient"></input></td>
                                     </tr>
                                     <tr>
                                         <td>Số lượng tối đa</td>
-                                        <td><input type="text"></input></td>
+                                        <td><input type="text" id="maxAmountInput_editIngredient"></input></td>
                                     </tr> 
                                 </table>
                                 <button>Lưu</button>
