@@ -77,7 +77,7 @@ function openAddIngredientDialog() {
  */
 function deleteConfirm() {
 	var rowIds = ingredientGrid.getCheckedRows(0);
-	if(rowIds.length){
+	if (rowIds.length) {
 		alert("Bạn chưa chọn nguyên liệu");
 		return;
 	}
@@ -233,10 +233,27 @@ function addIngredientButClicked() {
 	var selIndex = document.getElementById("typeSBox_addIngredient").selectedIndex;
 	var minAmount = document.getElementById("minAmountInput_addIngredient").value;
 	var maxAmount = document.getElementById("maxAmountInput_addIngredient").value;
-	var type = document.getElementById("typeSBox_addIngredient").options[selIndex].value; // type
-	// id
-	
-	
+	// type id
+	var type = document.getElementById("typeSBox_addIngredient").options[selIndex].value;
+
+	// validate input data
+	var validationRes = ingredientInfoValation(name, "1", minAmount, maxAmount);
+	switch (validationRes) {
+	case 0:
+		break;
+	case 1:
+		alert("Tên nguyên liệu không hợp lệ");
+		return;
+	case 2:
+		alert("Số lượng không hợp lệ");
+		return;
+	case 3:
+		alert("Số lượng tối thiểu không hợp lệ");
+		return;
+	case 4:
+		alert("Số lượng tối đa không hợp lệ");
+		return;
+	}
 
 	var http = createXMLHttpRequest();
 	var nocache = Math.random();
@@ -274,7 +291,8 @@ function addIngredientButClicked() {
 function reloadIngredientGrid() {
 	var http = createXMLHttpRequest();
 	var nocache = Math.random();
-	var serverURL = "../controller/ModuleIngredientManagementController.php?action=getAllIngredient&nocache=" +nocache;
+	var serverURL = "../controller/ModuleIngredientManagementController.php?action=getAllIngredient&nocache="
+			+ nocache;
 	http.open("POST", serverURL, true);
 	http.onreadystatechange = function() {
 		if (http.readyState == 4 && http.status == 200) {
@@ -291,40 +309,68 @@ function reloadIngredientGrid() {
 	http.send();
 }
 
-
 /**
  * save ingredient after editting
+ * 
  * @param null
  * @returns null
  * @author hathao298@gmail.com
  */
-function editIngredientButClicked(){
-	
+function editIngredientButClicked() {
+
 }
 
 /**
  * delete selected ingredients in ingredientGrid (check checkboxes)
+ * 
  * @param null
  * @returns null
  * @author hathao298@gmail.com
  */
-function deleteIngredientButClicked(){
-	
+function deleteIngredientButClicked() {
+
 }
 
 /**
- * check information of ingredient 
- * @param name string name of ingredient
- * @param minAmount string min amount of ingredient
- * @param maxAmount string max amount of ingredient 
- * @param amount string amount of ingredient
- * @returns 0 -successful
- * 			1 - false name
- * 			2 - false amount
- * 			3 - false minamount
- * 			4 - false maxamount
+ * check information of ingredient
+ * 
+ * @param name
+ *            string name of ingredient
+ * @param minAmount
+ *            string min amount of ingredient
+ * @param maxAmount
+ *            string max amount of ingredient
+ * @param amount
+ *            string amount of ingredient
+ * @returns 0 -successful 1 - false name 2 - false amount 3 - false minamount 4 -
+ *          false maxamount
  * @author hathao298@gmail.com
  */
-function ingredientInfoValidation(name,amount, minAmount, maxAmount){
-	
+function ingredientInfoValidation(name, amount, minAmount, maxAmount) {
+	name = $.trim(name);
+	amount = $.trim(amount);
+	minAmount = $.trim(minAmount);
+	maxAmount = $.trim(maxAmount);
+	if (name == null || name == "") {
+		return 1;
+	}
+	if (isNaN(amount))
+		return 2;
+	if (isNaN(minAmount))
+		return 3;
+	if (isNaN(maxAmount))
+		return 4;
+	amount = parseFloat(amount);
+	minAmount = parseFloat(minAmount);
+	maxAmount = parseFloat(maxAmount);
+
+	if (amount < 0)
+		return 2;
+	if (minAmount < 0)
+		return 3;
+	if (maxAmount < 0) {
+		return 4;
+	}
+
+	return 0;
 }
