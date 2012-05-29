@@ -18,6 +18,16 @@ class IngredientDAO {
 	public function getAllIngredient(){
 		return MongoDatabase::getAllDataFrom("NguyenLieu");
 	}
+	
+	/**
+	 * get ingredient info by id
+	 * @param id string
+	 * @return ingredient array include "MaNL, TenNL, TenLoaiNL, SoLuong, SoLuongToiThieu, SoLuongToiDa"
+	 * @author hathao298@gmail.com
+	 */
+	public function getIngredientInfo($id){
+		return null;
+	}
 }
 
 
