@@ -1,3 +1,28 @@
+<?php
+//check is_login
+session_start();
+$is_login = isset($_SESSION['is_login']) ? $_SESSION['is_login'] : false;
+$staff_type = isset($_SESSION['staff_type']) ? $_SESSION['staff_type'] : "";
+
+// check login
+if ($is_login == false) {
+	require_once '../configure/GeneralFunctions.php';
+	echo GeneralFunctions::Alert("Bạn chưa đăng nhập.");
+	header("Location: index.php");
+}
+
+// hard code to test staff_type
+$staff_type = "NV Thu Ngan";
+if ($staff_type != "NV Thu Ngan") {
+	require_once '../configure/GeneralFunctions.php';
+	echo GeneralFunctions::Alert("Bạn không có đủ quyền để thực hiện chức năng này.");
+	header("Location: home.php");
+}
+
+require_once '../configure/IncludeGenerator.php';
+require_once '../controller/GUIGenerator.php';
+
+?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
