@@ -86,7 +86,7 @@
                                     </tr>
                                     <tr>
                                         <td>Số lượng tối đa</td>
-                                        <td><input type="text" id="minAmountInput_addIngredient"></input></td>
+                                        <td><input type="text" id="maxAmountInput_addIngredient"></input></td>
                                     </tr>                                               
                                 </table>
                                 <button onclick="addIngredientButClicked()">Thêm mới</button>
@@ -102,7 +102,7 @@
                                 <p>Thay đổi thông tin và nhấp Lưu</p>
                                 <table>                                                
                                     <tr>
-                                        <td value="manguyenlieu">Tên nguyên liệu</td>
+                                        <td value="manguyenlieu" id="ingredientId">Tên nguyên liệu</td>
                                         <td><input type="text" title="Tên nguyên liệu" id="nameInput_editIngredient"></input></td>                                                    
                                     </tr>
                                     <tr>
@@ -123,7 +123,7 @@
                                         <td><input type="text" id="maxAmountInput_editIngredient"></input></td>
                                     </tr> 
                                 </table>
-                                <button>Lưu</button>
+                                <button onclick="editIngredientButClicked()">Lưu</button>
                             </div>
                             <!-- END edit new ingredient info -->
                         </div>
@@ -132,8 +132,8 @@
                         <div class="delete-confirmation-box-dialog">
                             <title>Xóa</title>
                             <p>Bạn có muốn xóa không?</p>
-                            <button id="okDeleteBillBut">OK</button>
-                            <button onclick="cancelDeleteBill()">Hủy bỏ</button>
+                            <button id="okDeleteBillBut" onclick="deleteIngredientButClicked()">OK</button>
+                            <button onclick="cancelDeleteIngredient()">Hủy bỏ</button>
                         </div>
                         <!-- END Delete Confirmation box -->
                     </div>
