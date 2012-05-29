@@ -116,48 +116,44 @@ class ModuleIngredientManagementController{
 	 */
 	public function getMaterial($id){
 		try{
-			$dao = new IngredientManagementDAO();
-			$arr = $dao->getMaterialDAO($id);
+			$dao = new IngredientDAO();
+			$arr = $dao->getIngredientInfo($id);
 				
 			$data = "";
 			if($arr != null){
 				$tenNL = isset($arr["TenNL"]) ? $arr["TenNL"] : "";
-				$tenLoaiNL = isset($arr["TenLoaiNL"]) ? $arr["TenLoaiNL"] : "";
+				$tenLoaiNL = isset($arr["TenLoaiNL"]) ? $arr["TenLoaiNL"] : null;
 				$soLuong = isset($arr["SoLuong"]) ? $arr["SoLuong"] : "";
 				$soLuongMin = isset($arr["SoLuongMin"]) ? $arr["SoLuongMin"] : "";
 				$soLuongMax = isset($arr["soLuongMax"]) ? $arr["SoLuongMax"] : "";
-
-				$data = $data."<div class='edit-ingredient-info'>
+				
+				$selectStr = $this->getAllIngredientType($tenLoaiNL);
+				$data = $data."
 				<p>Thay đổi thông tin và nhấp Lưu</p>
 				<table>
 				<tr>
-				<td>Tên nguyên liệu</td>
-
-				<td><input type='text' title='Tên nguyên liệu'>$tenNL</input></td>
+				<td value='{$id}' id='ingredientId' >Tên nguyên liệu</td>
+				<td><input type='text' title='Tên nguyên liệu' id='nameInput_editIngredient' value='{$tenNL}'></input></td>
 				</tr>
 				<tr>
 				<td>Loại nguyên liệu</td>
-				<td><select>
-				<option>Thịt</option>
-				<option>Rau</option>
-				<option>Gạo</option>
+				<td><select id='typeSBox_editIngredient'>{$selectStr}				
 				</select></td>
 				</tr>
 				<tr>
 				<td>Số lượng</td>
-				<td><input type='text'>$soLuong</input></td>
+				<td><input type='text' id='amountInput_editIngredient' value='{$soLuong}'></input></td>
 				</tr>
 				<tr>
 				<td>Số lượng tối thiểu</td>
-				<td><input type='text'>$soLuongMin</input></td>
+				<td><input type='text' id='minAmountInput_editIngredient' value='{$soLuongMin}'></input></td>
 				</tr>
 				<tr>
 				<td>Số lượng tối đa</td>
-				<td><input type='text'>$soLuongMax</input></td>
+				<td><input type='text' id='maxAmountInput_editIngredient' value='{$soLuongMax}'></input></td>
 				</tr>
 				</table>
-				<button>Lưu</button>
-				</div>";
+				<button onclick='editIngredientButClicked()'>Lưu</button>";
 			}
 		}
 		catch (Exception $e) {
@@ -187,7 +183,7 @@ class ModuleIngredientManagementController{
 	 * @return ingredientType string - option view(select box option) of ingredientType
 	 * @author hathao298@gmail.com
 	 * */
-	public function getAllIngredientType(){
+	public function getAllIngredientType($selectedOption = null){
 		try{
 			$dao = new IngredientTypeDAO();
 			$ingreTypeArr = $dao->getAllIngredientType();
@@ -198,7 +194,7 @@ class ModuleIngredientManagementController{
 				$item["option"] = $ingredient["TenLoaiNL"];
 				array_push($selectArr, $item);
 			}
-			return $this->generateViewForSelectBox($selectArr);
+			return $this->generateViewForSelectBox($selectArr, $selectedOption);
 		}catch(Exception $e){
 			echo "Not Connect to database! ";
 		}
@@ -267,17 +263,13 @@ switch ($action) {
 		$result = $load->getMaterial($id);
 		echo $result;
 		break;
-		//author hathao298@gmail.com
-		//load data for editIngredientDialog on GUI
-	case "loadEdit":
-		break;
 	case "update": // get a row from database base on $MaNL
 		$id = isset($_REQUEST["id"]) ? $_REQUEST["id"] : "";
 		$materialName = isset($_REQUEST["materialname"]) ? $_REQUEST["materialname"] : "";
 		$materialTypee= isset($_REQUEST["materialtype"]) ? $_REQUEST["materialtype"] : "";
 		$quantityMin = isset($_REQUEST["quantity"]) ? $_REQUEST["quantity"] : "";
 		$quantityMin = isset($_REQUEST["minquantity"]) ? $_REQUEST["minquantity"] : "";
-		$quantityMax= isset($_REQUEST["maxquantitymax"]) ? $_REQUEST["maxquantity"] : "";
+		$quantityMax= isset($_REQUEST["maxquantity"]) ? $_REQUEST["maxquantity"] : "";
 
 		$update = new ModuleIngredientManagementController();
 		$result = $update->updateMaterial($id, $materialName, $materialType, $quantity, $quantityMin, $quantityMax);

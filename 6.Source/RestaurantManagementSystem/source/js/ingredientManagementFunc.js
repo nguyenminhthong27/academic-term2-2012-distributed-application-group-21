@@ -132,7 +132,7 @@ function openEditIngredientDialog() {
 	// get data from server (in JSON format)
 	var http = createXMLHttpRequest();
 	var nocache = Math.random();
-	var serverURL = "../controller/ModuleIngredientManagementController.php?action=loadEdit&nocache="
+	var serverURL = "../controller/ModuleIngredientManagementController.php?action=load&nocache="
 			+ nocache + "&id=" + rowId;
 	http.open("POST", serverURL, true);
 	http.onreadystatechange = function() {
