@@ -77,7 +77,7 @@ function openAddIngredientDialog() {
  */
 function deleteConfirm() {
 	var rowIds = ingredientGrid.getCheckedRows(0);
-	if (rowIds.length) {
+	if (rowIds == "") {
 		alert("Bạn chưa chọn nguyên liệu");
 		return;
 	}
@@ -91,7 +91,7 @@ function deleteConfirm() {
  * @returns null
  * @author hathao298@gmail.com
  */
-function cancelDeleteBill() {
+function cancelDeleteIngredient() {
 	$('.delete-confirmation-box-dialog').dialog("close");
 }
 
@@ -167,7 +167,7 @@ function initIngredientGrid() {
 	// get data from server (in JSON format)
 	var http = createXMLHttpRequest();
 	var nocache = Math.random();
-	var serverURL = "../controller/ModuleIngredientManagementController.php?action=getAllMaterial&nocache="
+	var serverURL = "../controller/ModuleIngredientManagementController.php?action=getAllIngredient&nocache="
 			+ nocache;
 	http.open("POST", serverURL, true);
 	http.onreadystatechange = function() {
@@ -237,7 +237,7 @@ function addIngredientButClicked() {
 	var type = document.getElementById("typeSBox_addIngredient").options[selIndex].value;
 
 	// validate input data
-	var validationRes = ingredientInfoValation(name, "1", minAmount, maxAmount);
+	var validationRes = ingredientInfoValidation(name, "1", minAmount, maxAmount);
 	switch (validationRes) {
 	case 0:
 		break;
@@ -260,10 +260,12 @@ function addIngredientButClicked() {
 	var serverURL = "../controller/ModuleIngredientManagementController.php?action=insert&nocache="
 			+ nocache
 			+ "&materialname="
-			+ name
+			+ $.trim(name)
 			+ "&materialtype="
-			+ type
-			+ "&minquantity=" + minAmount + "&maxquantity=" + maxAmount;
+			+ $.trim(type)
+			+ "&minquantity="
+			+ $.trim(minAmount)
+			+ "&maxquantity=" + $.trim(maxAmount);
 	http.open("POST", serverURL, true);
 	http.onreadystatechange = function() {
 		if (http.readyState == 4 && http.status == 200) {
@@ -300,6 +302,12 @@ function reloadIngredientGrid() {
 			var jsData = eval('(' + response + ')');
 			if (response != null)
 				ingredientGrid.clearAll();
+			var inputArr = $('#ingredientInfoDiv .xhdr .hdr tr td input').get();
+			for(var i=0; i<inputArr.length; i++){
+				if(inputArr[i].type == "checkbox"){
+					inputArr[i].checked = false;
+				}
+			}
 			ingredientGrid.parse(jsData, "json");
 			setFontColorForIngredientAmountUnderMin();
 			ingredientGrid.refreshFilters();
@@ -317,7 +325,64 @@ function reloadIngredientGrid() {
  * @author hathao298@gmail.com
  */
 function editIngredientButClicked() {
+	var id = document.getElementById("ingredientId").value;
+	var name = document.getElementById("nameInput_editIngredient").value;
+	var selIndex = document.getElementById("typeSBox_editIngredient").selectedIndex;
+	var minAmount = document.getElementById("minAmountInput_editIngredient").value;
+	var maxAmount = document.getElementById("maxAmountInput_editIngredient").value;
+	var amount = document.getElementById("amountInput_editIngredient").value;
 
+	// type id
+	var type = document.getElementById("typeSBox_addIngredient").options[selIndex].value;
+
+	// validate input data
+	var validationRes = ingredientInfoValidation(name, amount, minAmount, maxAmount);
+	switch (validationRes) {
+	case 0:
+		break;
+	case 1:
+		alert("Tên nguyên liệu không hợp lệ");
+		return;
+	case 2:
+		alert("Số lượng không hợp lệ");
+		return;
+	case 3:
+		alert("Số lượng tối thiểu không hợp lệ");
+		return;
+	case 4:
+		alert("Số lượng tối đa không hợp lệ");
+		return;
+	}
+
+	var http = createXMLHttpRequest();
+	var nocache = Math.random();
+	var serverURL = "../controller/ModuleIngredientManagementController.php?action=update&nocache="
+			+ nocache
+			+"&id="
+			+ id
+			+ "&materialname="
+			+ $.trim(name)
+			+ "&materialtype="
+			+ $.trim(type)
+			+ "&quantity="
+			+ $.trim(amount)
+			+ "&minquantity="
+			+ $.trim(minAmount) + "&maxquantity=" + $.trim(maxAmount);
+	http.open("POST", serverURL, true);
+	http.onreadystatechange = function() {
+		if (http.readyState == 4 && http.status == 200) {
+			var response = http.responseText;
+			if (response == true) {
+				$('#editIngredientDialog').dialog("close");
+				alert("Cập nhật thông tin nguyên liệu thành công");
+				reloadIngredientGrid();
+			} else {
+				alert("Cập nhật thông tin nguyên liệukhông thành công");
+				return;
+			}
+		}
+	};
+	http.send();
 }
 
 /**
@@ -328,7 +393,29 @@ function editIngredientButClicked() {
  * @author hathao298@gmail.com
  */
 function deleteIngredientButClicked() {
+	var rowIds = ingredientGrid.getCheckedRows(0).split(",");
+	var idStr = "";
+	for ( var i = 0; i < rowIds.length; i++) {
+		idStr = idStr + "&arrid[]=" + rowIds[i];
+	}
 
+	var http = createXMLHttpRequest();
+	var nocache = Math.random();
+	var serverURL = "../controller/ModuleIngredientManagementController.php?action=delete&nocache="
+			+ nocache + idStr;
+	http.open("POST", serverURL, true);
+	http.onreadystatechange = function() {
+		if (http.readyState == 4 && http.status == 200) {
+			var response = http.responseText;
+			$('.delete-confirmation-box-dialog').dialog("close");
+			if (response == true) {
+				alert("Đã xóa thành công");
+			} else
+				alert("Thao tác xóa không thành công");
+			reloadIngredientGrid();
+		}
+	};
+	http.send();
 }
 
 /**
