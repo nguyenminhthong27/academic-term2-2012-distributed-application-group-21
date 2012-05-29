@@ -11,7 +11,16 @@ $(document).ready(function() {
 		height : 300,
 		width : 600,
 		modal : true,
-		resizable : false
+		resizable : false,
+		 beforeClose: function(event, ui){
+			 //clear all input 
+			 var name = document.getElementById("nameInput_addIngredient");
+				var minAmount = document.getElementById("minAmountInput_addIngredient");
+				var maxAmount = document.getElementById("maxAmountInput_addIngredient");
+				name.value= "";
+				minAmount.value = "";
+				maxAmount.value = "";
+		 }
 	});
 
 	$('#editIngredientDialog').dialog({
@@ -19,7 +28,18 @@ $(document).ready(function() {
 		height : 350,
 		width : 600,
 		modal : true,
-		resizable : false
+		resizable : false,
+		beforeClose: function(event, ui){
+			 //clear all input 
+			 var name = document.getElementById("nameInput_editIngredient");
+				var minAmount = document.getElementById("minAmountInput_editIngredient");
+				var maxAmount = document.getElementById("maxAmountInput_editIngredient");
+				var amount = document.getElementById("amountInput_editIngredient");
+				name.value= "";
+				minAmount.value = "";
+				maxAmount.value = "";
+				amount.value = "";
+		 }
 	});
 
 	$('.delete-confirmation-box-dialog').dialog({
@@ -113,7 +133,7 @@ function openEditIngredientDialog() {
 	var http = createXMLHttpRequest();
 	var nocache = Math.random();
 	var serverURL = "../controller/ModuleIngredientManagementController.php?action=loadEdit&nocache="
-			+ nocache;
+			+ nocache + "&id=" + rowId;
 	http.open("POST", serverURL, true);
 	http.onreadystatechange = function() {
 		if (http.readyState == 4 && http.status == 200) {
@@ -121,7 +141,7 @@ function openEditIngredientDialog() {
 			var editDialog = $("#editIngredientDialog .edit-ingredient-info")
 					.get();
 			if (response == null) {
-				alert("Không thể nhận thông tin từ cơ sở dữ liệu");
+				alert("Không nhận được thông tin từ cơ sở dữ liệu");
 				return;
 			}
 			editDialog.innerHTML = response;
@@ -234,7 +254,7 @@ function addIngredientButClicked() {
 	var minAmount = document.getElementById("minAmountInput_addIngredient").value;
 	var maxAmount = document.getElementById("maxAmountInput_addIngredient").value;
 	// type id
-	var type = document.getElementById("typeSBox_addIngredient").options[selIndex].value;
+	var type = document.getElementById("typeSBox_addIngredient").options[selIndex].value;	
 
 	// validate input data
 	var validationRes = ingredientInfoValidation(name, "1", minAmount, maxAmount);
@@ -253,6 +273,10 @@ function addIngredientButClicked() {
 	case 4:
 		alert("Số lượng tối đa không hợp lệ");
 		return;
+	case 5:
+		alert("Số lượng tối đa không nhỏ hơn số lượng tối thiểu");
+		return;
+	default: break;
 	}
 
 	var http = createXMLHttpRequest();
@@ -270,7 +294,7 @@ function addIngredientButClicked() {
 	http.onreadystatechange = function() {
 		if (http.readyState == 4 && http.status == 200) {
 			var response = http.responseText;
-			if (response == true) {
+			if (response == true) {				
 				$('#addIngredientDialog').dialog("close");
 				alert("Thêm nguyên liệu mới thành công");
 				reloadIngredientGrid();
@@ -352,6 +376,10 @@ function editIngredientButClicked() {
 	case 4:
 		alert("Số lượng tối đa không hợp lệ");
 		return;
+	case 5:
+		alert("Số lượng tối đa không nhỏ hơn số lượng tối thiểu");
+		return;
+	default: break;
 	}
 
 	var http = createXMLHttpRequest();
@@ -429,8 +457,7 @@ function deleteIngredientButClicked() {
  *            string max amount of ingredient
  * @param amount
  *            string amount of ingredient
- * @returns 0 -successful 1 - false name 2 - false amount 3 - false minamount 4 -
- *          false maxamount
+ * @returns 0 -successful 1 - false name 2 - false amount 3 - false minamount 4 - false maxamount 5 - min>max
  * @author hathao298@gmail.com
  */
 function ingredientInfoValidation(name, amount, minAmount, maxAmount) {
@@ -458,6 +485,8 @@ function ingredientInfoValidation(name, amount, minAmount, maxAmount) {
 	if (maxAmount < 0) {
 		return 4;
 	}
-
+	if(minAmount>maxAmount){
+		return 5;
+	}
 	return 0;
 }
