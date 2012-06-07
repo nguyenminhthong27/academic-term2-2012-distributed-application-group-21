@@ -30,7 +30,11 @@ function _init_slider(carousel) {
 	});
 
 	$('#addIngredientAmountBut').bind('click', function() {
-		getIngredientChecked();
+		if(!getIngredientChecked())
+			{
+				alert("Bạn chưa chọn nguyên liệu");
+				return;
+			}
 		carousel.next();
 		return false;
 	});
@@ -123,6 +127,10 @@ function getIngredientChecked() {
 		}			
 	}
 	
+	if(materialList == ""){		
+		return false;
+	}
+	
 	var http = createXMLHttpRequest();
 	var nocache = Math.random();
 	var serverURL = "../controller/ModuleIngredientImportingController.php?action=selectIngredient" +
@@ -135,6 +143,7 @@ function getIngredientChecked() {
 		}
 	};
 	http.send();
+	return true;
 }
 
 /**
