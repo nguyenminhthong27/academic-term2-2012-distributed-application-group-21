@@ -270,19 +270,13 @@ class IncludeGenerator {
 	 */
 	public static function ReporsitoryManagementToolbar(){
 		return '
-		<div id="menuDiv" class="menu" style="display: none">
-				<ul>
-					<li><a href="javascript:addIngredient()"><img
-							src="../css/images/addIngredientIcon.png" title="Nhập hàng" /> </a>
-					</li>					
-					<li><a href="javascript:supplierManagement()"><img
-							src="../css/images/restaurantIcon.png"
-							title="Quản lý nhà cung cấp" /> </a></li>
-					<li><a href="javascript:ingredientManagement()"><img
-							src="../css/images/ingredientIcon2.png" title="Quản lý kho hàng" />
-					</a></li>
-				</ul>
-			</div>
+		<div id="menuDiv" class="menu" style="display:none">
+                    <ul>
+                        <li><a href="javascript:ingredientImporting()"><img src="../css/images/addIngredientIcon.png" title="Nhập hàng"/></a></li>
+                        <li><a href="javascript:supplierManagement()"><img src="../css/images/restaurantIcon.png" title="Quản lý nhà cung cấp"/></a></li>
+                        <li><a href="javascript:ingredientManagement()"><img src="../css/images/ingredientIcon2.png" title="Quản lý kho hàng"/></a></li>
+                    </ul>
+                </div>
 		';
 	}
 }

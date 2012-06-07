@@ -90,7 +90,7 @@ function addSupplier(){
  * supplier management
  */
 function supplierManagement(){
-	
+	window.location = "../gui/supplierManagement.php";
 }
 
 /**

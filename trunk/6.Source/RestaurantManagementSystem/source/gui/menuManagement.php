@@ -45,13 +45,24 @@ require_once '../controller/GUIGenerator.php';
         <script src="dhtmlx/ext/dhtmlxgrid_filter.js" type="text/javascript"></script>
         <script src="dhtmlx/dhtmlxgridcell.js" type="text/javascript"></script>
         <script src="../js/general_functions.js" type="text/javascript"></script>
-        <script src="../js/ingredientManagementFunc.js" type="text/javascript"></script>
+        <script src="../js/menuManagementFunc.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="page" class="shell">
             <!-- Logo + Search + Navigation -->
-		<?php echo IncludeGenerator::LogoGenerate();?>
-		<!-- END Logo + Search + Navigation -->                             
+            <div id="top">
+                <div class="cl">&nbsp;</div>
+                <h1 id="logo"><a href="#">T4V RESTAURANT</a></h1>          
+                <div class="cl">&nbsp;</div>
+                <div id="navigation">
+                    <ul>
+                        <li><a href="#" class="active"><span>Trang chủ</span></a></li>                        
+                        <li><a href="#"><span>Giới thiệu</span></a></li>
+                        <li><a href="#"><span>Liên hệ</span></a></li>
+                    </ul>
+                </div>	
+            </div>
+            <!-- END Logo + Search + Navigation -->                                  
             <!-- Main -->
             <div id="main">	
                 <!-- Menu -->
@@ -59,19 +70,19 @@ require_once '../controller/GUIGenerator.php';
                 <div id="menuDiv" class="menu" style="display:none">
                     <ul>
                         <li><a href="javascript:ingredientImporting()"><img src="../css/images/addIngredientIcon.png" title="Nhập hàng"/></a></li>
-                        <li><a href="javascript:supplierManagement()"><img src="../css/images/restaurantIcon.png" title="Quản lý nhà cung cấp"/></a></li>
-                        <li><a href="javascript:ingredientManagement()"><img src="../css/images/ingredientIcon2.png" title="Quản lý kho hàng"/></a></li>
+                        <li><a href="#"><img src="../css/images/restaurantIcon.png" title="Quản lý nhà cung cấp"/></a></li>
+                        <li><a href="#"><img src="../css/images/ingredientIcon2.png" title="Quản lý kho hàng"/></a></li>
                     </ul>
                 </div>
                 <!-- END Menu -->         
                 <!-- Main content -->
                 <div class="main-content">
-                    <div id="main-header">QUẢN LÝ KHO HÀNG</div>
+                    <div id="main-header">QUẢN LÝ THỰC ĐƠN</div>
                     <!-- tool-bar -->
                     <div class="tool-bar">
-                        <button title="Thêm nguyên liệu" onclick="openAddIngredientDialog()"><img src="../css/images/plusIcon.png" /></button>
-                        <button title="Cập nhật thông tin nguyên liệu" onclick="openEditIngredientDialog()"><img src="../css/images/editIcon_w.png" /></button>
-                        <button title="Xóa nguyên liệu" onclick="deleteConfirm()"><img src="../css/images/trashIcon_w.png" /></button>                       
+                        <button title="Thêm thực đơn" onclick="openAddIngredientDialog()"><img src="../css/images/plusIcon.png" /></button>
+                        <button title="Thêm chi tiết thực đơn" onclick="openEditIngredientDialog()"><img src="../css/images/editIcon_w.png" /></button>
+                        <button title="Xóa thực đơn" onclick="deleteConfirm()"><img src="../css/images/trashIcon_w.png" /></button>                       
                     </div>
                     <!-- END tool-bar -->                    
                     <!-- Div for ingredient info -->
