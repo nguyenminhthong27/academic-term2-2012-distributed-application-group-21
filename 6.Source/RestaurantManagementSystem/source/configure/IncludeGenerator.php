@@ -146,7 +146,6 @@ class IncludeGenerator {
                         </div>
                         <div class="smallToolbar">
                         	<a href="javascript:addIngredient()"> <img src="../css/images/addIngredientIcon.png" title="Nhập hàng" /> </a>
-                        	<a href="javascript:addSupplier()"><img	src="../css/images/plusIcon.png" title="Thêm nhà cung cấp" /> </a>
                             <a href="javascript:supplierManagement()" title="Quản lý nhà cung cấp"><img src="../css/images/restaurantIcon.png" /></a>
                             <a href="javascript:ingredientManagement()" title="Quản lý nguyên liệu trong kho hàng"><img src="../css/images/ingredientIcon2.png" /></a>
                         </div>
@@ -177,8 +176,7 @@ class IncludeGenerator {
                                 <li>Quản lý thông tin nhân viên</li>
                                 <li>Chuyển công tác nhân viên</li>
                                 <li>Chỉ dành cho quản lý nhà hàng</li>
-                            </ul>
-
+                            </ul>							
                         </div>
                         <div class="smallToolbar"></div>                        
                     </div>
@@ -193,10 +191,12 @@ class IncludeGenerator {
                         <div class="text">
                             <a href="javascript:restaurantManagement()">Quản lý nhà hàng</a>
                             <ul>
-                                <li>Quản lý thông tin nhà hàng</li>
+                                <li>Quản lý thông tin nhà hàng và lập báo cáo</li>
                                 <li>Chỉ dành cho nhân viên hệ thống</li>
                             </ul>
-
+							<div class="smallToolbar">
+                        	<a href="javascript:makeLocalReport()"> <img src="../css/images/menuIcon.png" title="Lập báo cáo cục bộ của từng nhà hàng" /> </a>
+                            </div>
                         </div>
                         <div class="smallToolbar"></div>
                     </div>                    
