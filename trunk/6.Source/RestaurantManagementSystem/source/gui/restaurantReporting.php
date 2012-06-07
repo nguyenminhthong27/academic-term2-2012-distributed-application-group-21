@@ -78,10 +78,9 @@ require_once '../controller/GUIGenerator.php';
                                     <td>Tiêu chí</td>
                                     <td><select id="criteriaSBox">                                            
                                             <option>Theo món ăn</option>
-                                            <option>Theo khu vực bàn ăn</option>
-                                            <option>Theo doanh thu ngày</option>
-                                            <option>Theo doanh thu tháng</option>
-                                            <option>Theo doanh thu năm</option>
+                                            <option>Theo doanh thu từng ngày</option>
+                                            <option>Theo doanh thu từng tháng</option>
+                                            <option>Theo doanh thu từng năm</option>
                                         </select></td>
                                 </tr>
                                 <tr>
