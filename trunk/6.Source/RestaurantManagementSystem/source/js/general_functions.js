@@ -99,3 +99,10 @@ function supplierManagement(){
 function ingredientManagement(){
 	window.location = "../gui/ingredientManagement.php";
 }
+
+/**
+ * make local report
+ */
+function makeLocalReport(){
+	window.location = "../gui/restaurantReporting.php";
+}
