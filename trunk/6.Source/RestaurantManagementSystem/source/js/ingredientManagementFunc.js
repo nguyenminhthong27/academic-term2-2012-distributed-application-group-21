@@ -490,3 +490,8 @@ function ingredientInfoValidation(name, amount, minAmount, maxAmount) {
 	}
 	return 0;
 }
+
+
+function ingredientImporting(){
+	window.location = "../gui/ingredientImporting.php";
+}

@@ -69,9 +69,9 @@ require_once '../controller/GUIGenerator.php';
                 <div ><img id="button-show" title="Click here" src="../css/images/button-next.gif"/></div>
                 <div id="menuDiv" class="menu" style="display:none">
                     <ul>
-                        <li><a href="#"><img src="../css/images/addIngredientIcon.png" title="Nhập hàng"/></a></li>
+                        <li><a href="javascript:ingredientImporting()"><img src="../css/images/addIngredientIcon.png" title="Nhập hàng"/></a></li>
                         <li><a href="#"><img src="../css/images/restaurantIcon.png" title="Quản lý nhà cung cấp"/></a></li>
-                        <li><a href="#"><img src="../css/images/ingredientIcon.png" title="Quản lý kho hàng"/></a></li>
+                        <li><a href="#"><img src="../css/images/ingredientIcon2.png" title="Quản lý kho hàng"/></a></li>
                     </ul>
                 </div>
                 <!-- END Menu -->         

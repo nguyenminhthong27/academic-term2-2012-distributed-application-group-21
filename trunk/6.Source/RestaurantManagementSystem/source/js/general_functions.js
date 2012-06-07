@@ -97,5 +97,5 @@ function supplierManagement(){
  * ingredient mangagement
  */
 function ingredientManagement(){
-	
+	window.location = "../gui/ingredientManagement.php";
 }

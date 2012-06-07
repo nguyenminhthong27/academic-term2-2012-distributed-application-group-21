@@ -148,7 +148,7 @@ class IncludeGenerator {
                         	<a href="javascript:addIngredient()"> <img src="../css/images/addIngredientIcon.png" title="Nhập hàng" /> </a>
                         	<a href="javascript:addSupplier()"><img	src="../css/images/plusIcon.png" title="Thêm nhà cung cấp" /> </a>
                             <a href="javascript:supplierManagement()" title="Quản lý nhà cung cấp"><img src="../css/images/restaurantIcon.png" /></a>
-                            <a href="javascript:ingredientManagement()" title="Quản lý nguyên liệu trong kho hàng"><img src="../css/images/ingredientIcon.png" /></a>
+                            <a href="javascript:ingredientManagement()" title="Quản lý nguyên liệu trong kho hàng"><img src="../css/images/ingredientIcon2.png" /></a>
                         </div>
                     </div>
                     <div class="cl">&nbsp;</div>
@@ -274,15 +274,12 @@ class IncludeGenerator {
 				<ul>
 					<li><a href="javascript:addIngredient()"><img
 							src="../css/images/addIngredientIcon.png" title="Nhập hàng" /> </a>
-					</li>
-					<li><a href="javascript:addSupplier()"><img
-							src="../css/images/plusIcon.png" title="Thêm nhà cung cấp" /> </a>
-					</li>
+					</li>					
 					<li><a href="javascript:supplierManagement()"><img
 							src="../css/images/restaurantIcon.png"
 							title="Quản lý nhà cung cấp" /> </a></li>
 					<li><a href="javascript:ingredientManagement()"><img
-							src="../css/images/ingredientIcon.png" title="Quản lý kho hàng" />
+							src="../css/images/ingredientIcon2.png" title="Quản lý kho hàng" />
 					</a></li>
 				</ul>
 			</div>
