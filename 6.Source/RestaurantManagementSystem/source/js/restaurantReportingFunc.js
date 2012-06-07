@@ -232,26 +232,23 @@ function makeReport(){
     switch(criteria.selectedIndex){
         case 0:
             setParamForFoodReport(dateRange, date);
-            break;
+            break;        
         case 1:
-            setParamForFoodTableReport(dateRange, date);
+            setParamForIncomeReport(criteria.selectedIndex - 1,dateRange, date);
             break;
         case 2:
-            setParamForIncomeReport(criteria.selectedIndex - 2,dateRange, date);
-            break;
-        case 3:
             if(dateRange == 1){
                 alert("Tiêu chí và thời gian thống kê không phù hợp");
                 return;
             }
-            setParamForIncomeReport(criteria.selectedIndex - 2,dateRange,date);
+            setParamForIncomeReport(criteria.selectedIndex - 1,dateRange,date);
             break;
-        case 4:
+        case 3:
             if(dateRange ==1 || dateRange == 2){
                 alert("Tiêu chí và thời gian thống kê không phù hợp");
                 return;
             }
-            setParamForIncomeReport(criteria.selectedIndex - 2, dateRange,date);
+            setParamForIncomeReport(criteria.selectedIndex - 1, dateRange,date);
             break;
     }
     
