@@ -1,0 +1,378 @@
+/* 
+    Document   : billManagement
+    Created on : May 14, 2012, 8:09:08 AM
+    Author     : JML
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#main
+{
+    font-size: 14px;
+    font-family: Arial;
+}
+
+#main-header
+{
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Times New Roman;
+    padding-left: 300px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+.ingredientImportingInfo2
+{
+    border-bottom: 1px solid #E3E7E9;
+    margin-bottom: 20px;
+}
+
+.bookingDetailInfo
+{
+    border-bottom: 1px solid #E3E7E9;
+    margin-bottom: 20px;
+}
+
+.main-content
+{
+    padding-left: 100px;
+}
+
+#main-header
+{
+    font-weight: bold;
+    font-size: 25px;
+    font-family: Times New Roman;
+    padding-left: 200px;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+
+.main-content-dialog
+{
+    padding-left: 30px;
+}
+
+.tool-bar
+{
+    margin-left: -30px;
+}
+
+/*Tool-bar*/
+.tool-bar button img 
+{
+    width: 20px;
+    height: 20px;
+}
+
+.tool-bar button{
+    min-width: 60px;
+}
+/*END Tool-bar*/
+
+
+/*Supplier Info Div*/
+#supplierInfoDiv{
+    border-radius: 10px 10px 10px 10px;
+    width: 750px;
+    height: 500px;
+    margin-top: 10px;
+    margin-left: -30px;
+}
+/*END Supplier Info Div*/
+
+/*delete-confirmation-box-dialog-dialog*/
+#okDeleteBillBut
+{
+    margin-left: 90px;
+}
+/*END delete-confirmation-box-dialog-dialog*/
+
+.jcarousel-skin-default .jcarousel {
+    position: relative;
+    overflow: hidden;
+    width: 75%;
+    height: 75px;
+    border: 1px solid #000;
+}
+
+.jcarousel-skin-default ul {
+    width: 20000px;
+    position: absolute;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.jcarousel-skin-default li {
+    float: left;
+    margin: 0 10px 0 0;
+    padding: 0;
+}
+
+*[dir=rtl] .jcarousel-skin-default li {
+    float: right;
+    margin: 0 0 0 10px;
+}
+
+/*add-supplier-info*/
+.add-supplier-info{
+    margin-top: 20px;
+}
+
+.add-supplier-info p{
+    font-style: italic;
+    color: red;
+}
+
+.add-supplier-info table{
+    margin-left: 70px;
+    margin-bottom: 20px;
+}
+.add-supplier-info table tr td{
+    padding-right: 30px;
+    margin-bottom: 20px;
+}
+
+.add-supplier-info table tr td input{
+    padding-bottom: 3px;
+    padding-top: 3px;
+    margin-bottom: 5px;
+    margin-top:5px;
+}
+
+.add-supplier-info button{
+    margin-left: 200px;
+}
+
+/*END add-supplier-info*/
+
+/*add-account-info*/
+.add-account-info {
+    margin-top: 20px;
+}
+
+.add-account-info p {
+    font-style: italic;
+    color: red;
+}
+
+.add-account-info table{
+    margin-left: 70px;
+    margin-bottom: 20px;
+}
+
+.add-account-info table tr td{
+    padding-right: 30px;
+}
+
+.add-account-info table tr td input{
+    padding-bottom: 3px;
+    padding-top: 3px;
+    margin-bottom: 5px;
+    margin-top:5px;
+}
+
+.add-account-info table tr td select{
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+.add-account-info button:first-child{
+    margin-left: 185px;
+}
+
+/*END add-account-info*/
+
+/*edit-supplier-info*/
+.edit-supplier-info{
+    margin-top: 20px;
+}
+
+.edit-supplier-info p{
+    font-style: italic;
+    color: red;
+}
+
+.edit-supplier-info table{
+    margin-left: 70px;
+    margin-bottom: 20px;
+}
+.edit-supplier-info table tr td{
+    padding-right: 30px;
+    margin-bottom: 20px;
+}
+
+.edit-supplier-info table tr td input{
+    padding-bottom: 3px;
+    padding-top: 3px;
+    margin-bottom: 5px;
+    margin-top:5px;
+}
+
+.edit-supplier-info button{
+    margin-left: 200px;
+}
+
+/*END edit-supplier-info*/
+
+/*edit-account-info*/
+.edit-account-info{
+    margin-top: 20px;
+}
+
+.edit-account-info p{
+    font-style: italic;
+    color: red;
+}
+
+.edit-account-info table{
+    margin-left: 70px;
+    margin-bottom: 20px;
+}
+.edit-account-info table tr td{
+    padding-right: 30px;
+    margin-bottom: 20px;
+}
+
+.edit-account-info table tr td input{
+    padding-bottom: 3px;
+    padding-top: 3px;
+    margin-bottom: 5px;
+    margin-top:5px;
+}
+
+.edit-account-info button:first-child{
+    margin-left: 185px;
+}
+/*END edit-account-info*/
+
+/*account-info*/
+.account-info table{
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.account-info table tr td{
+    padding-right: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.account-info table tr td:first-child{
+    font-weight: bold;
+}
+
+.account-info button{
+    margin-top: 15px;
+    margin-left: 135px;
+}
+
+/*END account-info*/
+
+/** Custom **/
+
+.jcarousel-skin-default li img {
+    border: 0;
+}
+
+#addSupplierSlider {     
+    height: 200px;
+    position: relative;
+}
+
+#addSupplier-SliderHolder {
+    width: 150px;
+}
+
+#addSupplier-SliderHolder .jcarousel-clip {
+    overflow: hidden;
+    position: relative;
+    width: 550px;
+}
+
+#addSupplier-SliderHolder .slide-info {
+    display: inline;
+    float: left;
+    padding-left: 50px;
+    padding-top: 23px;
+    width: 300px;
+}
+
+#addSupplier-SliderHolder .slide-info p {
+    padding-bottom: 8px;
+}
+
+#addSupplier-SliderHolder ul {
+    overflow: hidden;
+    position: relative;
+    width: 550px;
+}
+
+#addSupplier-SliderHolder ul li {
+    display: inline;
+    float: left;
+    list-style-type: none;
+    overflow: hidden;
+    padding: 5px 10px 40px 50px;
+    position: relative;
+    width: 550px;
+}
+
+#addSupplier-SliderHolder ul li:nth-child(2) {    
+    height: 300px;
+}
+
+#editSupplierSlider {     
+    height: 200px;
+    position: relative;
+}
+
+#editSupplier-SliderHolder {
+    width: 150px;
+}
+
+#editSupplier-SliderHolder .jcarousel-clip {
+    overflow: hidden;
+    position: relative;
+    width: 550px;
+}
+
+#editSupplier-SliderHolder .slide-info {
+    display: inline;
+    float: left;
+    padding-left: 50px;
+    padding-top: 23px;
+    width: 300px;
+}
+
+#editSupplier-SliderHolder .slide-info p {
+    padding-bottom: 8px;
+}
+
+#editSupplier-SliderHolder ul {
+    overflow: hidden;
+    position: relative;
+    width: 550px;
+}
+
+#editSupplier-SliderHolder ul li {
+    display: inline;
+    float: left;
+    list-style-type: none;
+    overflow: hidden;
+    padding: 5px 10px 40px 50px;
+    position: relative;
+    width: 550px;
+}
+
+#editSupplier-SliderHolder ul li:nth-child(2) {    
+    height: 300px;
+}

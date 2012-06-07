@@ -206,3 +206,17 @@ function saveImporting(){
 	};
 	http.send();
 }
+
+
+
+function ingredientImporting(){
+	window.location = "../gui/ingredientImporting.php";
+}
+
+function supplierManagement(){
+	window.location = "../gui/supplierManagement.php";
+}
+
+function ingredientManagement(){
+	window.location = "../gui/ingredientManagement.php";
+}
