@@ -48,6 +48,7 @@ require_once '../controller/GUIGenerator.php';
         <script src="dhtmlx/dhtmlxgridcell.js" type="text/javascript"></script>
         <script src="dhtmlx/ext/dhtmlxgrid_export.js" type="text/javascript"></script>
         <script src="dhtmlx/ext/chart/dhtmlxchart.js" type="text/javascript"></script>
+        <script src="../js/general_functions.js" type="text/javascript"></script>
         <script src="../js/restaurantReportingFunc.js" type="text/javascript"></script>
     </head>
     <body>
@@ -98,7 +99,7 @@ require_once '../controller/GUIGenerator.php';
                             </table>        
                     </div>
                     <!-- END reportingCriteriaDiv -->
-                    <button onclick="makeReport()" id="reportBut">Thống kê</button>                    
+                    <button onclick="javascript:makeReport()" id="reportBut">Thống kê</button>                    
                     <!-- report Div -->
                     <div id="reportDiv" ></div>
                     <!-- END report Div-->
