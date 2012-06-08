@@ -13,6 +13,7 @@ class ModuleRestaurantReportingController {
 			case "food":
 				$result = $dao->getFoodReport($date, $range);
 				$jsonStr = $this->genrerateJSONForGrid($result, "MaMonAn", array("TenMonAn", "TongDoanhThu"));
+				$jsonStr = "[". $jsonStr . "," . $this->generateJSONForChart($result, array("TenMonAn", "TongDoanhThu")) . "]";
 				break;
 			case "day":
 				$result =  $dao->getTotalMoneyOfDay($date, $range);
@@ -33,6 +34,9 @@ class ModuleRestaurantReportingController {
 	
 	public function genrerateJSONForGrid($dataArr, $idIndex, $dataIndexArr){		
 		$result = "";
+		if(sizeof($dataArr) == 0){
+			return "";
+		}
 		
 		foreach($dataArr as $data){
 			$dataStr = "";
@@ -48,7 +52,15 @@ class ModuleRestaurantReportingController {
 	}
 	
 	public function generateJSONForChart($dataArr, $dataIndexArr){
-		
+		$result = "";
+		foreach ($dataArr as $data){
+			$result = $result. "{sales:{$data[$dataIndexArr[1]]}, time:'{$data[$dataIndexArr[0]]}'},";			
+		}
+		if($result == "")
+			return "";
+		$result = substr($result,0, strlen($result)-1);
+		$result = "{rows:[{$result}]}";
+		return $result;
 	}
 	
 	/*

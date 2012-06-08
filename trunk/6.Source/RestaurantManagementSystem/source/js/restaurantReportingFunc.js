@@ -261,6 +261,8 @@ function makeReport() {
 		if (http.readyState == 4 && http.status == 200) {
 			var response = http.responseText;		
 			gridData = eval('(' + response + ')');
+			chartData = gridData[1];
+			gridData = gridData[0];
 			refreshReportGrid();
 			var chart = document.getElementById("chartDiv");
 			chart.style.display = "block";
