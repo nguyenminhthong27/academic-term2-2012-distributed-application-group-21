@@ -16,7 +16,7 @@ class ReportDAO {
 		$date = date_parse_from_format("Y-m-d H:i:s", $date);
 		$month = $date["month"];
 		$year = $date["year"];
-		
+
 		switch ($type){
 			case 1: // Get date of #date
 				// 1. Get all food on the date.
@@ -29,7 +29,7 @@ class ReportDAO {
 				$toMonth = date("Y-m-d H:i:s", mktime(0, 0, 0, $month + 1, 1, $year));
 				$fromMonth = new MongoDate(strtotime($fromMonth));
 				$toMonth = new MongoDate(strtotime($toMonth));
-				
+
 				return $this->staticticsFoodByTime($fromMonth, $toMonth);
 				break;
 			case 3: // Get year of #date
@@ -52,7 +52,20 @@ class ReportDAO {
 	 * @return dataArr - day and money total
 	 */
 	public function getTotalMoneyOfDay($date, $type){
-
+		$date = date_parse_from_format("Y-m-d H:i:s", $date);
+		$month = $date["month"];
+		$year = $date["year"];
+		
+		// Get number of days of the selected month
+		$num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+		$result = array();
+		for ($i = 0; $i < $num; $i++) {
+			$fromDate = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $month, $i, $year))));
+			$toDate = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(23, 59, 59, $month, $i, $year))));
+			$result []= $this->staticticsFoodByTime($fromYear, $toYear);			
+		} 
+		
+		return $result;
 	}
 
 	/**
@@ -80,12 +93,12 @@ class ReportDAO {
 	public function getTotalMoneyOfYear($date, $type){
 
 	}
-	
+
 	/**
 	 * Statictics by time.
 	 * @param MongoDate $from
 	 * @param MongoDate $to
-	 * @return array 
+	 * @return array
 	 */
 	private function staticticsFoodByTime($from, $to){
 		$fDao = new FoodDAO();
