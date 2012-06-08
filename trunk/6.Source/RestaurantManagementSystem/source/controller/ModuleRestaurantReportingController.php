@@ -8,9 +8,11 @@ class ModuleRestaurantReportingController {
 		$dao = new ReportDAO();
 		$result = array();
 		$date = $this->changeFormatDate($date);
+		$jsonStr = "";
 		switch($type){
 			case "food":
 				$result = $dao->getFoodReport($date, $range);
+				$jsonStr = $this->genrerateJSONForGrid($result, "MaMonAn", array("TenMonAn", "TongDoanhThu"));
 				break;
 			case "day":
 				$result =  $dao->getTotalMoneyOfDay($date, $range);
@@ -25,18 +27,28 @@ class ModuleRestaurantReportingController {
 		
 		if(sizeof($result) == 0){
 			return "";
+		}		
+		return $jsonStr;
+	}
+	
+	public function genrerateJSONForGrid($dataArr, $idIndex, $dataIndexArr){		
+		$result = "";
+		
+		foreach($dataArr as $data){
+			$dataStr = "";
+			foreach ($dataIndexArr as $index){				
+				$dataStr = $dataStr . "'{$data[$index]}',";
+			}
+			$dataStr = substr($dataStr, 0, strlen($dataStr)-1);
+			$result = $result . "{id:'{$data[$idIndex]}', data:['',{$dataStr}]},";			
 		}
-		$jsonArr = array();
-		$ele = array();
-		$data = array();
-		foreach($result as $res){
-			$ele['id'] = $res["MaMonAn"];
-			$data[0] = $res["TenMonAn"];
-			$data[1] = $res["TongDoanhThu"];
-			$ele['data'] = $data;
-			array_push($jsonArr, $ele);
-		}
-		return $jsonArr;
+		$result = substr($result, 0, strlen($result) - 1);
+		$result = "{rows:[{$result}]}";
+		return $result;
+	}
+	
+	public function generateJSONForChart($dataArr, $dataIndexArr){
+		
 	}
 	
 	/*
@@ -60,9 +72,7 @@ switch ($action){
 		$date = isset($_REQUEST['date'])? $_REQUEST['date']: "";
 		$ctl = new ModuleRestaurantReportingController();
 		$result = $ctl->makeReport($type, $range, $date);
-		$ctrl = new ModuleRestaurantReportingController();
-		$result = $ctrl->makeReport($type, $range, $date);
-		$json = json_encode($result);
+		echo $result;
 // 		str
 		break;
 }

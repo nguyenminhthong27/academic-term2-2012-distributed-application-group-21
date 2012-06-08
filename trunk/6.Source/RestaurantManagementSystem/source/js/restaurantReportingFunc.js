@@ -7,7 +7,7 @@ var reportGrid;
 var chartView;
 var gridData = {
 	rows : [ {
-		id : 1001,
+		id : 'a1001',
 		data : [ '', '1001', 'Thịt gà', 'Thịt', '150', '120', '150' ]
 	},
 
@@ -21,6 +21,7 @@ var gridData = {
 		data : [ '', '1003', 'Bông cải xanh', 'Rau', '30', '35', '158' ]
 	} ]
 };
+
 
 var chartData = [ {
 	sales : 2.9,
@@ -259,7 +260,7 @@ function makeReport() {
 	http.onreadystatechange = function() {
 		if (http.readyState == 4 && http.status == 200) {
 			var response = http.responseText;		
-			gridData = eval(response);
+			gridData = eval('(' + response + ')');
 			refreshReportGrid();
 			var chart = document.getElementById("chartDiv");
 			chart.style.display = "block";
