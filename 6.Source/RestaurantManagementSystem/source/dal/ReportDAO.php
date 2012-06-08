@@ -126,7 +126,7 @@ class ReportDAO {
 			foreach ($foods as $food){
 				$revenues += $food["TongDoanhThu"];
 			}
-			$result []= $revenues;
+			$result []=  $revenues;
 		}
 
 		return $result;
@@ -171,7 +171,8 @@ class ReportDAO {
 		foreach ($foodWithUnitPrices as $key => $food){
 			$temp["MaMonAn"] = $food["MaMonAn"];
 			$temp["TenMonAn"] = $food["TenMonAn"];
-			$temp["TongDoanhThu"] = $fDao->getFoodAmout($food["MaChiTietThucDon_MonAn"]);
+			$revenues = $fDao->getFoodAmout($food["MaChiTietThucDon_MonAn"]);
+			$temp["TongDoanhThu"] = $revenues == null ? 0 : $revenues;
 			$result[] = $temp;
 		}
 		return $result;
