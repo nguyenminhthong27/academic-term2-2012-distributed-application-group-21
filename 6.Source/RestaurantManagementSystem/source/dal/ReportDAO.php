@@ -1,6 +1,7 @@
 <?php
 require_once 'MongoDatabase.php';
 require_once 'FoodDAO.php';
+require_once 'MenuDao.php';
 class ReportDAO {
 
 	/**
@@ -55,19 +56,19 @@ class ReportDAO {
 		$date = date_parse_from_format("Y-m-d H:i:s", $date);
 		$month = $date["month"];
 		$year = $date["year"];
-		
+
 		// Get number of days of the selected month
 		$num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 		$result = array();
 		for ($i = 0; $i < $num; $i++) {
 			$fromDate = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $month, $i, $year))));
 			$toDate = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(23, 59, 59, $month, $i, $year))));
-			$result []= $this->staticticsFoodByTime($fromDate, $toDate);			
-		} 
-		
+			$result []= $this->staticticsFoodByTime($fromDate, $toDate);
+		}
+
 		return $result;
 	}
-	
+
 	/**
 	 * get total money of day
 	 * @param $date datetime - datetime to make report
@@ -81,7 +82,7 @@ class ReportDAO {
 		$date = date_parse_from_format("Y-m-d H:i:s", $date);
 		$month = $date["month"];
 		$year = $date["year"];
-	
+
 		// Get number of days of the selected month
 		$num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 		$result = array();
@@ -89,41 +90,17 @@ class ReportDAO {
 			$fromDate = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $month, $i, $year))));
 			$toDate = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(23, 59, 59, $month, $i, $year))));
 			$foods = $this->staticticsFoodByTime($fromDate, $toDate);
-			
+				
 			$totalValue = 0;
 			foreach ($foods as $food){
-				$totalValue += $food["TongDoanhThu"];	
+				$totalValue += $food["TongDoanhThu"];
 			}
 			$result []= $totalValue;
 		}
-	
+
 		return $result;
 	}
 
-	/**
-	 * get total money of month
-	 * @param $date datetime - datetime to make report
-	 * @param $type 0 - all - don't care about the datetime
-	 * @param $type 1 - get date of $date (don't care about this - error)
-	 * @param $type 2 - get month of date
-	 * @param $type 3 - get year of date
-	 * @return dataArr - day and money total
-	 */
-	public function getTotalMoneyOfMonth($date, $type){
-		$date = date_parse_from_format("Y-m-d H:i:s", $date);
-		$month = $date["month"];
-		$year = $date["year"];
-		
-		$result = array();
-		for ($i = 0; $i < 12; $i++) {
-			$fromMonth = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $i, 1, $year))));
-			$toMonth = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $i + 1, 1, $year))));
-			$result []= $this->staticticsFoodByTime($fromMonth, $toMonth);
-		}
-		
-		return $result;
-	}
-	
 	/**
 	 * get total money of month
 	 * @param $date datetime - datetime to make report
@@ -137,33 +114,44 @@ class ReportDAO {
 		$date = date_parse_from_format("Y-m-d H:i:s", $date);
 		$month = $date["month"];
 		$year = $date["year"];
-	
+
 		$result = array();
 		for ($i = 0; $i < 12; $i++) {
 			$fromMonth = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $i, 1, $year))));
 			$toMonth = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $i + 1, 1, $year))));
-			
-			$totalValue = 0;
+				
+			$foods = $this->staticticsFoodByTime($fromMonth, $toMonth);
+			$revenues = 0;
 			foreach ($foods as $food){
-				$totalValue += $food["TongDoanhThu"];
+				$revenues += $food["TongDoanhThu"];
 			}
-			$result []= $totalValue;
+			$result []= $revenues;
 		}
-	
+
 		return $result;
 	}
 
 	/**
-	 * get total money of year
-	 * @param $date datetime - datetime to make report
-	 * @param $type 0 - all - don't care about the datetime
-	 * @param $type 1 - get date of $date (don't care about this - error)
-	 * @param $type 2 - get month of date (don't care about this - error)
-	 * @param $type 3 - get year of date
-	 * @return dataArr - day and money total
+	 * statictics by years.
+	 * @return array year => revenues
 	 */
-	public function getTotalMoneyOfYear($date, $type){
-
+	public function staticticsByYears(){
+		$menuDao = new MenuDAO();
+		$years = $menuDao->getAllYearOnMenu();
+		
+		$result = array();
+		foreach($years as $year){
+			$fromYear = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, 1, 1, $year))));
+			$toYear = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, 12, 31, $year))));
+			
+			$foods = $this->staticticsFoodByTime($fromYear, $toYear);
+			$revenues = 0;
+			foreach ($foods as $food){
+				$revenues += $food["TongDoanhThu"];
+			}
+			$result[$year] = $revenues;
+		}
+		return $result;
 	}
 
 	/**
