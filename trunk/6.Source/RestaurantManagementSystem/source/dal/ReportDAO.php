@@ -14,15 +14,16 @@ class ReportDAO {
 	 * @return dataArr - foodName and total money
 	 */
 	public function getFoodReport($date, $type){
-		$date = date_parse_from_format("Y-m-d H:i:s", $date);
-		$month = $date["month"];
-		$year = $date["year"];
+		$arrDate = date_parse_from_format("Y-m-d H:i:s", $date);
+		$day = $arrDate["day"];
+		$month = $arrDate["month"];
+		$year = $arrDate["year"];
 
 		switch ($type){
 			case 1: // Get date of #date
 				// 1. Get all food on the date.
-				$fromDate = new MongoDate(strtotime($date));
-				$toDate = new MongoDate(strtotime($date));
+				$fromDate = date("Y-m-d H:i:s", mktime(0, 0, 0, $month, $day, $year));
+				$toDate = date("Y-m-d H:i:s", mktime(23, 59, 59, $month, $day + 1, $year));
 				return $this->staticticsFoodByTime($fromDate, $toDate);
 				break;
 			case 2: // Get month of #date
@@ -140,9 +141,9 @@ class ReportDAO {
 		$years = $menuDao->getAllYearOnMenu();
 		
 		$result = array();
-		foreach($years as $year){
-			$fromYear = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, 1, 1, $year))));
-			$toYear = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, 12, 31, $year))));
+		for ($i = 0; $i < 12; $i++) {
+			$fromMonth = date("Y-m-d H:i:s", mktime(0, 0, 0, $i, 1, $year));
+			$toMonth = date("Y-m-d H:i:s", mktime(0, 0, 0, $i + 1, 1, $year));
 			
 			$foods = $this->staticticsFoodByTime($fromYear, $toYear);
 			$revenues = 0;
