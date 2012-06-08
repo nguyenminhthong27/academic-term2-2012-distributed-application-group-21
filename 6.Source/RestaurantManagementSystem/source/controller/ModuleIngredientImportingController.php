@@ -1,6 +1,5 @@
 <?php
 require_once '../dal/contractdao.php';
-require_once 'cache.php';
 require_once '../dal/ingredientdao.php';
 require_once '../dal/supplierdao.php';
 

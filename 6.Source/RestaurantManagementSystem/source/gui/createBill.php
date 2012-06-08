@@ -84,94 +84,41 @@ require_once '../controller/GUIGenerator.php';
                                 </div>
                                 <!-- END Div for bill info -->
                                 <!-- Div for food detail -->                    
-                                <div id="food-list-detail" class="food-detail">
-                                    <p>Chọn món ăn nhập vào hóa đơn</p>
-                                    <table>
-                                        <tr>
-                                            <th><input type="checkbox" id="checkAllCBox" onclick="checkAllCBoxClicked();"></input></th>
-                                            <th>Món ăn</th>
-                                            <th>Giá thành</th>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></input></td>
-                                            <td>Gà rán</td>
-                                            <td>15.000</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></input></td>
-                                            <td>Xà lách trộn</td>
-                                            <td>5.500</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox"></input></td>
-                                            <td>Trứng cút chiên</td>
-                                            <td>5.000</td>
-                                        </tr>
-                                    </table>
+                                <div  class="food-detail">
+                                	<div id="food-list-detail">
+                                		<p>Chọn món ăn nhập vào hóa đơn</p>
+	                                    <table>
+	                                        <tr>
+	                                            <th><input type="checkbox" id="checkAllCBox" onclick="checkAllCBoxClicked();"></input></th>
+	                                            <th>Món ăn</th>
+	                                            <th>Giá thành</th>
+	                                        </tr>
+	                                    </table>
+                                	</div>                                    
                                     <!-- END food-tab -->
-                                    <button class="nextBut" id="addFoodAmountBut">Nhập số lượng</button>
+                                    <button id="addFoodAmountBut">Nhập số lượng</button>
                                 </div>
 
                             </li>
                             <li>
                                 <!-- Div for food amount -->
                                 <div class ="food-amount">
-                                    <table>
-                                        <!-- Note: to create a user-friendly GUI, set value of food amount (so luong mon an) to 1 (default)-->
-                                        <tr>                                
-                                            <th>Món ăn</th>
-                                            <th>Giá thành</th>
-                                            <th>Số lượng</th>
-                                        </tr>
-                                        <tr>                                
-                                            <td>Gà rán</td>
-                                            <td>15.000</td>
-                                            <td><input type="text" value="1"></input></td>
-                                        </tr>
-                                        <tr>                                
-                                            <td>Xà lách trộn</td>
-                                            <td>5.500</td>
-                                            <td><input type="text" value="1"></input></td>
-                                        </tr>
-                                    </table>
+                                	<div id="food-amount">
+                                	</div>
+                                    
                                     <button class="backBut">Trở về</button>
-                                    <button class="nextBut" >Kế tiếp</button>
+                                    <button id="confirm-info-button" >Kế tiếp</button>
                                 </div>
                                 <!-- END Div for food amount -->
                             </li>
                             <li>
                                 <!-- Div for creating bill confirmation -->
-                                <div class="bill-confirmation" title="Xác nhận lập hóa đơn">
-                                    <p>Xin xác nhận lại thông tin đã nhập và nhấp "Lưu"</p>
-                                    <table>                                        
-                                        <tr>
-                                            <td>Ngày lập</td>
-                                            <td>14:00 12/10/2012</td>                                
-                                        </tr>
-                                        <tr>
-                                            <td>Mã phiếu đặt chỗ</td>
-                                            <td>456</td>
-                                        </tr>
-                                    </table>
-                                    <table>
-                                        <tr>                                
-                                            <th>Món ăn</th>
-                                            <th>Giá thành</th>
-                                            <th>Số lượng</th>
-                                        </tr>
-                                        <tr>                                
-                                            <td>Gà rán</td>
-                                            <td>15.000</td>
-                                            <td>10</td>
-                                        </tr>
-                                        <tr>                                
-                                            <td>Xà lách trộn</td>
-                                            <td>5.500</td>
-                                            <td>5</td>
-                                        </tr>
-                                    </table>
+                                <div id="save-bill-result" class="bill-confirmation" title="Xác nhận lập hóa đơn">
+	                                <div id="bill-confirmation">
+	                                </div>
+                                    
                                     <button class="backBut">Trở về</button>
-                                    <button>Lưu</button>
+                                    <button onclick="javascript:saveBill()">Lưu</button>
                                 </div>
                                 <!-- END Div for creating bill confirmation -->
                             </li>
@@ -210,24 +157,6 @@ require_once '../controller/GUIGenerator.php';
                 </div>
                 <!-- END booking-search-table -->
                 <div id="booking-detail-div" class="booking-detail-div">
-                    <table>
-                        <tr>
-                            <th>Mã phiếu</th>
-                            <th>Ngày lập</th>
-                            <th>Họ tên khách hàng</th>
-                            <th>Số CMND</th>
-                            <th>Số điện thoại</th>
-                            <th>Người tiếp nhận</th>
-                        </tr>
-                        <tr>
-                            <td>123</td>
-                            <td>14:00 19/5/2012</td>
-                            <td>Hà Thị Phương Thảo</td>
-                            <td>29136889999</td>
-                            <td>0944164989</td>
-                            <td>Lê Văn Tuấn</td>
-                        </tr>
-                    </table>
                 </div>
             </div>
             <!-- END Addtitional -->         

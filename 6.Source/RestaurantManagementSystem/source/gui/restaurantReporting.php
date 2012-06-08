@@ -112,16 +112,7 @@ require_once '../controller/GUIGenerator.php';
             </div>
             <!-- END Main -->
             <!-- Footer -->
-            <div id="footer">
-                <p class="right">&copy; 2012 - T4V Restaurant &nbsp; Design by T4V Group
-                    <p>
-                        <a href="#">Trang chủ</a><span>&nbsp;</span>
-                        <a href="#">Giới thiệu</a><span>&nbsp;</span>
-                        <a href="#">Liên hệ</a><span>&nbsp;</span>
-                        <div class="cl">&nbsp;</div>
-                    </p>
-                </p>
-            </div>           
+            <?php echo IncludeGenerator::FooterGenerate();?>           
             <!-- END Footer -->        
             <!-- Additional -->
             <!-- Table Info Dialog -->

@@ -105,7 +105,7 @@ class ModuleBookingController{
 	public function decribeDecoration($id){
 		$dao = new TableDAO() ;//supose
 		$result = $dao->getDecribe($ID_Table);
-		$data =  "<p>Mô t? trang trí</p>";
+		$data =  "<p>Mô tả trang trí</p>";
 		$data = $data."<p>$result</p>";
 		return $data;
 	}
