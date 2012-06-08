@@ -7,18 +7,19 @@ class ModuleRestaurantReportingController {
 	public function makeReport($type, $range, $date){
 		$dao = new ReportDAO();
 		$result = array();
+		$date = $this->changeFormatDate($date);
 		switch($type){
 			case "food":
-				$result = $dao->getFoodReport($date, $type);
+				$result = $dao->getFoodReport($date, $range);
 				break;
 			case "day":
-				$result =  $dao->getTotalMoneyOfDay($date, $type);
+				$result =  $dao->getTotalMoneyOfDay($date, $range);
 				break;
 			case "month":
-				$result =  $dao->getTotalMoneyOfMonth($date, $type);
+				$result =  $dao->getTotalMoneyOfMonth($date, $range);
 				break;
 			case "year":
-				$result =  $dao->getTotalMoneyOfYear($date, $type);
+				$result =  $dao->getTotalMoneyOfYear($date, $range);
 				break;
 		}
 		
@@ -37,6 +38,18 @@ class ModuleRestaurantReportingController {
 		}
 		return $jsonArr;
 	}
+	
+	/*
+	 * @author thanhtuan
+	* @param $datime string
+	* @return string $datetime after format.
+	*/
+	public function changeFormatDate($date)	{
+		$result = new DateTime($date);
+		$result =  $result->format('Y-m-d H:i:s');
+		return $result;
+	}
+	
 }
 
 // get action form request params
@@ -46,7 +59,8 @@ switch ($action){
 		$type = isset($_REQUEST['type'])? $_REQUEST['type']: "";
 		$range = isset($_REQUEST['range'])? $_REQUEST['range']: "";
 		$date = isset($_REQUEST['date'])? $_REQUEST['date']: "";
-		$result = makeReport($type, $range, $date);
+		$ctl = new ModuleRestaurantReportingController();
+		$result = $ctl->makeReport($type, $range, $date);
 		echo json_encode($result);
 		break;
 }
