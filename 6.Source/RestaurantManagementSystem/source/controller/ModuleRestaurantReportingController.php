@@ -30,9 +30,9 @@ class ModuleRestaurantReportingController {
 		$ele = array();
 		$data = array();
 		foreach($result as $res){
-			$ele['id'] = $res[0];
-			$data[0] = $res[0];
-			$data[1] = $res[1];
+			$ele['id'] = $res["MaMonAn"];
+			$data[0] = $res["TenMonAn"];
+			$data[1] = $res["TongDoanhThu"];
 			$ele['data'] = $data;
 			array_push($jsonArr, $ele);
 		}
@@ -49,7 +49,6 @@ class ModuleRestaurantReportingController {
 		$result =  $result->format('Y-m-d H:i:s');
 		return $result;
 	}
-	
 }
 
 // get action form request params
@@ -61,7 +60,10 @@ switch ($action){
 		$date = isset($_REQUEST['date'])? $_REQUEST['date']: "";
 		$ctl = new ModuleRestaurantReportingController();
 		$result = $ctl->makeReport($type, $range, $date);
-		echo json_encode($result);
+		$ctrl = new ModuleRestaurantReportingController();
+		$result = $ctrl->makeReport($type, $range, $date);
+		$json = json_encode($result);
+// 		str
 		break;
 }
 
