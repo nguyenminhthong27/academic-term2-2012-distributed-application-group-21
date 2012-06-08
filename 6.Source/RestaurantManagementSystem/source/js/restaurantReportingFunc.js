@@ -99,16 +99,20 @@ function initReportGrid() {
 }
 
 /*
- * export report data to excel file @param null @return null @author:
- * hathao298@gmail.com
+ * export report data to excel file 
+ * @param null 
+ * @return null 
+ * @author: hathao298@gmail.com
  */
 function exportGridToExcel() {
 	reportGrid.toExcel('dhtmlx/ext/grid-excel-php/generate.php');
 }
 
 /*
- * set "Tất cả" value for first option of select group @param null @return null
- * @note call everytime report data changes @author hathao298@gmail.com
+ * set "Tất cả" value for first option of select group 
+ * @param null @return null
+ * @note call everytime report data changes 
+ * @author hathao298@gmail.com
  */
 function setAllValueForSelectFilter() {
 	var selectArr = $('#reportDiv .filter select').get();
@@ -120,9 +124,11 @@ function setAllValueForSelectFilter() {
 }
 
 /*
- * set red color for font of ingredient amount which is under min amount @param
- * null @return null @note call everytime ingredient data changes @author
- * hathao298@gmail.com
+ * set red color for font of ingredient amount which is under min amount 
+ * @param null 
+ * @return null 
+ * @note call everytime ingredient data changes 
+ * @author hathao298@gmail.com
  */
 function setFontColorForIngredientAmountUnderMin() {
 	var amountArr = $('#reportDiv .objbox .obj tr td:nth-child(5)').get();
@@ -138,7 +144,9 @@ function setFontColorForIngredientAmountUnderMin() {
 }
 
 /*
- * init (generate) chart from data @param data in JSON format @return null
+ * init (generate) chart from data 
+ * @param data in JSON format 
+ * @return null
  * @author hathao298@gmail.com
  */
 function initChartView() {
@@ -159,8 +167,10 @@ function initChartView() {
 }
 
 /*
- * change chart style (pie, bar, pie3d, line) @param null @return null @author
- * hathao298@gmail.com
+ * change chart style (pie, bar, pie3d, line)
+ * @param null 
+ * @return null 
+ * @author hathao298@gmail.com
  */
 function changeChartStyle() {
 	switch (chartStyle) {
@@ -181,8 +191,10 @@ function changeChartStyle() {
 }
 
 /*
- * show date time criteria when click radio button @param radio button @return
- * null @author hathao298@gmail.com
+ * show date time criteria when click radio button 
+ * @param radio button 
+ * @return null 
+ * @author hathao298@gmail.com
  */
 function showDateTimeCriteria(radio) {
 	var radioArr = $('#reportingCriteriaDiv table tr td input').get();
@@ -209,7 +221,9 @@ function showDateTimeCriteria(radio) {
 
 /*
  * make report when report button clicked load data for grid and refresh chart
- * @param null @return null @author hathao298@gmail.com
+ * @param null 
+ * @return null 
+ * @author hathao298@gmail.com
  */
 function makeReport() {
 	var criteria = document.getElementById("criteriaSBox");
@@ -269,15 +283,15 @@ function makeReport() {
 			makeChart(chartStyle);
 		}
 	}
-	http.send();
-
-	
+	http.send();	
 
 }
 
 /*
- * set parameter for foodreport @param dateRange make report on days, months or
- * years, or all date date of report @return null author hathao298@gmail.com
+ * set parameter for foodreport 
+ * @param dateRange make report on days, months or years, or all date date of report 
+ * @return null 
+ * @author hathao298@gmail.com
  */
 function setParamForFoodReport(dateRange, date) {
 	setHeader(1, "TÊN MÓN ĂN");
@@ -287,8 +301,9 @@ function setParamForFoodReport(dateRange, date) {
 }
 
 /*
- * set parameter for food table report @param dateRange make report on days (1),
- * months(2) or years (3), or all(0) @param date date of report @return null
+ * set parameter for food table report 
+ * @param dateRange make report on days (1), months(2) or years (3), or all(0) 
+ * @param date date of report @return null
  * @author hathao298@gmail.com
  */
 function setParamForFoodTableReport(dateRange, date) {
@@ -296,8 +311,10 @@ function setParamForFoodTableReport(dateRange, date) {
 }
 
 /*
- * make report grid when user click make report @param null use global variable
- * @return null @author hathao298@gmail.com
+ * make report grid when user click make report 
+ * @param null use global variable
+ * @return null 
+ * @author hathao298@gmail.com
  */
 function refreshReportGrid() {
 	reportGrid.clearAll();
@@ -307,8 +324,10 @@ function refreshReportGrid() {
 }
 
 /*
- * make chart from style(input) and data @param style string style of chart
- * ex:pie, line, spline @return null @author hathao298@gmail.com
+ * make chart from style(input) and data 
+ * @param style string style of chart ex:pie, line, spline 
+ * @return null 
+ * @author hathao298@gmail.com
  */
 function makeChart(style) {
 	chartView.destructor();
@@ -409,9 +428,12 @@ function makeChart(style) {
 }
 
 /*
- * set parameter for income report @param incomeType int day-0, month -1, year
- * -2 @param dateRange int all - 0, day -1, month -2, year -3 @param date date
- * of report @return null @author hathao298@gmail.com
+ * set parameter for income report 
+ * @param incomeType int day-0, month -1, year -2 
+ * @param dateRange int all - 0, day -1, month -2, year -3 
+ * @param date date of report 
+ * @return null 
+ * @author hathao298@gmail.com
  */
 function setParamForIncomeReport(incomeType, dateRange, date) {
 	switch (incomeType) {
@@ -428,19 +450,14 @@ function setParamForIncomeReport(incomeType, dateRange, date) {
 }
 
 /*
- * set header inner html @param position int position of header @param header
- * string new header @return null @author hathao298@gmail.com
+ * set header inner html 
+ * @param position int position of header 
+ * @param header string new header 
+ * @return null 
+ * @author hathao298@gmail.com
  */
 function setHeader(position, header) {
 	var hdrCell = $('#reportDiv .xhdr .hdr .hdrcell').get();
 	hdrCell[position].innerHTML = header;
 }
 
-/*
- * parse date to get return type @param date datetime dateformat 05/01/2012
- * 00:00 mm/dd/yyyy @param returnType int 1-date 2 - month 3 - year @return
- * returnType month - 9/2012 @author hathao298@gmail.com
- */
-function parseDate(date, returnType) {
-
-}
