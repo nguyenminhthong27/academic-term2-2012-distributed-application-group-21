@@ -62,9 +62,41 @@ class ReportDAO {
 		for ($i = 0; $i < $num; $i++) {
 			$fromDate = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $month, $i, $year))));
 			$toDate = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(23, 59, 59, $month, $i, $year))));
-			$result []= $this->staticticsFoodByTime($fromYear, $toYear);			
+			$result []= $this->staticticsFoodByTime($fromDate, $toDate);			
 		} 
 		
+		return $result;
+	}
+	
+	/**
+	 * get total money of day
+	 * @param $date datetime - datetime to make report
+	 * @param $type 0 - all - don't care about the datetime
+	 * @param $type 1 - get date of $date
+	 * @param $type 2 - get month of date
+	 * @param $type 3 - get year of date
+	 * @return dataArr - days on month and money total
+	 */
+	public function staticticsByDays($date, $type){
+		$date = date_parse_from_format("Y-m-d H:i:s", $date);
+		$month = $date["month"];
+		$year = $date["year"];
+	
+		// Get number of days of the selected month
+		$num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+		$result = array();
+		for ($i = 0; $i < $num; $i++) {
+			$fromDate = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $month, $i, $year))));
+			$toDate = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(23, 59, 59, $month, $i, $year))));
+			$foods = $this->staticticsFoodByTime($fromDate, $toDate);
+			
+			$totalValue = 0;
+			foreach ($foods as $food){
+				$totalValue += $food["TongDoanhThu"];	
+			}
+			$result []= $totalValue;
+		}
+	
 		return $result;
 	}
 
@@ -78,7 +110,47 @@ class ReportDAO {
 	 * @return dataArr - day and money total
 	 */
 	public function getTotalMoneyOfMonth($date, $type){
-
+		$date = date_parse_from_format("Y-m-d H:i:s", $date);
+		$month = $date["month"];
+		$year = $date["year"];
+		
+		$result = array();
+		for ($i = 0; $i < 12; $i++) {
+			$fromMonth = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $i, 1, $year))));
+			$toMonth = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $i + 1, 1, $year))));
+			$result []= $this->staticticsFoodByTime($fromMonth, $toMonth);
+		}
+		
+		return $result;
+	}
+	
+	/**
+	 * get total money of month
+	 * @param $date datetime - datetime to make report
+	 * @param $type 0 - all - don't care about the datetime
+	 * @param $type 1 - get date of $date (don't care about this - error)
+	 * @param $type 2 - get month of date
+	 * @param $type 3 - get year of date
+	 * @return dataArr - months in year and money total
+	 */
+	public function staticticsByMonths($date, $type){
+		$date = date_parse_from_format("Y-m-d H:i:s", $date);
+		$month = $date["month"];
+		$year = $date["year"];
+	
+		$result = array();
+		for ($i = 0; $i < 12; $i++) {
+			$fromMonth = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $i, 1, $year))));
+			$toMonth = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $i + 1, 1, $year))));
+			
+			$totalValue = 0;
+			foreach ($foods as $food){
+				$totalValue += $food["TongDoanhThu"];
+			}
+			$result []= $totalValue;
+		}
+	
+		return $result;
 	}
 
 	/**
