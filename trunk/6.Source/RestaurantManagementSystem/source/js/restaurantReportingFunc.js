@@ -218,14 +218,17 @@ function makeReport() {
 		alert("Bạn chưa nhập thời gian lập báo cáo");
 		return;
 	}
-
+	var url = "";
+	
 	// remember to set url for each case
 	switch (criteria.selectedIndex) {
 	case 0:
 		setParamForFoodReport(dateRange, date);
+		url = "&type=food&range=" + dateRange + "&date=" + date;
 		break;
 	case 1:
 		setParamForIncomeReport(criteria.selectedIndex - 1, dateRange, date);
+		url = "&type=day&range=" + dateRange + "&date=" + date;
 		break;
 	case 2:
 		if (dateRange == 1) {
@@ -233,6 +236,7 @@ function makeReport() {
 			return;
 		}
 		setParamForIncomeReport(criteria.selectedIndex - 1, dateRange, date);
+		url = "&type=month&range=" + dateRange + "&date=" + date;
 		break;
 	case 3:
 		if (dateRange == 1 || dateRange == 2) {
@@ -240,14 +244,31 @@ function makeReport() {
 			return;
 		}
 		setParamForIncomeReport(criteria.selectedIndex - 1, dateRange, date);
+		url = "&type=year&range=" + dateRange + "&date=" + date;
 		break;
 	}
-
 	setAllValueForSelectFilter();
+	
+	var http = createXMLHttpRequest();
 
-	var chart = document.getElementById("chartDiv");
-	chart.style.display = "block";
-	makeChart(chartStyle);
+	var nocache = Math.random();
+
+	var serverURL = "../controller/ModuleRestaurantReportingController.php?action=report"
+			+ url + "&nocache=" + nocache;
+	http.open("POST", serverURL, true);
+	http.onreadystatechange = function() {
+		if (http.readyState == 4 && http.status == 200) {
+			var respone = http.responseText;		
+			gridData = response;
+			refreshReportGrid();
+			var chart = document.getElementById("chartDiv");
+			chart.style.display = "block";
+			makeChart(chartStyle);
+		}
+	}
+	http.send();
+
+	
 
 }
 
