@@ -258,8 +258,8 @@ function makeReport() {
 	http.open("POST", serverURL, true);
 	http.onreadystatechange = function() {
 		if (http.readyState == 4 && http.status == 200) {
-			var respone = http.responseText;		
-			gridData = response;
+			var response = http.responseText;		
+			gridData = eval(response);
 			refreshReportGrid();
 			var chart = document.getElementById("chartDiv");
 			chart.style.display = "block";

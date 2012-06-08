@@ -22,8 +22,8 @@ class ReportDAO {
 		switch ($type){
 			case 1: // Get date of #date
 				// 1. Get all food on the date.
-				$fromDate = date("Y-m-d H:i:s", mktime(0, 0, 0, $month, $day, $year));
-				$toDate = date("Y-m-d H:i:s", mktime(23, 59, 59, $month, $day + 1, $year));
+				$fromDate = date("Y-m-d H:i:s", mktime(0, 0, 0, $month, $day -1, $year));
+				$toDate = date("Y-m-d H:i:s", mktime(0, 0, 0, $month, $day + 1, $year));
 				return $this->staticticsFoodByTime($fromDate, $toDate);
 				break;
 			case 2: // Get month of #date
@@ -91,7 +91,7 @@ class ReportDAO {
 			$fromDate = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $month, $i, $year))));
 			$toDate = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(23, 59, 59, $month, $i, $year))));
 			$foods = $this->staticticsFoodByTime($fromDate, $toDate);
-				
+
 			$totalValue = 0;
 			foreach ($foods as $food){
 				$totalValue += $food["TongDoanhThu"];
@@ -120,7 +120,7 @@ class ReportDAO {
 		for ($i = 0; $i < 12; $i++) {
 			$fromMonth = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $i, 1, $year))));
 			$toMonth = new MongoDate(strtotime(date("Y-m-d H:i:s", mktime(0, 0, 0, $i + 1, 1, $year))));
-				
+
 			$foods = $this->staticticsFoodByTime($fromMonth, $toMonth);
 			$revenues = 0;
 			foreach ($foods as $food){
@@ -139,12 +139,12 @@ class ReportDAO {
 	public function staticticsByYears(){
 		$menuDao = new MenuDAO();
 		$years = $menuDao->getAllYearOnMenu();
-		
+
 		$result = array();
 		for ($i = 0; $i < 12; $i++) {
 			$fromMonth = date("Y-m-d H:i:s", mktime(0, 0, 0, $i, 1, $year));
 			$toMonth = date("Y-m-d H:i:s", mktime(0, 0, 0, $i + 1, 1, $year));
-			
+
 			$foods = $this->staticticsFoodByTime($fromYear, $toYear);
 			$revenues = 0;
 			foreach ($foods as $food){
@@ -163,13 +163,15 @@ class ReportDAO {
 	 */
 	private function staticticsFoodByTime($from, $to){
 		$fDao = new FoodDAO();
+				$d = new MongoDate(strtotime($to));
+		// 		echo date("Y-m-d H:i:s", $d->sec);
 		$foodWithUnitPrices  = $fDao->getListFoodWithUnitPrice($from, $to);
 		// 2. Compute total values
 		$result = array();
 		foreach ($foodWithUnitPrices as $key => $food){
 			$temp["MaMonAn"] = $food["MaMonAn"];
 			$temp["TenMonAn"] = $food["TenMonAn"];
-			$temp["TongDoanhThu"] = $fDao->getFoodAmout($food["MaCTTD_MA"]);
+			$temp["TongDoanhThu"] = $fDao->getFoodAmout($food["MaChiTietThucDon_MonAn"]);
 			$result[] = $temp;
 		}
 		return $result;
