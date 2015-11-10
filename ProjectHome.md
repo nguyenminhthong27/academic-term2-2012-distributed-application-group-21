@@ -1,0 +1,1 @@
+Academic project for distributed application courses, term 2, 2012. The University of Science, VNU-HCM
